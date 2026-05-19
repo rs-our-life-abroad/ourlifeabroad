@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
+  
+  <script>
+    // Listener pour recevoir le token OAuth
+    window.addEventListener('message', function(event) {
+      console.log('Message received in CMS:', event.data);
+      
+      // Accepter les messages de n'importe quelle origine (le popup OAuth)
+      if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
+        console.log('OAuth success message detected!');
+        // Le CMS Decap va gérer automatiquement ce message
+      }
+    }, false);
+    
+    console.log('OAuth message listener registered');
+  </script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
