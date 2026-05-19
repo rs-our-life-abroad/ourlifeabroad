@@ -10,33 +10,49 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   
   <script>
-    // Attendre que Decap CMS soit chargé, puis écouter les messages OAuth
     window.addEventListener('message', function(event) {
       if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
         console.log('Auth message received:', event.data);
         
-        // Extraire le token
-        const tokenData = event.data.replace('authorization:github:success:', '');
-        const parsed = JSON.parse(tokenData);
-        
-        console.log('Token parsed:', parsed);
-        
-        // Stocker dans localStorage pour Decap CMS
-        if (parsed.token) {
-          localStorage.setItem('netlify-cms-user', JSON.stringify({
-            token: parsed.token,
-            backendName: 'github'
-          }));
+        try {
+          const tokenData = event.data.replace('authorization:github:success:', '');
+          const parsed = JSON.parse(tokenData);
           
-          console.log('Token stored, reloading page...');
+          console.log('Token parsed:', parsed);
           
-          // Recharger la page pour que Decap CMS détecte le token
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
+          if (parsed.token) {
+            // Format correct pour Decap CMS avec backend GitHub
+            const authData = {
+              token: parsed.token,
+              provider: 'github',
+              backendName: 'github'
+            };
+            
+            // Stocker dans le bon format
+            localStorage.setItem('decap-cms-user', JSON.stringify(authData));
+            
+            // Aussi dans le format legacy au cas où
+            localStorage.setItem('netlify-cms-user', JSON.stringify(authData));
+            
+            console.log('Token stored in localStorage');
+            console.log('Stored data:', authData);
+            
+            // Recharger après un court délai
+            setTimeout(() => {
+              console.log('Reloading page...');
+              window.location.href = window.location.pathname;
+            }, 1000);
+          }
+        } catch (error) {
+          console.error('Error processing auth:', error);
         }
       }
     }, false);
+    
+    // Debug: afficher ce qui est dans localStorage au chargement
+    console.log('localStorage check:');
+    console.log('decap-cms-user:', localStorage.getItem('decap-cms-user'));
+    console.log('netlify-cms-user:', localStorage.getItem('netlify-cms-user'));
   </script>
 </body>
 </html>
