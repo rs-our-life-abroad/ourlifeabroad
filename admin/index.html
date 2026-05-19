@@ -5,23 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager</title>
-  
-  <script>
-    // Listener pour recevoir le token OAuth
-    window.addEventListener('message', function(event) {
-      console.log('Message received in CMS:', event.data);
-      
-      // Accepter les messages de n'importe quelle origine (le popup OAuth)
-      if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
-        console.log('OAuth success message detected!');
-        // Le CMS Decap va gérer automatiquement ce message
-      }
-    }, false);
-    
-    console.log('OAuth message listener registered');
-  </script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Attendre que Decap CMS soit chargé, puis écouter les messages OAuth
+    window.addEventListener('message', function(event) {
+      if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
+        console.log('Auth message received:', event.data);
+        
+        // Extraire le token
+        const tokenData = event.data.replace('authorization:github:success:', '');
+        const parsed = JSON.parse(tokenData);
+        
+        console.log('Token parsed:', parsed);
+        
+        // Stocker dans localStorage pour Decap CMS
+        if (parsed.token) {
+          localStorage.setItem('netlify-cms-user', JSON.stringify({
+            token: parsed.token,
+            backendName: 'github'
+          }));
+          
+          console.log('Token stored, reloading page...');
+          
+          // Recharger la page pour que Decap CMS détecte le token
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
+      }
+    }, false);
+  </script>
 </body>
 </html>
