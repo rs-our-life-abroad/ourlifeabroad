@@ -648,6 +648,265 @@ body {
 }
 
 /* ========================================
+   PAGE D'ACCUEIL
+   ======================================== */
+
+.home-intro {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px dashed var(--ink-dark);
+  border-radius: 12px;
+  position: relative;
+}
+
+.home-intro h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.home-intro p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 1rem 0;
+}
+
+/* Décorations sur la home */
+.home-intro::before {
+  content: '🌍';
+  position: absolute;
+  top: -20px;
+  right: 30px;
+  font-size: 3rem;
+  transform: rotate(15deg);
+}
+
+/* ========================================
+   LISTE D'ARTICLES (HOME)
+   ======================================== */
+
+.posts-list {
+  display: grid;
+  gap: 2rem;
+}
+
+.post-card {
+  background: white;
+  padding: 2rem;
+  border: 2px solid var(--ink-dark);
+  border-radius: 12px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post-card:nth-child(odd) {
+  transform: rotate(-0.5deg);
+}
+
+.post-card:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.post-card:hover {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Masking tape en haut de chaque carte */
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 20%;
+  width: 80px;
+  height: 20px;
+  background: var(--asia-primary);
+  opacity: 0.7;
+  box-shadow: 0 2px 5px var(--tape-shadow);
+  transform: rotate(-3deg);
+}
+
+.post-card:nth-child(even)::before {
+  left: auto;
+  right: 20%;
+  background: var(--southamerica-secondary);
+  transform: rotate(3deg);
+}
+
+.post-card h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-card h3 a {
+  color: var(--ink-dark);
+  text-decoration: none;
+}
+
+.post-card h3 a:hover {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--asia-primary);
+}
+
+.post-card .post-meta {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  font-family: 'Architects Daughter', cursive;
+}
+
+.post-card p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.post-card .read-more {
+  display: inline-block;
+  background: var(--asia-secondary);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.post-card .read-more:hover {
+  background: var(--asia-primary);
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   PAGE DESTINATIONS - GRILLE
+   ======================================== */
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+.destination-card {
+  background: white;
+  border-radius: 12px;
+  overflow: visible;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+}
+
+.destination-card:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+.destination-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.destination-card:hover {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Image avec effet Polaroid */
+.destination-card .card-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid var(--ink-dark);
+  position: relative;
+}
+
+/* Punaise décorative */
+.destination-card .card-image::after {
+  content: '📌';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 2rem;
+  transform: rotate(25deg);
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.destination-card .card-content {
+  padding: 1.5rem;
+}
+
+.destination-card h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  margin: 0 0 0.8rem 0;
+  color: var(--ink-dark);
+}
+
+.destination-card p {
+  font-family: 'Patrick Hand', cursive;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+  /* Limiter à 2 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================
+   SECTIONS DE DESTINATIONS PAR CONTINENT
+   ======================================== */
+
+.continent-section {
+  margin: 4rem 0;
+}
+
+.continent-section h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.continent-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: var(--asia-primary);
+  border-radius: 2px;
+}
+
+/* Couleurs par continent */
+.continent-section.asia h2::after {
+  background: var(--asia-primary);
+}
+
+.continent-section.southamerica h2::after {
+  background: var(--southamerica-primary);
+}
+
+.continent-section.oceania h2::after {
+  background: var(--oceania-primary);
+}
+
+/* ========================================
    RESPONSIVE
    ======================================== */
 

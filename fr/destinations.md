@@ -7,125 +7,103 @@ permalink: /fr/destinations/
 
 # 🗺️ Nos Destinations
 
-Depuis 10 ans, on explore le monde à notre rythme. Voici toutes les destinations qu'on a visitées (et celles à venir).
+Depuis 2 ans, on explore le monde à notre rythme. Voici toutes les destinations qu'on a visitées (et celles à venir).
 
 ---
 
-## 🌏 Asie
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-
- <a href="/ourlifeabroad/destinations/bali-fr/" style="text-decoration: none; color: inherit; display: block;">
-  <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-    <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-    <div style="padding: 1.5rem;">
-      <h3 style="margin: 0 0 0.5rem 0;">🇮🇩 Bali</h3>
-      <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">L'île des dieux - Temples, rizières, et vie de digital nomad</p>
-    </div>
+<div class="continent-section asia">
+  <h2>🌏 Asie</h2>
+  <div class="destinations-grid">
+    
+    <a href="/ourlifeabroad/destinations/bali-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800');"></div>
+      <div class="card-content">
+        <h3>🇮🇩 Bali</h3>
+        <p>L'île des dieux - Temples, rizières, et vie de digital nomad</p>
+      </div>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/vietnam-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?w=800');"></div>
+      <div class="card-content">
+        <h3>🇻🇳 Vietnam</h3>
+        <p>Du Nord au Sud - Street food et paysages à couper le souffle</p>
+      </div>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/thailande-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800');"></div>
+      <div class="card-content">
+        <h3>🇹🇭 Thaïlande</h3>
+        <p>Temples dorés et plages paradisiaques</p>
+      </div>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/philippines-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800');"></div>
+      <div class="card-content">
+        <h3>🇵🇭 Philippines</h3>
+        <p>7000 îles de pure beauté</p>
+      </div>
+    </a>
+    
   </div>
-</a>
-
-  <a href="/ourlifeabroad/destinations/vietnam-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇻🇳 Vietnam</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">Du Nord au Sud - Street food et paysages à couper le souffle</p>
-      </div>
-    </div>
-  </a>
-  
-
-  <a href="/ourlifeabroad/destinations/thailande-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇹🇭 Thaïlande</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">Temples dorés et plages paradisiaques</p>
-      </div>
-    </div>
-  </a>
-
-  <a href="/ourlifeabroad/destinations/philippines-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇵🇭 Philippines</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">7000 îles de pure beauté</p>
-      </div>
-    </div>
-  </a>
-
 </div>
 
 ---
 
-## 🌎 Amérique du Sud
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-
-  <a href="/ourlifeabroad/destinations/salta-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇦🇷 Salta, Argentine</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">La belle du Nord - Déserts et empanadas</p>
+<div class="continent-section southamerica">
+  <h2>🌎 Amérique du Sud</h2>
+  <div class="destinations-grid">
+    
+    <a href="/ourlifeabroad/destinations/salta-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=800');"></div>
+      <div class="card-content">
+        <h3>🇦🇷 Salta, Argentine</h3>
+        <p>La belle du Nord - Déserts et empanadas</p>
       </div>
-    </div>
-  </a>
-
-  <a href="/ourlifeabroad/destinations/asuncion-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇵🇾 Asunción, Paraguay</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">La cachée d'Amérique du Sud</p>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/asuncion-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800');"></div>
+      <div class="card-content">
+        <h3>🇵🇾 Asunción, Paraguay</h3>
+        <p>La cachée d'Amérique du Sud</p>
       </div>
-    </div>
-  </a>
-
-  <a href="/ourlifeabroad/destinations/lima-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇵🇪 Lima, Pérou</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">Capitale gastronomique - Ceviche et culture</p>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/lima-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=800');"></div>
+      <div class="card-content">
+        <h3>🇵🇪 Lima, Pérou</h3>
+        <p>Capitale gastronomique - Ceviche et culture</p>
       </div>
-    </div>
-  </a>
-
-  <a href="/ourlifeabroad/destinations/arequipa-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇵🇪 Arequipa, Pérou</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">La ville blanche au pied des volcans</p>
+    </a>
+    
+    <a href="/ourlifeabroad/destinations/arequipa-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800');"></div>
+      <div class="card-content">
+        <h3>🇵🇪 Arequipa, Pérou</h3>
+        <p>La ville blanche au pied des volcans</p>
       </div>
-    </div>
-  </a>
-
+    </a>
+    
+  </div>
 </div>
 
 ---
 
-## 🦘 Océanie
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
-
-  <a href="/ourlifeabroad/destinations/australie-fr/" style="text-decoration: none; color: inherit; display: block;">
-    <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-      <div style="height: 200px; background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
-      <div style="padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.5rem 0;">🇦🇺 Australie</h3>
-        <p style="color: #666; margin: 0; height: 3em; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.5;">8 ans de vie aussie - De Sydney à Perth</p>
+<div class="continent-section oceania">
+  <h2>🦘 Océanie</h2>
+  <div class="destinations-grid">
+    
+    <a href="/ourlifeabroad/destinations/australie-fr/" class="destination-card">
+      <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800');"></div>
+      <div class="card-content">
+        <h3>🇦🇺 Australie</h3>
+        <p>8 ans de vie aussie - De Sydney à Perth</p>
       </div>
-    </div>
-  </a>
-
-<style>
-a:has(> div) div:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-</style>
+    </a>
+    
+  </div>
 </div>
