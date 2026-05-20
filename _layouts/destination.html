@@ -3,117 +3,46 @@ layout: default
 ---
 
 <article class="destination">
+  
+  <!-- Cover image en Polaroid géant -->
+  {% if page.cover_image %}
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <img src="{{ page.cover_image }}" alt="{{ page.title }}" style="max-width: 600px; transform: rotate(-1deg);">
+  </div>
+  {% endif %}
+  
   <header class="destination-header">
-    {% if page.cover_image %}
-    <div class="destination-cover" style="background-image: url('{{ page.cover_image }}');"></div>
-    {% endif %}
+    <h1>{{ page.title }}</h1>
     
     <div class="destination-meta">
-      <h1>{{ page.flag }} {{ page.title }}</h1>
-      <div class="meta-info">
-        <span>📍 {{ page.country }}</span>
-        <span> • </span>
-        <span>📅 {{ page.date_visited }}</span>
-        <span> • </span>
-        <span>⏱️ {{ page.duration }}</span>
-      </div>
-      
-      {% if page.budget_day %}
-      <div class="budget-badge">
-        💰 Budget: {{ page.budget_day }}/jour/personne
-      </div>
-      {% endif %}
-      
-      {% if page.highlight %}
-      <div class="highlight-badge">
-        ⭐ Coup de cœur: {{ page.highlight }}
-      </div>
-      {% endif %}
+      <span>📍 {{ page.country }}</span>
+      <span>•</span>
+      <span>📅 {{ page.date_visited }}</span>
+      <span>•</span>
+      <span>⏱️ {{ page.duration }}</span>
     </div>
+    
+    {% if page.budget_day %}
+    <div class="budget-badge">
+      💰 Budget: {{ page.budget_day }}/jour/personne
+    </div>
+    {% endif %}
+    
+    {% if page.highlight %}
+    <div class="highlight-badge">
+      ⭐ {{ page.highlight }}
+    </div>
+    {% endif %}
   </header>
   
   <div class="destination-content">
     {{ content }}
   </div>
   
-  <footer class="destination-footer">
-    <a href="{% if page.lang == 'fr' %}{{ '/fr/destinations/' | relative_url }}{% else %}{{ '/en/destinations/' | relative_url }}{% endif %}" class="back-link">← Retour aux destinations</a>
+  <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 2px dashed var(--ink-dark);">
+    <a href="{% if page.lang == 'fr' %}/ourlifeabroad/fr/destinations/{% else %}/ourlifeabroad/en/destinations/{% endif %}" style="font-family: 'Architects Daughter', cursive; font-size: 1.1rem; text-decoration: none;">
+      ← {% if page.lang == 'fr' %}Retour aux destinations{% else %}Back to destinations{% endif %}
+    </a>
   </footer>
+  
 </article>
-
-<style>
-  .destination-cover {
-    width: 100%;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  
-  .destination-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .meta-info {
-    color: #666;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .budget-badge,
-  .highlight-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin: 0.5rem 0.5rem 0.5rem 0;
-    font-size: 0.95rem;
-  }
-  
-  .highlight-badge {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  }
-  
-  .destination-content {
-    margin-top: 3rem;
-  }
-  
-  .destination-content table {
-    width: 100%;
-    margin: 2rem 0;
-    border-collapse: collapse;
-  }
-  
-  .destination-content th,
-  .destination-content td {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .destination-content th {
-    background: #f5f5f5;
-    font-weight: 600;
-  }
-  
-  .destination-footer {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 2px solid #eee;
-  }
-  
-  .back-link {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-  
-  .back-link:hover {
-    color: #764ba2;
-  }
-</style>

@@ -288,6 +288,366 @@ body {
 }
 
 /* ========================================
+   ARTICLES & POSTS
+   ======================================== */
+
+.post-header,
+.destination-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.post-header h1,
+.destination-header h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+/* Soulignement décoratif */
+.post-header h1::after,
+.destination-header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--asia-primary) 0,
+    var(--asia-primary) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  opacity: 0.5;
+}
+
+.post-meta,
+.destination-meta {
+  font-family: 'Architects Daughter', cursive;
+  color: #666;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.post-meta span,
+.destination-meta span {
+  margin: 0 0.5rem;
+}
+
+/* Badges décoratifs */
+.budget-badge,
+.highlight-badge {
+  display: inline-block;
+  background: var(--southamerica-primary);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.95rem;
+  margin: 0.5rem;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  transform: rotate(-2deg);
+}
+
+.highlight-badge {
+  background: var(--asia-secondary);
+  transform: rotate(2deg);
+}
+
+/* ========================================
+   IMAGES POLAROID
+   ======================================== */
+
+.post-content img,
+.destination-content img,
+.photo-gallery img {
+  max-width: 100%;
+  height: auto;
+  padding: 15px 15px 50px 15px;
+  background: white;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  margin: 2rem auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Variations d'angles pour Polaroids */
+.post-content img:nth-child(odd),
+.photo-gallery img:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.post-content img:nth-child(even),
+.photo-gallery img:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.post-content img:hover,
+.photo-gallery img:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+/* ========================================
+   GALERIE PHOTO
+   ======================================== */
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px dashed var(--ink-dark);
+  border-radius: 12px;
+}
+
+.photo-gallery img {
+  margin: 0;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* ========================================
+   TYPOGRAPHIE CONTENU
+   ======================================== */
+
+.post-content h2,
+.destination-content h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--ink-dark);
+  position: relative;
+  padding-left: 2rem;
+}
+
+.post-content h2::before,
+.destination-content h2::before {
+  content: '✈️';
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+}
+
+.post-content h3,
+.destination-content h3 {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--asia-primary);
+}
+
+.post-content p,
+.destination-content p {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.post-content strong,
+.destination-content strong {
+  background: var(--asia-primary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: normal;
+}
+
+/* ========================================
+   TABLEAUX
+   ======================================== */
+
+.post-content table,
+.destination-content table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border: 3px solid var(--ink-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.post-content th,
+.destination-content th {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  background: var(--asia-primary);
+  color: var(--ink-dark);
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--ink-dark);
+}
+
+.post-content td,
+.destination-content td {
+  padding: 1rem;
+  border-bottom: 1px dashed #ddd;
+}
+
+.post-content tr:last-child td,
+.destination-content tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content tr:hover,
+.destination-content tr:hover {
+  background: rgba(168, 213, 186, 0.1);
+}
+
+/* ========================================
+   LISTES
+   ======================================== */
+
+.post-content ul,
+.destination-content ul {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.post-content ul li,
+.destination-content ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin: 0.8rem 0;
+}
+
+.post-content ul li::before,
+.destination-content ul li::before {
+  content: '📍';
+  position: absolute;
+  left: 0;
+}
+
+/* Listes avec émojis personnalisés */
+.post-content ul li:has(✅)::before { content: ''; }
+.post-content ul li:has(❌)::before { content: ''; }
+
+/* ========================================
+   BLOCKQUOTES
+   ======================================== */
+
+.post-content blockquote,
+.destination-content blockquote {
+  background: var(--paper-white);
+  border-left: 5px solid var(--asia-secondary);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  font-style: italic;
+  position: relative;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  transform: rotate(-1deg);
+}
+
+.post-content blockquote::before,
+.destination-content blockquote::before {
+  content: '"';
+  font-family: 'Caveat', cursive;
+  font-size: 4rem;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: var(--asia-secondary);
+  opacity: 0.3;
+}
+
+/* ========================================
+   LIENS
+   ======================================== */
+
+.post-content a,
+.destination-content a {
+  color: var(--ink-dark);
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--asia-primary);
+  transition: all 0.3s;
+}
+
+.post-content a:hover,
+.destination-content a:hover {
+  background: var(--asia-primary);
+  padding: 2px 6px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+/* ========================================
+   NOTES & ASTUCES
+   ======================================== */
+
+.note-box {
+  background: #FFF9E6;
+  border: 2px dashed #FFD700;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  position: relative;
+}
+
+.note-box::before {
+  content: '💡';
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background: #FFF9E6;
+  padding: 0 10px;
+  font-size: 1.5rem;
+}
+
+/* ========================================
+   AUTEUR BIO
+   ======================================== */
+
+.author-bio {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--paper-white);
+  padding: 2rem;
+  margin-top: 3rem;
+  border: 2px solid var(--ink-dark);
+  border-radius: 12px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+  transform: rotate(-1deg);
+}
+
+.author-bio img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  border: 3px solid var(--ink-dark) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2) !important;
+  transform: none !important;
+  object-fit: cover;
+}
+
+.author-bio strong {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  background: none;
+  padding: 0;
+}
+
+/* ========================================
    RESPONSIVE
    ======================================== */
 
