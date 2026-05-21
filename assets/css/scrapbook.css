@@ -166,18 +166,6 @@ body {
   transform: translateY(-2px);
 }
 
-.nav-links a::after {
-  content: '✈️';
-  position: absolute;
-  right: -20px;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.nav-links a:hover::after {
-  opacity: 1;
-  right: -25px;
-}
 
 .lang-switch {
   display: flex;
@@ -433,12 +421,14 @@ body {
   padding-left: 2rem;
 }
 
-.post-content h2::before,
-.destination-content h2::before {
-  content: '✈️';
-  position: absolute;
-  left: 0;
-  font-size: 1.5rem;
+.post-content h2,
+.destination-content h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 2.5rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--ink-dark);
+  position: relative;
+  padding-left: 0; /* Enlève aussi le padding */
 }
 
 .post-content h3,
