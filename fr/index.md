@@ -3,33 +3,71 @@ layout: default
 lang: fr
 title: Accueil
 permalink: /fr/
+---
+
+<div class="home-intro">
+  <h1>Bienvenue sur Notre Vie à l'Étranger 🌍</h1>
+  
+  <p>Nous sommes <strong>Romain et Steph</strong>, un couple français qui a quitté la routine métro-boulot-dodo pour vivre autrement.</p>
+  
+  <p><strong>Notre philosophie : le slow travel</strong><br>
+  Pas de rush, pas de checklist touristique. On s'installe 1 à 2 mois par ville pour vivre comme des locaux.</p>
+</div>
 
 ---
 
-# Bienvenue sur Notre Vie à l'Étranger 🌍
+## 📍 Notre parcours
 
-Nous sommes Romain et [Prénom], un couple français qui a quitté la routine métro-boulot-dodo pour vivre autrement.
-
-**Notre philosophie : le slow travel**  
-Pas de rush, pas de checklist touristique. On s'installe 1 à 2 mois par ville pour vivre comme des locaux.
-
-## 📍 Actuellement : [Ta ville actuelle]
-
-## 🗺️ Notre parcours
-- **Asie** : Bali, Vietnam, Thaïlande, Philippines  
-- **Océanie** : 8 ans en Australie  
-- **Amérique du Sud** : Salta (Argentine), Asunción (Paraguay), Lima, Arequipa (Pérou)...
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
+  
+  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg);">
+    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌏</div>
+    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Asie</h3>
+    <p>Bali, Vietnam, Thaïlande, Philippines</p>
+  </div>
+  
+  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(1deg);">
+    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🦘</div>
+    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Océanie</h3>
+    <p>8 ans en Australie</p>
+  </div>
+  
+  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg);">
+    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌎</div>
+    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Amérique du Sud</h3>
+    <p>Salta, Asunción, Lima, Arequipa...</p>
+  </div>
+  
+</div>
 
 ---
 
 ## 📝 Derniers Articles
 
+<div class="posts-list">
+
 {% assign posts_fr = site.posts | where: "lang", "fr" %}
 {% for post in posts_fr limit:5 %}
-<div style="margin: 2rem 0; padding: 1.5rem; background: #f9f9f9; border-radius: 8px;">
-  <h3><a href="{{ post.url | relative_url }}" style="color: #667eea; text-decoration: none;">{{ post.title }}</a></h3>
-  <p style="color: #666; margin: 0.5rem 0;">{{ post.date | date: "%d/%m/%Y" }} • Par {{ site.authors[post.author].name }}</p>
-  <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
-  <a href="{{ post.url | relative_url }}" style="color: #764ba2; font-weight: 500;">Lire la suite →</a>
-</div>
+  <div class="post-card">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <div class="post-meta">
+      {{ post.date | date: "%d/%m/%Y" }} • Par {{ site.authors[post.author].name }}
+    </div>
+    <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+    <a href="{{ post.url | relative_url }}" class="read-more">Lire la suite →</a>
+  </div>
 {% endfor %}
+
+</div>
+
+---
+
+## 🎯 Sur ce blog, on partage :
+
+- 💰 Les **vrais budgets** (loyers, bouffe, transport)
+- 📱 Notre **setup nomade** (équipement testé et approuvé)
+- 🏠 Nos **bons plans logement** et vie pratique
+- 📸 Des **photos sans filtre** de notre quotidien
+- 🎬 Des **vlogs** de nos journées
+
+**Pas de bullshit, juste la réalité du nomadisme.**
