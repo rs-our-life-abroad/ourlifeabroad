@@ -19,25 +19,39 @@ permalink: /fr/
 ## 📍 Notre parcours
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
-  
-  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg);">
-    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌏</div>
-    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Asie</h3>
-    <p>Bali, Vietnam, Thaïlande, Philippines</p>
-  </div>
-  
-  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(1deg);">
-    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🦘</div>
-    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Océanie</h3>
-    <p>8 ans en Australie</p>
-  </div>
-  
-  <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg);">
-    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌎</div>
-    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Amérique du Sud</h3>
-    <p>Salta, Asunción, Lima, Arequipa...</p>
-  </div>
-  
+
+  <a href="/fr/destinations/asie/" style="text-decoration: none; color: inherit;">
+    <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg); transition: transform 0.3s; cursor: pointer;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌏</div>
+      <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Asie</h3>
+      <p>Bali, Vietnam, Thaïlande, Philippines</p>
+    </div>
+  </a>
+
+  <a href="/fr/destinations/oceanie/" style="text-decoration: none; color: inherit;">
+    <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(1deg); transition: transform 0.3s; cursor: pointer;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🦘</div>
+      <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Océanie</h3>
+      <p>8 ans en Australie</p>
+    </div>
+  </a>
+
+  <a href="/fr/destinations/amerique-sud/" style="text-decoration: none; color: inherit;">
+    <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg); transition: transform 0.3s; cursor: pointer;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌎</div>
+      <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Amérique du Sud</h3>
+      <p>Salta, Asunción, Lima, Arequipa...</p>
+    </div>
+  </a>
+
+  <a href="/fr/destinations/europe/" style="text-decoration: none; color: inherit;">
+    <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(1deg); transition: transform 0.3s; cursor: pointer;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌍</div>
+      <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Europe</h3>
+      <p>À venir...</p>
+    </div>
+  </a>
+
 </div>
 
 ---
