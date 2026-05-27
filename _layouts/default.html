@@ -21,30 +21,30 @@
   <nav class="scrapbook-nav">
     <ul class="nav-links">
       {% if page.lang == 'fr' %}
-        <li><a href="/ourlifeabroad/fr/">Accueil</a></li>
-        <li><a href="/ourlifeabroad/fr/destinations/">Destinations</a></li>
-        <li><a href="/ourlifeabroad/fr/about/">Qui sommes-nous ?</a></li>
-        <li><a href="/ourlifeabroad/fr/guides/">Guides</a></li>
+        <li><a href="/fr/">Accueil</a></li>
+        <li><a href="/fr/destinations/">Destinations</a></li>
+        <li><a href="/fr/about/">Qui sommes-nous ?</a></li>
+        <li><a href="/fr/guides/">Guides</a></li>
       {% else %}
-        <li><a href="/ourlifeabroad/en/">Home</a></li>
-        <li><a href="/ourlifeabroad/en/destinations/">Destinations</a></li>
-        <li><a href="/ourlifeabroad/en/about/">About Us</a></li>
-        <li><a href="/ourlifeabroad/en/guides/">Guides</a></li>
+        <li><a href="/en/">Home</a></li>
+        <li><a href="/en/destinations/">Destinations</a></li>
+        <li><a href="/en/about/">About Us</a></li>
+        <li><a href="/en/guides/">Guides</a></li>
       {% endif %}
       
       <div class="lang-switch">
         {% if page.url contains '/destinations/' %}
-          <a href="/ourlifeabroad/fr/destinations/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
-          <a href="/ourlifeabroad/en/destinations/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
+          <a href="/fr/destinations/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
+          <a href="/en/destinations/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
         {% elsif page.url contains '/about/' %}
-          <a href="/ourlifeabroad/fr/about/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
-          <a href="/ourlifeabroad/en/about/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
+          <a href="/fr/about/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
+          <a href="/en/about/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
         {% elsif page.url contains '/guides/' %}
-          <a href="/ourlifeabroad/fr/guides/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
-          <a href="/ourlifeabroad/en/guides/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
+          <a href="/fr/guides/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
+          <a href="/en/guides/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
         {% else %}
-          <a href="/ourlifeabroad/fr/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
-          <a href="/ourlifeabroad/en/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
+          <a href="/fr/" class="{% if page.lang == 'fr' %}active{% endif %}">🇫🇷 FR</a>
+          <a href="/en/" class="{% if page.lang == 'en' %}active{% endif %}">🇬🇧 EN</a>
         {% endif %}
       </div>
     </ul>

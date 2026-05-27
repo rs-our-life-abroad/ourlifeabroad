@@ -15,7 +15,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-  <a href="/ourlifeabroad/destinations/bali-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/bali-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -25,7 +25,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/vietnam-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/vietnam-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -35,7 +35,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/thailand-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/thailand-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -45,7 +45,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/philippines-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/philippines-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -63,7 +63,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-  <a href="/ourlifeabroad/destinations/salta-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/salta-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -73,7 +73,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/asuncion-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/asuncion-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -83,7 +83,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/lima-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/lima-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -93,7 +93,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
     </div>
   </a>
 
-  <a href="/ourlifeabroad/destinations/arequipa-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/arequipa-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);"></div>
       <div style="padding: 1.5rem;">
@@ -111,7 +111,7 @@ For the past 10 years, we've been exploring the world at our own pace. Here are 
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
 
-  <a href="/ourlifeabroad/destinations/australia-en/" style="text-decoration: none; color: inherit; display: block;">
+  <a href="/destinations/australia-en/" style="text-decoration: none; color: inherit; display: block;">
     <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
       <div style="height: 200px; background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
       <div style="padding: 1.5rem;">

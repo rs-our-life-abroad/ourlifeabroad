@@ -6,7 +6,7 @@ backend:
   auth_endpoint: /auth
 
 media_folder: "assets/images/uploads"
-public_folder: "/ourlifeabroad/assets/images/uploads"
+public_folder: "/assets/images/uploads"
 
 locale: "fr"
 
