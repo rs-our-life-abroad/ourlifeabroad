@@ -57,3 +57,24 @@ collections:
       - { label: "Permalink", name: "permalink", widget: "string" }
       - { label: "Image de couverture", name: "cover_image", widget: "image", required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "destinations_en"
+    label: "Destinations (EN)"
+    folder: "_destinations"
+    create: true
+    filter:
+      field: lang
+      value: en
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+      - { label: "Country", name: "country", widget: "string" }
+      - { label: "Continent", name: "continent", widget: "select", options: ["asia", "south-america", "oceania", "europe"] }
+      - { label: "Flag", name: "flag", widget: "string" }
+      - { label: "Date visited", name: "date_visited", widget: "string" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Highlight", name: "highlight", widget: "string" }
+      - { label: "Budget/day", name: "budget_day", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Cover image", name: "cover_image", widget: "image", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }    
