@@ -1,133 +1,59 @@
 backend:
   name: github
-  repo: coding-training-pers/ourlifeabroad
+  repo: rs-our-life-abroad/ourlifeabroad
   branch: main
-  base_url: https://ourlifeabroad-oauth.coding-training-pers.workers.dev/
+  base_url: https://ourlifeabroad-oauth.coding-training-pers.workers.dev
   auth_endpoint: /auth
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
-locale: "fr"
-
 collections:
-  # Articles de blog
   - name: "posts_fr"
     label: "Articles (FR)"
     folder: "_posts"
-    filter: {field: "lang", value: "fr"}
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}-fr"
+    filter:
+      field: lang
+      value: fr
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Auteur", name: "author", widget: "select", options: ["romain", "steph"]}
-      - {label: "Langue", name: "lang", widget: "hidden", default: "fr"}
-      - {label: "Catégories", name: "categories", widget: "list", default: []}
-      - {label: "Image", name: "image", widget: "image", required: false}
-      - {label: "Contenu", name: "body", widget: "markdown"}
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Langue", name: "lang", widget: "hidden", default: "fr" }
+      - { label: "Auteur", name: "author", widget: "select", options: ["romain", "steph"] }
+      - { label: "Contenu", name: "body", widget: "markdown" }
 
   - name: "posts_en"
     label: "Articles (EN)"
     folder: "_posts"
-    filter: {field: "lang", value: "en"}
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}-en"
+    filter:
+      field: lang
+      value: en
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Author", name: "author", widget: "select", options: ["romain", "steph"]}
-      - {label: "Language", name: "lang", widget: "hidden", default: "en"}
-      - {label: "Categories", name: "categories", widget: "list", default: []}
-      - {label: "Image", name: "image", widget: "image", required: false}
-      - {label: "Content", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+      - { label: "Author", name: "author", widget: "select", options: ["romain", "steph"] }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-  # Destinations
   - name: "destinations_fr"
     label: "Destinations (FR)"
     folder: "_destinations"
-    filter: {field: "lang", value: "fr"}
     create: true
-    slug: "{{slug}}-fr"
+    filter:
+      field: lang
+      value: fr
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "destination"}
-      - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Pays", name: "country", widget: "string"}
-      - {label: "Drapeau (emoji)", name: "flag", widget: "string"}
-      - {label: "Langue", name: "lang", widget: "hidden", default: "fr"}
-      - {label: "Date de visite", name: "date_visited", widget: "string"}
-      - {label: "Durée", name: "duration", widget: "string"}
-      - {label: "Point fort", name: "highlight", widget: "string"}
-      - {label: "Budget/jour", name: "budget_day", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", hint: "/destinations/nom-fr/"}
-      - {label: "Image de couverture", name: "cover_image", widget: "image"}
-      - {label: "Contenu", name: "body", widget: "markdown"}
-
-  - name: "destinations_en"
-    label: "Destinations (EN)"
-    folder: "_destinations"
-    filter: {field: "lang", value: "en"}
-    create: true
-    slug: "{{slug}}-en"
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "destination"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Country", name: "country", widget: "string"}
-      - {label: "Flag (emoji)", name: "flag", widget: "string"}
-      - {label: "Language", name: "lang", widget: "hidden", default: "en"}
-      - {label: "Visit date", name: "date_visited", widget: "string"}
-      - {label: "Duration", name: "duration", widget: "string"}
-      - {label: "Highlight", name: "highlight", widget: "string"}
-      - {label: "Budget/day", name: "budget_day", widget: "string"}
-      - {label: "Permalink", name: "permalink", widget: "string", hint: "/destinations/name-en/"}
-      - {label: "Cover image", name: "cover_image", widget: "image"}
-      - {label: "Content", name: "body", widget: "markdown"}
-
-  # Pages
-  - name: "pages_fr"
-    label: "Pages (FR)"
-    files:
-      - label: "Accueil"
-        name: "home_fr"
-        file: "fr/index.md"
-        fields:
-          - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-          - {label: "Langue", name: "lang", widget: "hidden", default: "fr"}
-          - {label: "Titre", name: "title", widget: "string"}
-          - {label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/"}
-          - {label: "Contenu", name: "body", widget: "markdown"}
-      
-      - label: "À propos"
-        name: "about_fr"
-        file: "fr/about.md"
-        fields:
-          - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-          - {label: "Langue", name: "lang", widget: "hidden", default: "fr"}
-          - {label: "Titre", name: "title", widget: "string"}
-          - {label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/about/"}
-          - {label: "Contenu", name: "body", widget: "markdown"}
-
-  - name: "pages_en"
-    label: "Pages (EN)"
-    files:
-      - label: "Home"
-        name: "home_en"
-        file: "en/index.md"
-        fields:
-          - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-          - {label: "Language", name: "lang", widget: "hidden", default: "en"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Permalink", name: "permalink", widget: "hidden", default: "/en/"}
-          - {label: "Content", name: "body", widget: "markdown"}
-      
-      - label: "About"
-        name: "about_en"
-        file: "en/about.md"
-        fields:
-          - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
-          - {label: "Language", name: "lang", widget: "hidden", default: "en"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Permalink", name: "permalink", widget: "hidden", default: "/en/about/"}
-          - {label: "Content", name: "body", widget: "markdown"}
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Langue", name: "lang", widget: "hidden", default: "fr" }
+      - { label: "Pays", name: "country", widget: "string" }
+      - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+      - { label: "Drapeau", name: "flag", widget: "string" }
+      - { label: "Date de visite", name: "date_visited", widget: "string" }
+      - { label: "Durée", name: "duration", widget: "string" }
+      - { label: "Point fort", name: "highlight", widget: "string" }
+      - { label: "Budget/jour", name: "budget_day", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Image de couverture", name: "cover_image", widget: "image", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
