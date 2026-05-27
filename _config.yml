@@ -5,8 +5,8 @@ description: >-
   Couple français en slow travel à travers l'Amérique du Sud et l'Asie.
   Budgets réels, galères authentiques, bons plans testés.
 
-baseurl: "/ourlifeabroad"
-url: "https://coding-training-pers.github.io"
+url: "https://ourlifeabroad.crea-dapp.com"
+baseurl: ""
 
 # Langues disponibles
 languages: ["fr", "en"]
