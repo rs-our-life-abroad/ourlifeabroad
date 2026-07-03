@@ -30,11 +30,17 @@ jobs:
         run: |
           htmlproofer \
             --assume-extension \
-            --ignore-urls="/instagram\.com/,/tiktok\.com/,/youtube\.com/" \
+            --ignore-status-codes="429" \
             ./_site
-        # --ignore-urls couvre les réseaux sociaux tant que les handles sont des
-        # placeholders ("votrecompte"). A retirer une fois les vrais comptes en place.
-        # Si des domaines partenaires (booking, airbnb, amazon...) bloquent le bot
-        # avec des 403/999, les ajouter ici au fur et à mesure des faux positifs.
+        # --ignore-status-codes="429" : Instagram (et d'autres réseaux sociaux)
+        # renvoient 429 (rate limit) aux IP des runners GitHub Actions par mesure
+        # anti-bot, alors que le même lien répond 200 depuis une IP résidentielle.
+        # Un --ignore-urls sur le pattern instagram.com a été testé et s'est avéré
+        # peu fiable ici (le lien réapparaissait quand même dans les échecs) ;
+        # ignorer le code 429 est plus direct et couvre aussi les futurs domaines
+        # partenaires (booking, airbnb, amazon...) qui bloqueraient le bot pareil.
+        # Si un domaine renvoie un vrai 403/404, l'ajouter séparément via
+        # --ignore-urls plutôt que d'élargir --ignore-status-codes.
         # Le chemin (PATH) doit rester en dernier argument : les options de type
-        # liste (--ignore-urls) sont gourmandes et avaleraient sinon le chemin.
+        # liste (--ignore-status-codes) sont gourmandes et avaleraient sinon le
+        # chemin.
