@@ -31,16 +31,22 @@ jobs:
           htmlproofer \
             --assume-extension \
             --ignore-status-codes="429" \
+            --ignore-urls="/instagram\.com/" \
             ./_site
-        # --ignore-status-codes="429" : Instagram (et d'autres réseaux sociaux)
-        # renvoient 429 (rate limit) aux IP des runners GitHub Actions par mesure
-        # anti-bot, alors que le même lien répond 200 depuis une IP résidentielle.
-        # Un --ignore-urls sur le pattern instagram.com a été testé et s'est avéré
-        # peu fiable ici (le lien réapparaissait quand même dans les échecs) ;
-        # ignorer le code 429 est plus direct et couvre aussi les futurs domaines
-        # partenaires (booking, airbnb, amazon...) qui bloqueraient le bot pareil.
-        # Si un domaine renvoie un vrai 403/404, l'ajouter séparément via
-        # --ignore-urls plutôt que d'élargir --ignore-status-codes.
+        # --ignore-urls="/instagram\.com/" : Instagram bloque les IP des runners
+        # GitHub Actions (429) par mesure anti-bot, alors que le même lien répond
+        # 200 depuis une IP résidentielle. Un essai précédent de --ignore-urls sur
+        # "instagram.com" (sans les slashes) échouait car html-proofer ne traite
+        # une valeur --ignore-urls comme une regex QUE si elle est encadrée par
+        # des "/" ; sans ça, c'est une égalité stricte sur l'URL entière, qui ne
+        # matche donc jamais rien (cf. lib/html_proofer/attribute/url.rb). Le
+        # format "/pattern/" saute la requête HTTP avant même qu'elle parte —
+        # contrairement à --ignore-status-codes, qui dépend d'obtenir un vrai 429
+        # (peu fiable en pratique sous requêtes concurrentes, cf. progress.md).
+        # --ignore-status-codes="429" reste en place en filet de sécurité pour de
+        # futurs domaines partenaires (booking, airbnb, amazon...) qui
+        # bloqueraient le bot pareil, en attendant de leur ajouter leur propre
+        # --ignore-urls si besoin.
         # Le chemin (PATH) doit rester en dernier argument : les options de type
-        # liste (--ignore-status-codes) sont gourmandes et avaleraient sinon le
-        # chemin.
+        # liste (--ignore-status-codes, --ignore-urls) sont gourmandes et
+        # avaleraient sinon le chemin.
