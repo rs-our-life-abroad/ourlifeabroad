@@ -38,12 +38,19 @@ Ce dossier (`ourlifeabroad-temp`) n'avait pas été synchronisé depuis le **21 
 - [x] `.github/workflows/link-check.yml` créé et **testé en local** (`bundle install` + `bundle exec jekyll build` + `htmlproofer` fonctionnent avec Jekyll 4.3/Ruby 3.3 — contrairement à l'ancienne base GitHub Pages qui plantait avec Ruby ≥ 3.2)
 - [x] Découvert en testant : la syntaxe CLI html-proofer v5 exige le chemin en dernier argument et `--option=valeur` pour les options listes (sinon le chemin est avalé par `--ignore-urls`)
 - [x] Vérifié que `/go/sim/` ne remonte aucune erreur dans le check de liens
+- [x] Push débloqué : repo transféré vers `rs-our-life-abroad/ourlifeabroad` (remote local mis à jour) + scope OAuth `workflow` ajouté au compte `creadapp` (celui utilisé pour les vrais projets business, plutôt que de basculer sur le compte legacy `coding-training-pers`)
+- [x] 24 guides FR/EN écrits (setup nomade, tech/productivité, vêtements, logement, banques/cartes, internet/eSIM avec lien `/go/sim/`, assurance voyage, visas, sécurité/VPN, budgets Asie/Amérique du Sud/Australie) — contenu pratique générique, cohérent avec les chiffres déjà publiés sur les pages teaser, sans anecdotes personnelles inventées
+- [x] 17 pages de destinations créées : 16 stubs légers (Vietnam, Thaïlande, Philippines, Salta, Asunción, Lima, Arequipa, Australie — FR+EN) + traduction EN complète de Bali (le FR existait déjà en détail)
+- [x] `_layouts/post.html` créé (les articles `_posts` n'avaient pas de layout, rendu sans thème) et lien `/ourlifeabroad/` obsolète du `404.html` corrigé
+- [x] Images placeholder générées pour les 2 photos manquantes (clairement identifiées "Photo à venir", pas de fausses photos)
 
 ### Reste à faire
-- [ ] **Clarifier l'incohérence de repo GitHub** : `admin/config.yml` (Decap) pointe vers `rs-our-life-abroad/ourlifeabroad`, le remote git local est `coding-training-pers/ourlifeabroad` — lequel est le bon ?
-- [ ] La CI va démarrer **rouge** : 53 échecs pré-existants détectés en local (liens vers guides/destinations pas encore créés dans `fr/guides/index.html`, `fr/index.md`) — non liés à cette session, à traiter en écrivant le contenu ou en retirant les liens
+- [x] ~~Clarifier l'incohérence de repo GitHub~~ → résolu : le repo a été transféré vers `rs-our-life-abroad/ourlifeabroad` (confirmé par GitHub au push), remote local mis à jour, `admin/config.yml` avait raison depuis le début
+- [x] ~~La CI démarre rouge (53 échecs)~~ → résolu le 2 juillet 2026 : 24 guides écrits (FR/EN, contenu pratique générique, pas d'anecdotes personnelles inventées), 17 pages de destinations créées (16 stubs + traduction EN complète de Bali), 2 images placeholder générées (`assets/images/authors/steph.jpg`, `assets/images/destinations/bali/cover.jpg`), lien 404 obsolète corrigé, layout `_layouts/post.html` créé (les articles `_posts` s'affichaient sans thème). `html-proofer` passe intégralement, liens externes inclus.
+- [ ] Remplacer les images placeholder (steph.jpg, cover Bali) par de vraies photos
+- [ ] Étoffer les 16 stubs de destinations avec du contenu complet (budgets réels, anecdotes) quand le temps le permet — actuellement volontairement légers, à la demande de l'utilisateur
 - [ ] Créer le site "ourlifeabroad" dans le dashboard Umami (`stats.crea-dapp.com`), coller l'ID obtenu dans `_config.yml`
-- [ ] Rédiger le premier article avec lien `/go/sim/` + mention de disclosure affiliée
+- [ ] Ajouter la mention de disclosure affiliée sur le guide `internet-esim` (déjà présente) aux futurs guides qui ajouteront des liens `/go/...` similaires
 - [ ] Retirer `instagram.com/tiktok.com/youtube.com` du `--ignore-urls` de la CI une fois les vrais comptes réseaux sociaux configurés (actuellement `votrecompte` dans `_config.yml`)
 - [ ] Au fil des nouveaux partenaires (booking, airbnb, amazon, cartes de paiement) : créer une entrée `_redirects/<slug>.md` par partenaire, jamais de lien affilié brut dans un article
 - [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
