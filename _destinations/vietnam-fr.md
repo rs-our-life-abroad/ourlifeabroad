@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Vietnam - Du Nord au Sud"
+place: Vietnam
 country: Vietnam
+continent: asie
 flag: 🇻🇳
 lang: fr
 date_visited: "2018-2025"
 duration: "Quelques semaines"
 highlight: "Street food et paysages à couper le souffle"
 permalink: /destinations/vietnam-fr/
+cover_image: https://images.unsplash.com/photo-1528127269322-539801943592?w=800
 ---
 
 # 🇻🇳 Vietnam - Du Nord au Sud

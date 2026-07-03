@@ -1,0 +1,34 @@
+{% comment %}
+  Grille de cartes "1 par pays" pour un continent donné, dédupliquée depuis site.destinations.
+  Paramètres : include.continent (slug, ex. "amerique-sud"), include.lang ("fr"/"en").
+  Si une page pays existe (site.countries) pour ce pays+langue, la carte pointe vers elle ;
+  sinon elle pointe directement vers l'unique destination trouvée pour ce pays.
+{% endcomment %}
+{% assign countries_seen = "" %}
+<div class="destinations-grid">
+  {% for d in site.destinations %}
+    {% if d.continent == include.continent and d.lang == include.lang %}
+      {% unless countries_seen contains d.country %}
+        {% assign countries_seen = countries_seen | append: d.country | append: "|" %}
+        {% assign hub = site.countries | where: "country", d.country | where: "lang", include.lang | first %}
+        {% if hub %}
+          {% assign card_url = hub.permalink %}
+          {% assign card_title = hub.flag | append: " " | append: hub.country %}
+          {% assign card_image = hub.cover_image | default: d.cover_image %}
+        {% else %}
+          {% assign short_name = d.place | default: d.title %}
+          {% assign card_url = d.permalink %}
+          {% assign card_title = d.flag | append: " " | append: short_name %}
+          {% assign card_image = d.cover_image %}
+        {% endif %}
+        <a href="{{ card_url | relative_url }}" class="destination-card">
+          <div class="card-image{% unless card_image %} placeholder{% endunless %}"{% if card_image %} style="background-image: url('{{ card_image }}');"{% endif %}></div>
+          <div class="card-content">
+            <h3>{{ card_title }}</h3>
+            <p>{{ d.highlight }}</p>
+          </div>
+        </a>
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+</div>

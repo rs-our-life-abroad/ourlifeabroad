@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Australie - 8 ans de vie aussie"
+place: Australie
 country: Australie
+continent: oceanie
 flag: 🇦🇺
 lang: fr
 date_visited: "2018-2025"
 duration: "7 ans"
 highlight: "De Sydney à Perth"
 permalink: /destinations/australie-fr/
+cover_image: https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800
 ---
 
 # 🇦🇺 Australie

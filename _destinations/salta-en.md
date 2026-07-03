@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Salta, Argentina - Northern beauty"
+place: Salta
 country: Argentina
+continent: south-america
 flag: 🇦🇷
 lang: en
 date_visited: "2025-2026"
 duration: "A few weeks"
 highlight: "Deserts & empanadas"
 permalink: /destinations/salta-en/
+cover_image: https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=800
 ---
 
 # 🇦🇷 Salta, Argentina

@@ -44,9 +44,11 @@ exclude:
   - node_modules
   - vendor
 
-# Collections pour les destinations et les redirections affiliées
+# Collections pour les destinations, les pays et les redirections affiliées
 collections:
   destinations:
+    output: true
+  countries:
     output: true
   redirects:
     output: true

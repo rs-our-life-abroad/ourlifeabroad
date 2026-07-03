@@ -75,8 +75,13 @@
           {% for d in site.destinations %}
             {% if d.lang == sidebar_lang %}
               {% unless countries_seen contains d.country %}
-                <li><a href="{{ d.permalink | relative_url }}">{{ d.flag }} {{ d.country }}</a></li>
                 {% assign countries_seen = countries_seen | append: d.country | append: "|" %}
+                {% assign hub = site.countries | where: "country", d.country | where: "lang", sidebar_lang | first %}
+                {% if hub %}
+                  <li><a href="{{ hub.permalink | relative_url }}">{{ hub.flag }} {{ hub.country }}</a></li>
+                {% else %}
+                  <li><a href="{{ d.permalink | relative_url }}">{{ d.flag }} {{ d.country }}</a></li>
+                {% endif %}
               {% endunless %}
             {% endif %}
           {% endfor %}

@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Salta, Argentine - La belle du Nord"
+place: Salta
 country: Argentine
+continent: amerique-sud
 flag: 🇦🇷
 lang: fr
 date_visited: "2025-2026"
 duration: "Quelques semaines"
 highlight: "Déserts et empanadas"
 permalink: /destinations/salta-fr/
+cover_image: https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=800
 ---
 
 # 🇦🇷 Salta, Argentine

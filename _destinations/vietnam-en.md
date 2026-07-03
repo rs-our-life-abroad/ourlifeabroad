@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Vietnam - North to South"
+place: Vietnam
 country: Vietnam
+continent: asia
 flag: 🇻🇳
 lang: en
 date_visited: "2018-2025"
 duration: "A few weeks"
 highlight: "Street food & breathtaking landscapes"
 permalink: /destinations/vietnam-en/
+cover_image: https://images.unsplash.com/photo-1528127269322-539801943592?w=800
 ---
 
 # 🇻🇳 Vietnam - North to South

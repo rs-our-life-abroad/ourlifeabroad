@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Asunción, Paraguay - South America's hidden gem"
+place: Asunción
 country: Paraguay
+continent: south-america
 flag: 🇵🇾
 lang: en
 date_visited: "2025-2026"
 duration: "A few weeks"
 highlight: "South America's hidden gem"
 permalink: /destinations/asuncion-en/
+cover_image: https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800
 ---
 
 # 🇵🇾 Asunción, Paraguay

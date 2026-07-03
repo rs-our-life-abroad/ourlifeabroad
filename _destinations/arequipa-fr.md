@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Arequipa, Pérou - La ville blanche"
+place: Arequipa
 country: Pérou
+continent: amerique-sud
 flag: 🇵🇪
 lang: fr
 date_visited: "2025-2026"
 duration: "Quelques semaines"
 highlight: "La ville blanche au pied des volcans"
 permalink: /destinations/arequipa-fr/
+cover_image: https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800
 ---
 
 # 🇵🇪 Arequipa, Pérou

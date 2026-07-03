@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Thailand - Golden temples and paradise beaches"
+place: Thailand
 country: Thailand
+continent: asia
 flag: 🇹🇭
 lang: en
 date_visited: "2018-2025"
 duration: "A few weeks"
 highlight: "Golden temples & paradise beaches"
 permalink: /destinations/thailand-en/
+cover_image: https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800
 ---
 
 # 🇹🇭 Thailand

@@ -40,7 +40,7 @@ permalink: /fr/
     <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg); transition: transform 0.3s; cursor: pointer;">
       <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌎</div>
       <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">Amérique du Sud</h3>
-      <p>Salta, Asunción, Lima, Arequipa...</p>
+      <p>Buenos Aires, Salta, Asunción, Lima, Arequipa, Cusco...</p>
     </div>
   </a>
 

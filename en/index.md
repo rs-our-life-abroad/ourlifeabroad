@@ -35,7 +35,7 @@ permalink: /en/
   <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate(-1deg);">
     <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌎</div>
     <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">South America</h3>
-    <p>Salta, Asunción, Lima, Arequipa...</p>
+    <p>Buenos Aires, Salta, Asunción, Lima, Arequipa, Cusco...</p>
   </div>
   
 </div>

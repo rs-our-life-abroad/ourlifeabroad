@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<article class="destination">
+
+  {% if page.cover_image %}
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <img src="{{ page.cover_image }}" alt="{{ page.title }}" style="max-width: 600px; transform: rotate(-1deg);">
+  </div>
+  {% endif %}
+
+  <header class="destination-header">
+    <h1>{{ page.flag }} {{ page.title }}</h1>
+  </header>
+
+  <div class="destination-content">
+    {{ content }}
+  </div>
+
+  <div class="continent-section">
+    <div class="destinations-grid">
+      {% for d in site.destinations %}
+        {% if d.country == page.country and d.lang == page.lang %}
+          <a href="{{ d.permalink | relative_url }}" class="destination-card">
+            <div class="card-image{% unless d.cover_image %} placeholder{% endunless %}"{% if d.cover_image %} style="background-image: url('{{ d.cover_image }}');"{% endif %}></div>
+            <div class="card-content">
+              <h3>{{ d.flag }} {{ d.place | default: d.title }}</h3>
+              <p>{{ d.highlight }}</p>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 2px dashed var(--ink-dark);">
+    <a href="{% if page.lang == 'fr' %}/fr/destinations/{% else %}/en/destinations/{% endif %}" style="font-family: 'Architects Daughter', cursive; font-size: 1.1rem; text-decoration: none;">
+      ← {% if page.lang == 'fr' %}Retour aux destinations{% else %}Back to destinations{% endif %}
+    </a>
+  </footer>
+
+</article>

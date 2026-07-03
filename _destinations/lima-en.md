@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Lima, Peru - Gastronomic capital"
+place: Lima
 country: Peru
+continent: south-america
 flag: 🇵🇪
 lang: en
 date_visited: "2025-2026"
 duration: "A few weeks"
 highlight: "Ceviche & culture"
 permalink: /destinations/lima-en/
+cover_image: https://images.unsplash.com/photo-1531968455001-5c5272a41129?w=800
 ---
 
 # 🇵🇪 Lima, Peru

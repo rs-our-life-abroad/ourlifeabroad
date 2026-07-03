@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Arequipa, Peru - The White City"
+place: Arequipa
 country: Peru
+continent: south-america
 flag: 🇵🇪
 lang: en
 date_visited: "2025-2026"
 duration: "A few weeks"
 highlight: "The white city at the foot of volcanoes"
 permalink: /destinations/arequipa-en/
+cover_image: https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800
 ---
 
 # 🇵🇪 Arequipa, Peru

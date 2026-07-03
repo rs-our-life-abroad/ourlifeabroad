@@ -1,7 +1,9 @@
 ---
 layout: destination
 title: "Bali - Island of the Gods"
+place: Bali
 country: Indonesia
+continent: asia
 flag: 🇮🇩
 lang: en
 date_visited: "September - November 2023"

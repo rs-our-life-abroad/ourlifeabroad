@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Philippines - 7,000 islands of pure beauty"
+place: Philippines
 country: Philippines
+continent: asia
 flag: 🇵🇭
 lang: en
 date_visited: "2018-2025"
 duration: "A few weeks"
 highlight: "7,000 islands of pure beauty"
 permalink: /destinations/philippines-en/
+cover_image: https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800
 ---
 
 # 🇵🇭 Philippines

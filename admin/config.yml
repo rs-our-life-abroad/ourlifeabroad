@@ -47,7 +47,8 @@ collections:
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Langue", name: "lang", widget: "hidden", default: "fr" }
-      - { label: "Pays", name: "country", widget: "string" }
+      - { label: "Nom court (carte)", name: "place", widget: "string", hint: "Libellé affiché sur les cartes, ex. \"Bali\", \"Buenos Aires\"" }
+      - { label: "Pays", name: "country", widget: "select", options: ["Pérou", "Argentine", "Paraguay", "Indonésie", "Philippines", "Thaïlande", "Vietnam", "Australie"] }
       - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
       - { label: "Drapeau", name: "flag", widget: "string" }
       - { label: "Date de visite", name: "date_visited", widget: "string" }
@@ -68,7 +69,8 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Language", name: "lang", widget: "hidden", default: "en" }
-      - { label: "Country", name: "country", widget: "string" }
+      - { label: "Short name (card)", name: "place", widget: "string", hint: "Label shown on cards, e.g. \"Bali\", \"Buenos Aires\"" }
+      - { label: "Country", name: "country", widget: "select", options: ["Peru", "Argentina", "Paraguay", "Indonesia", "Philippines", "Thailand", "Vietnam", "Australia"] }
       - { label: "Continent", name: "continent", widget: "select", options: ["asia", "south-america", "oceania", "europe"] }
       - { label: "Flag", name: "flag", widget: "string" }
       - { label: "Date visited", name: "date_visited", widget: "string" }
@@ -77,4 +79,38 @@ collections:
       - { label: "Budget/day", name: "budget_day", widget: "string" }
       - { label: "Permalink", name: "permalink", widget: "string" }
       - { label: "Cover image", name: "cover_image", widget: "image", required: false }
-      - { label: "Content", name: "body", widget: "markdown" }    
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "countries_fr"
+    label: "Pays (FR)"
+    folder: "_countries"
+    create: true
+    filter:
+      field: lang
+      value: fr
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Langue", name: "lang", widget: "hidden", default: "fr" }
+      - { label: "Pays", name: "country", widget: "select", options: ["Pérou", "Argentine", "Paraguay", "Indonésie", "Philippines", "Thaïlande", "Vietnam", "Australie"] }
+      - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+      - { label: "Drapeau", name: "flag", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Image de couverture", name: "cover_image", widget: "image", required: false }
+      - { label: "Introduction", name: "body", widget: "markdown", required: false }
+
+  - name: "countries_en"
+    label: "Countries (EN)"
+    folder: "_countries"
+    create: true
+    filter:
+      field: lang
+      value: en
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+      - { label: "Country", name: "country", widget: "select", options: ["Peru", "Argentina", "Paraguay", "Indonesia", "Philippines", "Thailand", "Vietnam", "Australia"] }
+      - { label: "Continent", name: "continent", widget: "select", options: ["asia", "south-america", "oceania", "europe"] }
+      - { label: "Flag", name: "flag", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "string" }
+      - { label: "Cover image", name: "cover_image", widget: "image", required: false }
+      - { label: "Introduction", name: "body", widget: "markdown", required: false }

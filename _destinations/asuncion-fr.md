@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Asunción, Paraguay - La cachée d'Amérique du Sud"
+place: Asunción
 country: Paraguay
+continent: amerique-sud
 flag: 🇵🇾
 lang: fr
 date_visited: "2025-2026"
 duration: "Quelques semaines"
 highlight: "La cachée d'Amérique du Sud"
 permalink: /destinations/asuncion-fr/
+cover_image: https://images.unsplash.com/photo-1568632234157-ce7aecd03d0d?w=800
 ---
 
 # 🇵🇾 Asunción, Paraguay

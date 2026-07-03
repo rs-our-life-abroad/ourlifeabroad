@@ -1,7 +1,9 @@
 ---
 layout: destination
 title: "Bali - L'Île des Dieux"
+place: Bali
 country: Indonésie
+continent: asie
 flag: 🇮🇩
 lang: fr
 date_visited: "Septembre - Novembre 2023"

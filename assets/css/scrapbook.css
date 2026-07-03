@@ -823,6 +823,11 @@ body {
   position: relative;
 }
 
+/* Repli pour les cartes sans photo (nouvelle destination sans cover_image) */
+.destination-card .card-image.placeholder {
+  background: linear-gradient(135deg, var(--asia-primary, #f093fb) 0%, var(--southamerica-primary, #764ba2) 100%);
+}
+
 /* Punaise décorative */
 .destination-card .card-image::after {
   content: '📌';

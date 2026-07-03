@@ -1,13 +1,16 @@
 ---
 layout: destination
 title: "Thaïlande - Temples dorés et plages paradisiaques"
+place: Thaïlande
 country: Thaïlande
+continent: asie
 flag: 🇹🇭
 lang: fr
 date_visited: "2018-2025"
 duration: "Quelques semaines"
 highlight: "Temples dorés et plages paradisiaques"
 permalink: /destinations/thailande-fr/
+cover_image: https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800
 ---
 
 # 🇹🇭 Thaïlande
