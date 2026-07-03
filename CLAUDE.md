@@ -3,29 +3,32 @@
 ## Projet
 Blog de voyage bilingue (couple en slow travel Amérique du Sud / Asie). Objectif : monétisation via liens affiliés (SIM/eSIM, cartes de paiement, booking, Airbnb, Amazon...).
 - **Domaine live** : https://ourlifeabroad.crea-dapp.com
-- **GitHub (remote git local)** : coding-training-pers/ourlifeabroad
+- **GitHub** : rs-our-life-abroad/ourlifeabroad (le repo a été transféré depuis `coding-training-pers/ourlifeabroad` — remote git local mis à jour le 2 juillet 2026, `admin/config.yml` du CMS pointait déjà vers la bonne adresse)
 - **Dossier local** : ~/ourlifeabroad-temp/
 - **Branche active** : main
 
-⚠️ **Incohérence détectée le 2 juillet 2026, non résolue** : `admin/config.yml` (backend Decap CMS) pointe vers un repo différent, `rs-our-life-abroad/ourlifeabroad`, alors que le remote git de ce dossier local est `coding-training-pers/ourlifeabroad`. À clarifier avant de publier un article via le CMS — sinon le commit Decap risque de partir sur le mauvais repo.
+## Accès / comptes
+- Utiliser le compte GitHub **`creadapp`** pour push (celui utilisé sur les vrais projets business). Un second compte `coding-training-pers` est aussi connecté sur cette machine mais c'est l'identité legacy — ne pas l'utiliser pour éviter de perpétuer la confusion entre deux identités.
+- `creadapp` a le scope OAuth `workflow` (ajouté le 2 juillet 2026 via `gh auth refresh -h github.com -s workflow`) — nécessaire pour pousser des modifications dans `.github/workflows/`. Sans ce scope, le push est rejeté par GitHub.
 
 ## Stack
 - Jekyll 4.3 (gem `jekyll` directement, plus de gem `github-pages`) — Ruby 3.3.0 (`.ruby-version`)
 - Plugins : `jekyll-feed`, `jekyll-seo-tag`, `jekyll-sitemap`
-- Build/déploiement : **Coolify** — `Dockerfile` (build Jekyll → nginx alpine) + `nginx.conf`, sur l'infra crea-dapp (VPS Hetzner). Ce projet est bien sur l'infra commune, contrairement à ce qu'une lecture d'un clone local obsolète pouvait laisser penser (voir `progress.md`, session du 2 juillet).
-- `baseurl: ""` — **pas de préfixe `/ourlifeabroad/`** dans les chemins (contrairement à l'ancienne version GitHub Pages). Ne jamais coder un chemin en dur avec ce préfixe.
+- Build/déploiement : **Coolify** — `Dockerfile` (build Jekyll → nginx alpine) + `nginx.conf`, sur l'infra crea-dapp (VPS Hetzner). Ce projet est bien sur l'infra commune.
+- `baseurl: ""` — **pas de préfixe `/ourlifeabroad/`** dans les chemins. Ne jamais coder un chemin en dur avec ce préfixe (c'était le cas avant la migration GitHub Pages → Coolify de mai 2026).
 - Contenu géré via **Decap CMS** (`/admin`), OAuth via Cloudflare Worker (`ourlifeabroad-oauth.coding-training-pers.workers.dev`)
-- Déploiement : push sur `main` → build/déploiement Coolify (vérifier si auto-deploy est configuré côté Coolify, pas confirmé dans ce repo)
+- Déploiement : push sur `main` → build/déploiement Coolify (auto-deploy pas formellement confirmé, à vérifier côté dashboard Coolify)
 - Thème CSS maison "scrapbook" (`assets/css/scrapbook.css`)
 - i18n manuelle : dossiers `fr/` et `en/`, front matter `lang:`, pas de plugin i18n
+- Layouts : `default`, `destination`, `index`, `redirect`, `post` — pas de layout `page` (le fichier racine `about.markdown` qui le référence est orphelin/legacy, non lié depuis la nav ; les vraies pages "about" sont `fr/about.md` et `en/about.md` en `layout: default`)
 
-## Historique important
-Ce dossier local (`ourlifeabroad-temp`) est resté figé au 21 mai 2026 pendant qu'une migration complète (GitHub Pages → Coolify/Docker/nginx, Jekyll 3.9 → 4.3) a été faite directement via le repo GitHub, jamais rapatriée ici avant le 2 juillet 2026. `git status` affichait "up to date" car cette info vient du dernier `fetch` local, pas d'une vérification live — toujours faire `git fetch origin main` en début de session pour éviter de retravailler sur une base obsolète.
+## Leçon retenue — toujours vérifier l'état réel du remote
+`git status` affiche "up to date with origin/main" à partir du dernier `fetch` local, **pas** d'une vérification live. Ce dossier est resté figé un mois sur une architecture obsolète (GitHub Pages) sans que rien ne l'indique en début de session. **Toujours faire `git fetch origin main` explicitement avant de commencer à travailler.**
 
 ## Monétisation — règles spécifiques
-- **Disclosure obligatoire** : tout article contenant un lien affilié doit mentionner clairement "cet article contient des liens affiliés" (obligation légale France/UE).
+- **Disclosure obligatoire** : tout article contenant un lien affilié doit mentionner clairement "cet article contient des liens affiliés" (obligation légale France/UE). Exemple en place : `fr/guides/internet-esim.md` / `en/guides/internet-esim.md`.
 - **Couche de redirection `/go/`** : ne jamais mettre une URL affiliée brute dans un article. Créer une entrée dans la collection `_redirects/` (front matter `permalink`, `target`, `title`, `umami_event`) puis lier vers `/go/<slug>/` dans le contenu (sans préfixe, `baseurl` est vide). Avantage : un seul endroit à modifier si une URL de tracking change.
-  - Exemple en place : `_redirects/sim.md` → `/go/sim/` → MySim4Trip (comparateur SIM/eSIM, projet crea-dapp séparé).
+  - Exemple en place : `_redirects/sim.md` → `/go/sim/` → MySim4Trip (comparateur SIM/eSIM, projet crea-dapp séparé), utilisé depuis le guide `internet-esim`.
   - Layout : `_layouts/redirect.html` (meta-refresh + lien de secours + event Umami + `rel="sponsored nofollow noopener"` par défaut).
 - **Jamais de clé/API d'affiliation en clair** committée — ce repo est public sur GitHub.
 
@@ -34,20 +37,20 @@ Ce dossier local (`ourlifeabroad-temp`) est resté figé au 21 mai 2026 pendant 
 - Une fois l'ID obtenu (créer le site dans Umami), le coller dans `_config.yml` : le script s'active automatiquement dans `_layouts/default.html`.
 - Les clics `/go/...` envoient un event Umami (`umami_event` défini par redirection).
 
-## Vérification des liens (anti "lien cassé")
-- `.github/workflows/link-check.yml` : build Jekyll 4.3 classique (`bundle exec jekyll build`, Ruby 3.3.0) + `html-proofer`.
-- Déclenché sur chaque push `main` + cron hebdomadaire (lundi 6h UTC) pour détecter le link rot côté partenaires.
-- CLI html-proofer v5 : le chemin à vérifier doit être le **dernier argument** (les options listes comme `--ignore-urls` sont gourmandes et avalent sinon le chemin suivant) ; utiliser `--option=valeur` plutôt que `--option valeur` pour les options à liste.
-- **Testé le 2 juillet 2026** : 53 échecs pré-existants détectés (liens internes vers des pages `/fr/guides/...` et `/fr/destinations/...` pas encore créées) — **non liés à cette session**, la CI va donc démarrer "rouge". À corriger en écrivant les guides manquants ou en retirant les liens de `fr/guides/index.html` / `fr/index.md` en attendant.
-- Les réseaux sociaux (`instagram.com`, `tiktok.com`, `youtube.com`) sont ignorés dans le check tant que les handles sont des placeholders (`votrecompte` dans `_config.yml`) — à retirer une fois les vrais comptes configurés.
-- Si un domaine partenaire (booking, airbnb, amazon...) bloque le bot CI (403/999), l'ajouter à `--ignore-urls` dans le workflow plutôt que désactiver tout le check externe.
+## Vérification des liens (CI — `.github/workflows/link-check.yml`)
+- Build Jekyll 4.3 classique (`bundle exec jekyll build`, Ruby 3.3.0) + `html-proofer`, déclenché sur chaque push `main` + cron hebdomadaire (lundi 6h UTC).
+- **CI verte au 2 juillet 2026** (contenu complet écrit — voir `progress.md`).
+- CLI html-proofer v5 : le chemin à vérifier doit être le **dernier argument** (les options listes sont gourmandes et avalent sinon le chemin suivant) ; utiliser `--option=valeur` plutôt que `--option valeur` pour les options à liste.
+- **`--ignore-status-codes="429"`** : Instagram (et probablement d'autres réseaux sociaux/partenaires) renvoie 429 aux IP des runners GitHub Actions par mesure anti-bot, alors que le même lien répond 200 depuis une IP résidentielle — testé et confirmé le 2 juillet 2026. Un `--ignore-urls` ciblant le domaine s'est révélé peu fiable (le lien réapparaissait quand même en échec) ; ignorer le code 429 directement est plus robuste et couvre aussi les futurs domaines partenaires (booking, airbnb, amazon...) qui bloqueraient le bot pareil.
+- **Toujours tester en local ET vérifier le run réel sur GitHub** (`gh run list`/`gh run view`) après un push touchant la CI — un test local vert ne garantit pas un run GitHub vert (IP différente, comportement anti-bot différent).
+- Si un domaine renvoie un vrai 403/404 (pas un simple rate-limit), l'ajouter via `--ignore-urls` plutôt que d'élargir `--ignore-status-codes`.
 
 ## Règles de validation
-Agir directement sans confirmation pour : lire/analyser, créer/modifier des fichiers, créer des articles/destinations, commandes git non destructives (status, log, add, commit, push) — **après un `git fetch origin main` systématique en début de session pour éviter de retravailler sur une base obsolète**.
+Agir directement sans confirmation pour : lire/analyser, créer/modifier des fichiers, créer des articles/destinations/guides, commandes git non destructives (status, log, add, commit, push) — **après un `git fetch origin main` systématique en début de session**.
 
 Demander confirmation avant de push pour : toute modification de la **table de redirection `_redirects/`** (un ID affilié erroné est une perte de revenu silencieuse — aucun test automatique ne peut la détecter, contrairement à un lien cassé).
 
-Demander confirmation dans tous les cas pour : suppression de fichier/repo, actions irréversibles, `git reset --hard` ou toute réécriture d'historique.
+Demander confirmation dans tous les cas pour : suppression de fichier/repo, actions irréversibles, `git reset --hard` ou toute réécriture d'historique, changement de compte/identité GitHub actif.
 
 ## Fin de session
 Avant de terminer une session : mettre à jour `progress.md` (ce projet) et, si l'état global a changé, l'entrée correspondante dans `~/structure-crea-dapp/etat-projets.md`.

@@ -50,7 +50,13 @@ Ce dossier (`ourlifeabroad-temp`) n'avait pas été synchronisé depuis le **21 
 - [ ] Remplacer les images placeholder (steph.jpg, cover Bali) par de vraies photos
 - [ ] Étoffer les 16 stubs de destinations avec du contenu complet (budgets réels, anecdotes) quand le temps le permet — actuellement volontairement légers, à la demande de l'utilisateur
 - [ ] Créer le site "ourlifeabroad" dans le dashboard Umami (`stats.crea-dapp.com`), coller l'ID obtenu dans `_config.yml`
-- [ ] Ajouter la mention de disclosure affiliée sur le guide `internet-esim` (déjà présente) aux futurs guides qui ajouteront des liens `/go/...` similaires
-- [ ] Retirer `instagram.com/tiktok.com/youtube.com` du `--ignore-urls` de la CI une fois les vrais comptes réseaux sociaux configurés (actuellement `votrecompte` dans `_config.yml`)
+- [ ] Ajouter la mention de disclosure affiliée sur les futurs guides qui ajouteront des liens `/go/...` similaires à `internet-esim`
 - [ ] Au fil des nouveaux partenaires (booking, airbnb, amazon, cartes de paiement) : créer une entrée `_redirects/<slug>.md` par partenaire, jamais de lien affilié brut dans un article
 - [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
+
+### Fait (suite) — correctif CI post-push
+- [x] Le premier run GitHub Actions du workflow a **échoué malgré un succès en local** : Instagram renvoie 429 (rate limit anti-bot) aux IP des runners GitHub, alors que la même URL répond 200 depuis une IP résidentielle. Le `--ignore-urls` sur le domaine ne suppriment pas fiablement l'échec.
+- [x] Corrigé en remplaçant par `--ignore-status-codes="429"` — plus robuste, couvre aussi les futurs domaines partenaires avec le même comportement anti-bot. Vérifié avec `gh run view` : run GitHub réel passé au vert (pas juste en local).
+
+## Session terminée le 2 juillet 2026 — reprise à la prochaine session
+Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`). CI verte confirmée en conditions réelles. `CLAUDE.md` mis à jour (repo/compte GitHub, leçon 429, architecture Coolify). Prochaine session : reprendre la liste "Reste à faire" ci-dessus (vraies photos, étoffer les stubs, Umami, nouveaux partenaires affiliés).
