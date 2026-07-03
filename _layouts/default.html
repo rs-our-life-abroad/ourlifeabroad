@@ -8,6 +8,11 @@
   
   <!-- Scrapbook CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/scrapbook.css' | relative_url }}">
+
+  {% if site.umami_website_id and site.umami_website_id != "" %}
+  <!-- Umami analytics (instance partagée stats.crea-dapp.com) -->
+  <script defer src="https://stats.crea-dapp.com/script.js" data-website-id="{{ site.umami_website_id }}"></script>
+  {% endif %}
 </head>
 <body>
   

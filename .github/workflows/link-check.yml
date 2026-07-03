@@ -1,0 +1,40 @@
+name: Link check
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Chaque lundi 6h UTC - detecte le "link rot" cote partenaires (hors de nos commits)
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  html-proofer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+          bundler-cache: true
+
+      - name: Install html-proofer
+        run: gem install html-proofer
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Check links
+        run: |
+          htmlproofer \
+            --assume-extension \
+            --ignore-urls="/instagram\.com/,/tiktok\.com/,/youtube\.com/" \
+            ./_site
+        # --ignore-urls couvre les réseaux sociaux tant que les handles sont des
+        # placeholders ("votrecompte"). A retirer une fois les vrais comptes en place.
+        # Si des domaines partenaires (booking, airbnb, amazon...) bloquent le bot
+        # avec des 403/999, les ajouter ici au fur et à mesure des faux positifs.
+        # Le chemin (PATH) doit rester en dernier argument : les options de type
+        # liste (--ignore-urls) sont gourmandes et avaleraient sinon le chemin.

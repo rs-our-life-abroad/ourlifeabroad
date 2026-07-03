@@ -44,10 +44,16 @@ exclude:
   - node_modules
   - vendor
 
-# Collections pour les destinations
+# Collections pour les destinations et les redirections affiliées
 collections:
   destinations:
     output: true
+  redirects:
+    output: true
+
+# Umami analytics (instance partagée stats.crea-dapp.com)
+# Laisser vide tant que le site n'a pas été ajouté au dashboard Umami.
+umami_website_id: ""
 
 # Paramètres par défaut
 defaults:
@@ -57,13 +63,20 @@ defaults:
     values:
       layout: "post"
       author: romain
-      
+
   - scope:
       path: "fr"
     values:
       lang: fr
-      
+
   - scope:
       path: "en"
     values:
       lang: en
+
+  - scope:
+      path: ""
+      type: "redirects"
+    values:
+      layout: "redirect"
+      rel: "sponsored nofollow noopener"

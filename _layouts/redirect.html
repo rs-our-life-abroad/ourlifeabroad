@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'fr' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redirection - {{ site.title }}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="{{ page.target }}">
+  <meta http-equiv="refresh" content="0; url={{ page.target }}">
+</head>
+<body>
+  <p>
+    Redirection en cours vers notre partenaire
+    {%- if page.title %} <strong>{{ page.title }}</strong>{% endif %}...
+    Si rien ne se passe,
+    <a href="{{ page.target }}" rel="{{ page.rel | default: 'sponsored nofollow noopener' }}" target="_blank">cliquez ici</a>.
+  </p>
+
+  {% if site.umami_website_id and site.umami_website_id != "" %}
+  <script>
+    (function () {
+      if (window.umami) {
+        window.umami.track('{{ page.umami_event | default: page.title | default: page.url }}');
+      }
+    })();
+  </script>
+  {% endif %}
+</body>
+</html>
