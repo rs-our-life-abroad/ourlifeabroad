@@ -66,15 +66,28 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       
-      <!-- Widget Destinations -->
+      <!-- Widget Destinations (généré depuis la collection _destinations) -->
+      {% assign sidebar_lang = page.lang | default: "fr" %}
+      {% assign countries_seen = "" %}
       <div class="sidebar-widget">
         <h3>Destinations</h3>
         <ul style="list-style: none;">
-          <li>🌏 Pérou</li>
-          <li>🌏 Bolivie</li>
-          <li>🌏 Chili</li>
-          <li>🌏 Japon</li>
+          {% for d in site.destinations %}
+            {% if d.lang == sidebar_lang %}
+              {% unless countries_seen contains d.country %}
+                <li><a href="{{ d.permalink | relative_url }}">{{ d.flag }} {{ d.country }}</a></li>
+                {% assign countries_seen = countries_seen | append: d.country | append: "|" %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
         </ul>
+        <p style="text-align: center; margin-top: 0.5rem;">
+          {% if sidebar_lang == "fr" %}
+            <a href="/fr/destinations/">Voir toutes nos destinations →</a>
+          {% else %}
+            <a href="/en/destinations/">See all destinations →</a>
+          {% endif %}
+        </p>
       </div>
       
       <!-- Widget Social -->
