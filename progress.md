@@ -60,3 +60,33 @@ Ce dossier (`ourlifeabroad-temp`) n'avait pas été synchronisé depuis le **21 
 
 ## Session terminée le 2 juillet 2026 — reprise à la prochaine session
 Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`). CI verte confirmée en conditions réelles. `CLAUDE.md` mis à jour (repo/compte GitHub, leçon 429, architecture Coolify). Prochaine session : reprendre la liste "Reste à faire" ci-dessus (vraies photos, étoffer les stubs, Umami, nouveaux partenaires affiliés).
+
+## Session — 3 juillet 2026
+
+### Contexte
+Reprise du site suite à la session du 2 juillet. Deux sujets traités : le widget "Destinations" de la sidebar affichait du contenu bidon, et l'utilisateur a annoncé l'arrivée prochaine de plusieurs villes par pays (Argentine : Salta + Buenos Aires ; Pérou : Lima, Arequipa + Cusco), nécessitant une réorganisation de l'architecture des destinations.
+
+### Fait
+- [x] **Widget sidebar "Destinations" corrigé** (`_layouts/default.html`) : affichait en dur "Pérou / Bolivie / Chili / Japon" (emoji générique 🌏, aucun lien réel) sans rapport avec le contenu publié. Remplacé par une génération dynamique depuis `site.destinations` (pays dédupliqués, vrais drapeaux, liens vers les bonnes pages).
+- [x] **Réorganisation destinations — niveau "pays" ajouté** entre continent et ville, pour les pays qui ont désormais plusieurs villes :
+  - Nouvelle collection `_countries` (layout `country.html`), créée uniquement pour Pérou et Argentine (les pays à ville unique — Bali/Indonésie, Vietnam, Thaïlande, Philippines, Australie, Paraguay — continuent de pointer directement vers leur fiche, pas de page intermédiaire inutile ; une page pays sera créée pour un autre pays le jour où il aura, lui aussi, plusieurs villes)
+  - Nouvel include réutilisable `_includes/country-cards.html` : génère les grilles de cartes par continent, dédupliquées par pays, en remplacement des cartes HTML dupliquées à la main sur `fr/destinations.md`, `en/destinations.md` et les 4 sous-pages continent FR
+  - Backfill des champs `continent`, `cover_image`, `place` sur les 9 fiches destination existantes, à partir des données déjà présentes dans le repo (images Unsplash déjà utilisées, regroupements déjà visibles sur les pages continent) — aucune URL inventée
+  - 2 nouvelles destinations créées : Buenos Aires et Cusco (FR/EN), contenu court même registre que les fiches "à venir" existantes (Salta, Lima...), dates placeholder `"2025-2026"` à ajuster si besoin
+  - Champ CMS "Pays" (`admin/config.yml`) passé de texte libre à liste déroulante fixe (même pattern que "Continent") pour éliminer le risque de désynchronisation silencieuse par faute de frappe/accent — c'est ce type de bug qui avait produit le widget sidebar erroné
+  - Lien de retour sur les fiches destination + widget sidebar : pointent vers la page pays quand elle existe, sinon comportement inchangé (retour à la liste complète)
+  - Testé en local (`bundle exec jekyll build` + `htmlproofer`) et vérifié en conditions réelles (`gh run view`)
+- [x] **Root-cause de la flakiness CI Instagram trouvée et corrigée** (`.github/workflows/link-check.yml`) : le premier run après le push destinations a échoué avec 67 erreurs 429, alors que le commit précédent (avec le même `--ignore-status-codes="429"`) était passé au vert la veille — preuve que ce filet n'est pas fiable (il dépend d'obtenir effectivement un 429 en retour, ce qui n'est pas garanti sous requêtes concurrentes vers la même URL). En creusant le code source d'html-proofer (`lib/html_proofer/attribute/url.rb`) : la tentative `--ignore-urls` documentée comme "peu fiable" le 2 juillet avait en réalité un bug de syntaxe — une valeur `--ignore-urls` n'est traitée comme une regex que si elle est encadrée par des `/.../ `, sinon c'est une égalité stricte sur l'URL entière qui ne matche jamais rien. Corrigé avec `--ignore-urls="/instagram\.com/"` : la requête HTTP n'est même plus envoyée, donc plus aucun aléa réseau possible. `--ignore-status-codes="429"` reste en filet de sécurité pour de futurs domaines partenaires. Vérifié avec `gh run view` : run réel passé au vert.
+
+### Reste à faire
+- [ ] Remplacer les images placeholder (steph.jpg, cover Bali) par de vraies photos
+- [ ] Étoffer les stubs de destinations avec du contenu complet (budgets réels, anecdotes), y compris les 2 nouveaux (Buenos Aires, Cusco) — actuellement volontairement légers
+- [ ] Créer le site "ourlifeabroad" dans le dashboard Umami (`stats.crea-dapp.com`), coller l'ID obtenu dans `_config.yml`
+- [ ] Ajouter la mention de disclosure affiliée sur les futurs guides qui ajouteront des liens `/go/...` similaires à `internet-esim`
+- [ ] Au fil des nouveaux partenaires (booking, airbnb, amazon, cartes de paiement) : créer une entrée `_redirects/<slug>.md` par partenaire, jamais de lien affilié brut dans un article
+- [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
+- [ ] Si un nouveau pays reçoit une 2ᵉ ville (ex. Vietnam), créer sa page dans `_countries` via le CMS pour qu'elle prenne le relais des liens sidebar/grilles continent automatiquement
+- [ ] `CLAUDE.md` documente encore l'ancienne approche `--ignore-status-codes` seule comme "plus robuste" que `--ignore-urls` — section à corriger pour refléter la vraie cause racine trouvée aujourd'hui (pas fait dans cette session, seul `progress.md` a été mis à jour à la demande explicite)
+
+## Session terminée le 3 juillet 2026 — reprise à la prochaine session
+Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`), 2 commits (`0e78df0` réorganisation destinations, `3d0f196` fix CI). CI verte confirmée en conditions réelles. Prochaine session : reprendre la liste "Reste à faire" ci-dessus, en particulier corriger la section CI de `CLAUDE.md` (voir dernier point) et étoffer les nouveaux stubs Buenos Aires/Cusco.
