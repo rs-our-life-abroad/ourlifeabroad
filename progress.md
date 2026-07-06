@@ -90,3 +90,10 @@ Reprise du site suite à la session du 2 juillet. Deux sujets traités : le widg
 
 ## Session terminée le 3 juillet 2026 — reprise à la prochaine session
 Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`), 2 commits (`0e78df0` réorganisation destinations, `3d0f196` fix CI). CI verte confirmée en conditions réelles. Prochaine session : reprendre la liste "Reste à faire" ci-dessus, en particulier corriger la section CI de `CLAUDE.md` (voir dernier point) et étoffer les nouveaux stubs Buenos Aires/Cusco.
+
+## Session 2026-07-06 (soir) — encart eSIM automatique sur les pages destination
+
+- `_includes/esim-box.html` : encart bilingue (FR/EN via `page.lang`, nom de ville interpolé via `page.place`) affiché automatiquement sur toutes les pages destination, entre le contenu et le footer. Style scrapbook (Patrick Hand, ombre dure, légère rotation).
+- CTA principal → `/go/sim/` (la redirection interne monétisée, événement Umami `click-go-sim`) ; lien secondaire → le guide `internet-esim` de la langue courante. Jamais d'URL partenaire en dur — conforme à la convention `_redirects/`.
+- Branché dans `_layouts/destination.html` (une ligne). Vérifié en build local : Arequipa FR ("Internet à Arequipa ?") et EN ("Staying connected in Arequipa?"), liens corrects dans les deux langues.
+- Contexte : Phase 1 du plan portefeuille (`structure-crea-dapp/plan-2026-07.md`) — renforcer le seul flux d'acquisition actif de MySim4Trip. Chaque destination (17+) fait maintenant du maillage vers la redirection au lieu du seul guide eSIM.

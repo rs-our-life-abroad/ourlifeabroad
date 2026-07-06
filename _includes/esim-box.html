@@ -1,0 +1,28 @@
+{% comment %}
+  Encart eSIM — affiché automatiquement sur chaque page destination (et
+  réutilisable ailleurs). Monétisation : le CTA passe par la redirection
+  interne /go/sim/ (événement Umami "click-go-sim" au passage), jamais par
+  l'URL partenaire en dur. Bilingue via page.lang.
+{% endcomment %}
+<aside class="esim-box" style="margin: 3rem auto 0; max-width: 560px; background: white; padding: 1.5rem 1.8rem; box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.15); transform: rotate(-0.5deg); border: 1px solid rgba(0, 0, 0, 0.08);">
+  <p style="font-family: 'Patrick Hand', cursive; font-size: 1.15rem; margin: 0 0 0.6rem;">
+    {% if page.lang == 'fr' %}
+      📶 Internet {% if page.place %}à {{ page.place }}{% else %}sur place{% endif %} ?
+    {% else %}
+      📶 Staying connected {% if page.place %}in {{ page.place }}{% else %}out there{% endif %}?
+    {% endif %}
+  </p>
+  <p style="font-size: 0.95rem; margin: 0 0 1rem; line-height: 1.5;">
+    {% if page.lang == 'fr' %}
+      On utilise une eSIM installée avant de partir — pas de boutique à trouver, connectés dès l'atterrissage. Comparez les offres par pays :
+    {% else %}
+      We install an eSIM before we fly — no store hunt, online the minute we land. Compare plans by country:
+    {% endif %}
+  </p>
+  <a href="{{ '/go/sim/' | relative_url }}" style="display: inline-block; background: var(--southamerica-primary); color: white; padding: 0.5rem 1.2rem; border-radius: 20px; font-family: 'Patrick Hand', cursive; font-size: 0.95rem; text-decoration: none; box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);">
+    {% if page.lang == 'fr' %}Comparer les eSIM →{% else %}Compare eSIM plans →{% endif %}
+  </a>
+  <a href="{% if page.lang == 'fr' %}{{ '/fr/guides/internet-esim/' | relative_url }}{% else %}{{ '/en/guides/internet-esim/' | relative_url }}{% endif %}" style="display: inline-block; margin-left: 0.8rem; font-size: 0.85rem;">
+    {% if page.lang == 'fr' %}Notre guide complet{% else %}Our full guide{% endif %}
+  </a>
+</aside>

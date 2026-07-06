@@ -38,7 +38,9 @@ layout: default
   <div class="destination-content">
     {{ content }}
   </div>
-  
+
+  {% include esim-box.html %}
+
   {% assign country_hub = site.countries | where: "country", page.country | where: "lang", page.lang | first %}
   <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 2px dashed var(--ink-dark);">
     {% if country_hub %}
