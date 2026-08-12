@@ -1,0 +1,48 @@
+{% comment %}
+  Icône animée "tiny planet" (Insta360), fixée en haut à droite de toutes les pages.
+
+  Ne s'affiche que si la vidéo existe réellement dans le repo : tant que
+  /assets/video/tiny-planet.mp4 n'est pas déposé, ce bloc ne produit rien
+  (pas de lecteur cassé, pas d'erreur de build, CI verte).
+
+  Pour (ré)encoder la vidéo source : tools/make-tiny-planet.sh (voir en-tête du script).
+{% endcomment %}
+
+{% assign tp_mp4 = site.static_files | where: "path", "/assets/video/tiny-planet.mp4" | first %}
+
+{% if tp_mp4 %}
+  {% assign tp_poster = site.static_files | where: "path", "/assets/video/tiny-planet.jpg" | first %}
+  {% assign tp_lang = page.lang | default: "fr" %}
+
+  <a class="tiny-planet"
+     href="/{{ tp_lang }}/"
+     aria-label="{% if tp_lang == 'fr' %}Retour à l'accueil{% else %}Back to home{% endif %}">
+    <video class="tiny-planet-video"
+           autoplay muted loop playsinline
+           preload="auto"
+           disablepictureinpicture
+           aria-hidden="true"
+           {% if tp_poster %}poster="{{ '/assets/video/tiny-planet.jpg' | relative_url }}"{% endif %}>
+      <source src="{{ '/assets/video/tiny-planet.mp4' | relative_url }}" type="video/mp4">
+    </video>
+  </a>
+
+  <script>
+    // Respecte "réduire les animations" (macOS/iOS/Windows) : on fige l'icône
+    // sur sa première image au lieu de la laisser tourner en boucle.
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var video = document.querySelector('.tiny-planet-video');
+      if (!video) return;
+      function apply() {
+        if (reduce.matches) {
+          video.pause();
+        } else {
+          video.play().catch(function () {});
+        }
+      }
+      apply();
+      reduce.addEventListener('change', apply);
+    })();
+  </script>
+{% endif %}

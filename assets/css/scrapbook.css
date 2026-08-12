@@ -941,3 +941,82 @@ body {
     padding-top: 1rem;
   }
 }
+/* ========================================
+   ICÔNE TINY PLANET (Insta360)
+   Vidéo en boucle, fixée en haut à droite, sur toutes les pages.
+   Markup : _includes/tiny-planet.html
+   ======================================== */
+
+.tiny-planet {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 1000;
+  display: block;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  /* Bordure "photo découpée" + ombre dure, cohérent avec le thème scrapbook */
+  border: 4px solid var(--paper-white);
+  box-shadow: 3px 3px 0 var(--tape-shadow), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: rotate(-4deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tiny-planet:hover,
+.tiny-planet:focus-visible {
+  transform: rotate(0deg) scale(1.06);
+  box-shadow: 4px 4px 0 var(--tape-shadow), 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.tiny-planet:focus-visible {
+  outline: 3px solid var(--ink-dark);
+  outline-offset: 3px;
+}
+
+.tiny-planet-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* La vidéo source est déjà recadrée en carré, mais on force le centrage
+     au cas où un futur remplacement ne le serait pas. */
+  object-position: center;
+  pointer-events: none;
+}
+
+@media (max-width: 968px) {
+  .tiny-planet {
+    width: 78px;
+    height: 78px;
+    top: 0.75rem;
+    right: 0.75rem;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tiny-planet {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Sur les écrans très courts en paysage (mobile tourné), l'icône mange
+   trop de place utile : on la retire. */
+@media (max-height: 420px) {
+  .tiny-planet {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiny-planet,
+  .tiny-planet:hover,
+  .tiny-planet:focus-visible {
+    transition: none;
+    transform: rotate(-4deg);
+  }
+}

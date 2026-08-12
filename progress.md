@@ -87,9 +87,32 @@ Reprise du site suite à la session du 2 juillet. Deux sujets traités : le widg
 - [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
 - [ ] Si un nouveau pays reçoit une 2ᵉ ville (ex. Vietnam), créer sa page dans `_countries` via le CMS pour qu'elle prenne le relais des liens sidebar/grilles continent automatiquement
 - [ ] `CLAUDE.md` documente encore l'ancienne approche `--ignore-status-codes` seule comme "plus robuste" que `--ignore-urls` — section à corriger pour refléter la vraie cause racine trouvée aujourd'hui (pas fait dans cette session, seul `progress.md` a été mis à jour à la demande explicite)
+- [ ] Nouveaux sujets de guides retenus le 18 juillet 2026 (pas encore rédigés) : vols pas chers/comparateur billets d'avion, santé & vaccins en voyage, argent liquide & change de devises
+- [ ] Guide matériel audio/vidéo (setup de tournage/prise de son) — l'utilisateur le rédigera lui-même, pas délégué
 
 ## Session terminée le 3 juillet 2026 — reprise à la prochaine session
 Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`), 2 commits (`0e78df0` réorganisation destinations, `3d0f196` fix CI). CI verte confirmée en conditions réelles. Prochaine session : reprendre la liste "Reste à faire" ci-dessus, en particulier corriger la section CI de `CLAUDE.md` (voir dernier point) et étoffer les nouveaux stubs Buenos Aires/Cusco.
+
+## Session — 18 juillet 2026
+
+### Contexte
+Session de méthodo/préparation d'écriture de contenu, pas de code touché dans le repo. Deux sujets : (1) définir une structure standard pour les guides et pour les articles de destination, (2) proposer de nouveaux sujets de guides.
+
+### Fait
+- [x] Structure de guide définie à partir des fichiers existants (`internet-esim`, `_posts/notre-setup-nomade`) : front matter, plan de section, règles transverses (bilingue, disclosure, redirection `/go/`)
+- [x] Squelette de guide (FR + EN) rédigé et sauvegardé en scratchpad (pas dans le repo — évite qu'une page vide soit construite par Jekyll tant qu'il n'est pas rempli et déplacé dans `fr/guides/`/`en/guides/`)
+- [x] 5 sujets de guides proposés ; 3 retenus par l'utilisateur : vols pas chers/comparateur billets d'avion, santé & vaccins en voyage, argent liquide & change de devises. Un 4e (matériel photo/vidéo) sera écrit directement par l'utilisateur, pas délégué.
+- [x] Recherche externe sur la structure des articles de destination des gros blogs voyage : Nomadic Matt (guide SEO exhaustif : top attractions, budgets par niveau, sécurité, saisons, ressources de réservation) et The Broke Backpacker (ton perso, itinéraires par durée, villes une par une)
+- [x] Squelette d'article destination (FR + EN) rédigé en scratchpad, calé sur le ton déjà éprouvé de la fiche Bali existante (`_destinations/bali-fr.md` / `bali-en.md`) + 2 sections ajoutées inspirées de la recherche externe : "Sécurité & arnaques à éviter" et "Comment y aller & se déplacer", absentes de la fiche Bali actuelle
+- [x] Repéré au passage (non corrigé, à traiter plus tard) : la fiche Bali en ligne contient des liens affiliés placeholder en `href="#"` (Klook, SafetyWing, Airbnb, Booking) — à faire passer par `_redirects/` → `/go/<slug>/` quand ils seront activés, jamais l'URL brute
+
+### Reste à faire (ajouté à la liste ci-dessus)
+- [ ] Rédiger les 3 guides retenus (vols pas chers, santé & vaccins, argent liquide/change) à partir du squelette
+- [ ] Remplir le squelette de destination pour une vraie ville et le publier
+- [ ] Corriger les liens placeholder `href="#"` de la fiche Bali (Klook/SafetyWing/Airbnb/Booking) via `_redirects/` le jour où ces partenariats sont activés
+
+## Session terminée le 18 juillet 2026 — reprise à la prochaine session
+Aucun commit/push cette session (uniquement `progress.md` modifié dans le repo ; les 2 squelettes de guide + les 2 squelettes de destination sont en scratchpad, pas dans le repo). Prochaine session : rédiger les 3 guides retenus et/ou remplir un squelette de destination pour une vraie ville, à partir des templates créés aujourd'hui.
 
 ## Session 2026-07-06 (soir) — encart eSIM automatique sur les pages destination
 
@@ -97,3 +120,21 @@ Tout est committé et poussé sur `main` (`rs-our-life-abroad/ourlifeabroad`), 2
 - CTA principal → `/go/sim/` (la redirection interne monétisée, événement Umami `click-go-sim`) ; lien secondaire → le guide `internet-esim` de la langue courante. Jamais d'URL partenaire en dur — conforme à la convention `_redirects/`.
 - Branché dans `_layouts/destination.html` (une ligne). Vérifié en build local : Arequipa FR ("Internet à Arequipa ?") et EN ("Staying connected in Arequipa?"), liens corrects dans les deux langues.
 - Contexte : Phase 1 du plan portefeuille (`structure-crea-dapp/plan-2026-07.md`) — renforcer le seul flux d'acquisition actif de MySim4Trip. Chaque destination (17+) fait maintenant du maillage vers la redirection au lieu du seul guide eSIM.
+
+## Session — 11 août 2026 — icône animée « tiny planet »
+
+### Contexte
+Demande : afficher une courte vidéo tiny planet (Insta360) en boucle dans un coin haut de page, comme une icône animée. Choix validés par l'utilisateur : **coin haut droit, fixe (reste visible au scroll), sur toutes les pages**, et **cliquable → accueil de la langue courante**.
+
+### Fait
+- [x] `_includes/tiny-planet.html` : markup `<video autoplay muted loop playsinline>` enveloppé dans un lien vers `/fr/` ou `/en/` selon `page.lang`, avec `aria-label` traduit et `aria-hidden` sur la vidéo. **Rendu conditionnel à l'existence réelle du fichier** (`site.static_files | where: "path", "/assets/video/tiny-planet.mp4"`) : tant que la vidéo n'est pas déposée, l'include ne produit rien — pas de lecteur cassé, pas d'erreur de build, CI verte.
+- [x] Petit script inline : respecte `prefers-reduced-motion` (fige l'icône sur sa première image au lieu de la laisser tourner).
+- [x] CSS ajouté en fin de `assets/css/scrapbook.css` : `position: fixed` haut/droite, rond, bordure `--paper-white` + ombre dure et légère rotation (style scrapbook), agrandissement au survol, `outline` au focus clavier. Tailles dégressives (110px → 78px → 64px) et masquage sous 420px de hauteur (mobile en paysage).
+- [x] Branché en une ligne dans `_layouts/default.html`. Vérifié que `_layouts/index.html` est un **vestige inutilisé** (aucune page ne le référence ; les vraies accueils `fr/index.md`/`en/index.md` sont en `layout: default`) — le branchement unique couvre donc bien tout le site. `_layouts/redirect.html` est volontairement exclu (page de rebond meta-refresh).
+- [x] `tools/make-tiny-planet.sh` : encode la vidéo source pour le web (recadrage carré centré, 480x480, audio coupé — obligatoire pour l'autoplay navigateur, durée limitée). Variables `START` / `DURATION` / `SIZE` ajustables.
+- [x] **WebM abandonné après mesure** : le VP9 sortait à 489 Ko contre 245 Ko pour le H.264 sur ce type de plan, alors que l'include le servait en priorité — soit exactement l'inverse du but recherché. Le H.264 étant lu par tous les navigateurs, le WebM a été retiré du script et de l'include plutôt que tuné à l'aveugle.
+- [x] Testé de bout en bout avec une vidéo témoin (`SALTA TEST.mov`) : rendu vérifié dans Chrome (icône ronde en place, en lecture, fixe au scroll, sans recouvrir la sidebar), bilinguisme du lien confirmé (`/fr/` vs `/en/`), et `htmlproofer` passé avec **les options exactes de la CI** dans les deux états (avec et sans vidéo). Vidéo témoin supprimée ensuite — elle n'est pas committée.
+
+### Reste à faire
+- [ ] **Déposer la vraie vidéo tiny planet** : lancer `./tools/make-tiny-planet.sh "<chemin/vers/la/video>"`, vérifier le rendu en local, puis commiter `assets/video/`. L'icône s'affichera automatiquement.
+- [ ] Pas encore poussé : la plomberie est committée en local mais le push est gardé pour être groupé avec la vidéo (un seul déploiement Coolify au lieu de deux, cf. contrainte de disque partagé du VPS).
