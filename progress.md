@@ -135,6 +135,31 @@ Demande : afficher une courte vidéo tiny planet (Insta360) en boucle dans un co
 - [x] **WebM abandonné après mesure** : le VP9 sortait à 489 Ko contre 245 Ko pour le H.264 sur ce type de plan, alors que l'include le servait en priorité — soit exactement l'inverse du but recherché. Le H.264 étant lu par tous les navigateurs, le WebM a été retiré du script et de l'include plutôt que tuné à l'aveugle.
 - [x] Testé de bout en bout avec une vidéo témoin (`SALTA TEST.mov`) : rendu vérifié dans Chrome (icône ronde en place, en lecture, fixe au scroll, sans recouvrir la sidebar), bilinguisme du lien confirmé (`/fr/` vs `/en/`), et `htmlproofer` passé avec **les options exactes de la CI** dans les deux états (avec et sans vidéo). Vidéo témoin supprimée ensuite — elle n'est pas committée.
 
+### Durée de vidéo — mesures (15 août 2026)
+Encodage du même plan à différentes durées, pour cadrer le choix :
+
+| Durée | 480×480 | 360×360 |
+|---|---|---|
+| 4 s | 136 Ko | 93 Ko |
+| 8 s | 372 Ko | 241 Ko |
+| 12 s | 833 Ko | 530 Ko |
+| 20 s | 1 308 Ko | 825 Ko |
+| 30 s | 1 809 Ko | 1 138 Ko |
+
+≈ 45 Ko/s en 480px, 28 Ko/s en 360px. Recommandation : **8 s, 12 s au maximum**. Repère : la page d'accueil fait 10 Ko et tout le CSS 21 Ko — la vidéo domine le poids de la page. Mesures faites sur un plan à main levée en décor chargé (pire cas de compression) : un tiny planet en rotation lente compressera mieux.
+**À noter** : l'icône s'affiche à 110 px, soit 330 px sur un écran 3x — **360×360 suffit largement, 480 est du gaspillage**. Défaut du script laissé à 480 (décision non tranchée par l'utilisateur).
+
+### Cache HTTP (`nginx.conf`) — fait le 15 août 2026
+Le `nginx.conf` ne définissait **aucun en-tête de cache** : chaque page rechargeait les assets plus souvent que nécessaire, ce qui devenait coûteux avec une vidéo servie sur toutes les pages.
+
+- **Contrainte structurante** : aucun fichier de ce site n'a de hash dans son nom (`scrapbook.css`, `tiny-planet.mp4` gardent le même nom d'une version à l'autre). Un `immutable` longue durée figerait donc l'ancienne version chez les visiteurs déjà venus, sans moyen de les rattraper. Les durées sont donc calées sur « à quel point c'est grave si le visiteur voit la version d'avant », pas sur le poids du fichier.
+- **Médias** (mp4/webm/jpg/png/webp/svg/ico/woff) : `Cache-Control: public, max-age=2592000` (30 j). On ne remplace pas une photo en place, on en publie une nouvelle.
+- **CSS/JS et HTML** : `Cache-Control: no-cache` → le navigateur garde le fichier mais revalide ; nginx répond **304 avec 0 octet de corps** tant que rien n'a changé. Une modif de style est donc visible immédiatement, sans jamais retélécharger le fichier entier.
+- **gzip activé** sur les types compressibles uniquement (pas sur mp4/jpg, déjà compressés).
+- **Piège rencontré et corrigé** : `expires 30d;` émet son propre `Cache-Control`, qui s'ajoutait à celui du `add_header` → **deux en-têtes `Cache-Control` concurrents** sur la même réponse. La directive `expires` a été retirée, un seul en-tête explicite conservé.
+- **Vérifié pour de vrai**, pas sur parole : nginx installé en local (`brew install nginx`, désinstallable avec `brew uninstall nginx`), config du repo rejouée telle quelle sur un port de test — Docker n'étant pas disponible sur cette machine. Résultats mesurés : `nginx -t` OK (une erreur de syntaxe ici ferait planter le conteneur au démarrage et tomberait le site), un seul `Cache-Control` par réponse, revalidation 304 à 0 octet sur HTML et CSS, gzip 10,9 Ko → 3,6 Ko sur l'accueil et 21,2 Ko → 5,7 Ko sur le CSS, mp4 non compressé comme voulu.
+
 ### Reste à faire
 - [ ] **Déposer la vraie vidéo tiny planet** : lancer `./tools/make-tiny-planet.sh "<chemin/vers/la/video>"`, vérifier le rendu en local, puis commiter `assets/video/`. L'icône s'affichera automatiquement.
-- [ ] Pas encore poussé : la plomberie est committée en local mais le push est gardé pour être groupé avec la vidéo (un seul déploiement Coolify au lieu de deux, cf. contrainte de disque partagé du VPS).
+- [ ] Trancher la résolution par défaut du script : 480 (actuel) ou 360 (suffisant pour un affichage à 110 px, −37 % de poids).
+- [ ] Pas encore poussé : 2 commits en local (icône + cache nginx), push gardé pour être groupé avec la vidéo (un seul déploiement Coolify au lieu de trois, cf. contrainte de disque partagé du VPS).
