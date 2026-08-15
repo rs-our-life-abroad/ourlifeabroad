@@ -159,7 +159,26 @@ Le `nginx.conf` ne définissait **aucun en-tête de cache** : chaque page rechar
 - **Piège rencontré et corrigé** : `expires 30d;` émet son propre `Cache-Control`, qui s'ajoutait à celui du `add_header` → **deux en-têtes `Cache-Control` concurrents** sur la même réponse. La directive `expires` a été retirée, un seul en-tête explicite conservé.
 - **Vérifié pour de vrai**, pas sur parole : nginx installé en local (`brew install nginx`, désinstallable avec `brew uninstall nginx`), config du repo rejouée telle quelle sur un port de test — Docker n'étant pas disponible sur cette machine. Résultats mesurés : `nginx -t` OK (une erreur de syntaxe ici ferait planter le conteneur au démarrage et tomberait le site), un seul `Cache-Control` par réponse, revalidation 304 à 0 octet sur HTML et CSS, gzip 10,9 Ko → 3,6 Ko sur l'accueil et 21,2 Ko → 5,7 Ko sur le CSS, mp4 non compressé comme voulu.
 
-### Reste à faire
-- [ ] **Déposer la vraie vidéo tiny planet** : lancer `./tools/make-tiny-planet.sh "<chemin/vers/la/video>"`, vérifier le rendu en local, puis commiter `assets/video/`. L'icône s'affichera automatiquement.
-- [ ] Trancher la résolution par défaut du script : 480 (actuel) ou 360 (suffisant pour un affichage à 110 px, −37 % de poids).
-- [ ] Pas encore poussé : 2 commits en local (icône + cache nginx), push gardé pour être groupé avec la vidéo (un seul déploiement Coolify au lieu de trois, cf. contrainte de disque partagé du VPS).
+### Outillage local ajouté sur le Mac
+`brew install nginx` — installé pour rejouer `nginx.conf` en local, Docker n'étant pas disponible sur cette machine. Réutilisable pour tout projet crea-dapp servi par nginx (`nginx -t` avant un push évite de faire tomber un site sur une faute de syntaxe). Désinstallation : `brew uninstall nginx`. Aucun service en arrière-plan lancé (`brew services` non utilisé) — nginx n'est démarré qu'à la demande sur un port de test.
+
+## ⏭️ À FAIRE / À DÉCIDER à la reprise — tiny planet & cache
+
+**Décisions en attente de l'utilisateur**
+- [ ] **Importer la vraie vidéo tiny planet.** Elle n'a jamais été déposée dans le repo : toute la mécanique est en place et **inerte** tant que `assets/video/tiny-planet.mp4` n'existe pas. Commande : `./tools/make-tiny-planet.sh "<chemin/vers/la/video>"`, puis `bundle exec jekyll serve` pour juger du rendu, puis commiter `assets/video/`. L'icône apparaîtra toute seule.
+  - Extrait ajustable : `START=12 DURATION=6 ./tools/make-tiny-planet.sh ...` (défaut : les 8 premières secondes).
+  - Choisir un extrait dont la première et la dernière image se ressemblent, sinon la boucle saute visiblement à chaque tour.
+- [ ] **Trancher la résolution par défaut du script : 480 (actuel) ou 360.** L'icône s'affiche à 110 px, soit 330 px sur un écran 3x — **360×360 suffit techniquement** et pèse 37 % de moins. 480 a été laissé par défaut faute de décision. Une seule variable à changer dans `tools/make-tiny-planet.sh` (`SIZE`).
+- [ ] Durée : viser **8 s, 12 s au maximum** (cf. table de mesures ci-dessus).
+
+**Vérifications à faire au prochain passage**
+- [ ] Vérifier le rendu de l'icône **sur un vrai téléphone** — le redimensionnement de fenêtre n'a pas pris effet pendant le test Chrome, donc les tailles dégressives (110 → 78 → 64 px) et le masquage en paysage sous 420 px de haut n'ont **pas** été vus en conditions réelles. CSS standard, risque faible, mais non vérifié.
+- [ ] Confirmer en prod que les en-têtes de cache sont bien servis : `curl -sI https://ourlifeabroad.crea-dapp.com/assets/css/scrapbook.css | grep -i cache-control` (attendu : `no-cache`) et idem sur un `.jpg` (attendu : `public, max-age=2592000`). Testés en local sur un nginx rejouant la config, pas encore observés à travers Coolify.
+
+**Non fait volontairement**
+- Le WebM a été retiré (mesuré 2× plus lourd que le H.264 ici). Si un jour la vidéo change de nature et que le WebM redevient pertinent, il faudra le remesurer avant de le réintroduire — et corriger l'ordre des `<source>`, c'est ce qui clochait.
+
+## Session terminée le 15 août 2026 — reprise à la prochaine session
+Deux commits poussés sur `main` : `86ebaff` (icône tiny planet, inerte tant que la vidéo n'est pas déposée) et `058bc25` (en-têtes de cache HTTP + gzip dans `nginx.conf`). Le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07). Disque du VPS vérifié avant push : 72 % (seuil d'alerte à 85 %), charge 0,37.
+
+**Reprise** : la liste « ⏭️ À FAIRE / À DÉCIDER » ci-dessus — importer la vidéo tiny planet et trancher 480 vs 360 sont les deux seuls points bloquants ; le reste du site n'attend rien. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
