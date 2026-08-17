@@ -194,6 +194,18 @@ Corollaire appliqué : le **poster est maintenant extrait du MP4 produit**, plus
 - [x] `.DS_Store` ajouté au `.gitignore` (il traînait non suivi dans `assets/`)
 - [x] Commit `3b305ea` poussé sur `main`. Disque VPS vérifié avant push : **71 %** (seuil 85 %).
 
+### ⚠️ Découverte : l'auto-deploy Coolify ne fonctionne pas — le dépôt n'a AUCUN webhook
+Le suivi affirmait « le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07) ». **C'est faux aujourd'hui.** Après le push de `3b305ea`, la vidéo répondait **404** en prod, et le conteneur (`vp6oc0x9gv8btjsigqqe00fj-055210308067`) tournait toujours depuis le **15 août 05:53** — aucun redéploiement n'a eu lieu.
+
+Cause : `gh api repos/rs-our-life-abroad/ourlifeabroad/hooks` renvoie une liste **vide**. Hypothèse la plus probable : le webhook a été perdu lors du **transfert du dépôt** de `coding-training-pers` vers `rs-our-life-abroad` (2 juillet 2026) — un transfert GitHub ne conserve pas les webhooks d'un service tiers. La « confirmation » du 6/07 portait donc sans doute sur l'ancien emplacement.
+
+**Le site sert donc encore le build du 15 août, sans la vidéo.** Le commit est bien sur `main` et la CI est verte : il ne manque que le déploiement.
+
+À faire à la reprise :
+- [ ] **Déclencher le déploiement** : bouton « Deploy » sur le dashboard Coolify (app `ourlifeabroad-blog`), ou via l'API. L'app est correctement configurée par ailleurs (dépôt `rs-our-life-abroad/ourlifeabroad`, branche `main`) — c'est bien le déclencheur qui manque, pas la config.
+- [ ] **Recréer le webhook** pour rétablir l'auto-deploy, sinon *tous* les prochains pushs seront silencieusement non déployés. À vérifier : les autres dépôts transférés en même temps souffrent peut-être du même problème.
+- [ ] Après déploiement, confirmer : `curl -sI https://ourlifeabroad.crea-dapp.com/assets/video/tiny-planet.mp4` (attendu `200` + `cache-control: public, max-age=2592000`, ce qui validerait du même coup les en-têtes de cache du 15/08 jamais observés à travers Coolify).
+
 **Reste ouvert sur ce sujet**
 - [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
 - [ ] La source `~/Desktop/tiny world cut.mp4` n'est **pas** dans le repo (18,7 Mo, dépôt public) — la conserver ailleurs si un ré-encodage est envisagé.
@@ -208,6 +220,8 @@ Corollaire appliqué : le **poster est maintenant extrait du MP4 produit**, plus
 - Le WebM a été retiré (mesuré 2× plus lourd que le H.264 ici). Si un jour la vidéo change de nature et que le WebM redevient pertinent, il faudra le remesurer avant de le réintroduire — et corriger l'ordre des `<source>`, c'est ce qui clochait.
 
 ## Session terminée le 17 août 2026 — reprise à la prochaine session
-Un commit poussé sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour, `.DS_Store` ignoré). Le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07). Disque du VPS vérifié avant push : **71 %** (seuil d'alerte à 85 %).
+Deux commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour, `.DS_Store` ignoré) et `cb2cf1f` (ce suivi). CI verte. Disque du VPS vérifié : **71 %** (seuil 85 %), charge 0,49, seul nginx tourne dans le conteneur.
 
-**Reprise** : **plus aucun point bloquant** — les deux qui l'étaient (importer la vidéo, trancher 480 vs 360) sont résolus, l'icône est en ligne. Ne restent que des vérifications de confort : le rendu sur un vrai téléphone, les en-têtes de cache à travers Coolify, et un coup d'œil au dédoublement du fondu en mouvement. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+⚠️ **Le déploiement n'a PAS eu lieu** — contrairement à ce que supposait le suivi, le dépôt n'a aucun webhook et Coolify n'a rien redéployé (voir la section dédiée ci-dessus). Le déclenchement par API a été tenté puis **bloqué par le contrôle de permissions local**, l'utilisateur doit donc lancer le déploiement lui-même (bouton « Deploy » sur Coolify) ou autoriser l'appel.
+
+**Reprise** : les deux points bloquants du 15/08 (importer la vidéo, trancher 480 vs 360) sont résolus **côté dépôt**. Le seul point ouvert est le **déploiement + la recréation du webhook**, qui conditionne aussi tous les futurs pushs. Ensuite, vérifications de confort : rendu sur un vrai téléphone, en-têtes de cache à travers Coolify, dédoublement du fondu en mouvement. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
