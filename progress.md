@@ -194,10 +194,14 @@ Corollaire appliqué : le **poster est maintenant extrait du MP4 produit**, plus
 - [x] `.DS_Store` ajouté au `.gitignore` (il traînait non suivi dans `assets/`)
 - [x] Commit `3b305ea` poussé sur `main`. Disque VPS vérifié avant push : **71 %** (seuil 85 %).
 
-### ⚠️ Découverte : l'auto-deploy Coolify ne fonctionne pas — le dépôt n'a AUCUN webhook
+### ⚠️ L'auto-deploy Coolify ne se déclenche pas — diagnostic corrigé le 17/08 au soir
 Le suivi affirmait « le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07) ». **C'est faux aujourd'hui.** Après le push de `3b305ea`, la vidéo répondait **404** en prod, et le conteneur (`vp6oc0x9gv8btjsigqqe00fj-055210308067`) tournait toujours depuis le **15 août 05:53** — aucun redéploiement n'a eu lieu.
 
-Cause : `gh api repos/rs-our-life-abroad/ourlifeabroad/hooks` renvoie une liste **vide**. Hypothèse la plus probable : le webhook a été perdu lors du **transfert du dépôt** de `coding-training-pers` vers `rs-our-life-abroad` (2 juillet 2026) — un transfert GitHub ne conserve pas les webhooks d'un service tiers. La « confirmation » du 6/07 portait donc sans doute sur l'ancien emplacement.
+**Première hypothèse — FAUSSE, ne pas la reprendre.** `gh api repos/.../hooks` renvoie une liste vide, ce qui avait fait conclure à un webhook perdu lors du transfert du dépôt de `coding-training-pers` vers `rs-our-life-abroad` (2 juillet). **C'est un faux signal** : cette application utilise une **GitHub App** (`source_type: App\Models\GithubApp`), et une GitHub App ne crée **jamais** de webhook au niveau du dépôt — elle reçoit les événements via son installation. Une liste `hooks` vide est donc l'état *normal* ici et ne prouve rien.
+
+**Ce qui est vérifié en place** (17/08) : la GitHub App `coolify-our-life-abroad` est installée sur l'organisation (`id=135932363`, `repository_selection: all`, donc le dépôt est couvert), la branche suivie est bien `main`, et `watch_paths` est `None` (aucun filtre de chemin qui bloquerait un déploiement).
+
+**Cause restante la plus probable : le réglage « auto-deploy » de l'application est désactivé dans Coolify.** Il vit dans la table `application_settings` et **n'est pas exposé par l'API v1** — les 82 champs de `/applications/{uuid}` ne le contiennent pas, donc il est impossible à lire ou à modifier par script. Il faut le vérifier dans l'interface Coolify, sur l'application `ourlifeabroad-blog` (section Général / « Auto Deploy »).
 
 **Déploiement lancé manuellement par l'utilisateur le 17/08 à 19:00** (commit `b0c06c9`) — le site est à jour. Le log Coolify indiquait « No build configuration changed & image found with the same Git Commit SHA. Build step skipped », ce qui est bénin ici : l'image réutilisée portait bien le SHA déployé. **Mais c'est typiquement le cas où « déploiement terminé » ne veut pas dire « en ligne » — vérifier le service reste indispensable.**
 
@@ -214,7 +218,9 @@ Cause : `gh api repos/rs-our-life-abroad/ourlifeabroad/hooks` renvoie une liste 
 
 Ces deux dernières lignes **closent aussi la vérification laissée ouverte le 15/08** : les en-têtes de cache n'avaient jamais été observés à travers Coolify, seulement sur un nginx local. Ils sont conformes.
 
-- [ ] **⚠️ TOUJOURS OUVERT — recréer le webhook.** Revérifié après le déploiement : le dépôt a toujours **0 webhook**. Le déploiement du 17/08 était manuel, il n'en a pas créé. **Tous les prochains pushs resteront donc silencieusement non déployés.** À vérifier aussi sur les autres dépôts transférés en juillet.
+- [ ] **⚠️ TOUJOURS OUVERT — activer « Auto Deploy » dans l'interface Coolify** (app `ourlifeabroad-blog`). Ce n'est **pas** un webhook à recréer : l'intégration GitHub App est en place et couvre le dépôt. Le réglage n'étant pas exposé par l'API, il ne peut pas être corrigé par script. Tant qu'il n'est pas activé, chaque push sera accepté, la CI passera au vert, et le site restera figé sans aucun signal.
+  - Test de validation une fois activé : pousser un commit sans effet (une ligne de `progress.md`) et vérifier qu'un déploiement démarre tout seul.
+  - Ne **pas** conclure à un problème de webhook depuis `gh api repos/.../hooks` : avec une GitHub App, cette liste est vide par construction.
 
 **Reste ouvert sur ce sujet**
 - [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
@@ -245,6 +251,6 @@ Cinq commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 
 
 ✅ **L'icône tiny planet est EN LIGNE** — déploiement lancé manuellement par l'utilisateur à 19:00 et vérifié côté service (mp4 et poster en 200 aux bonnes tailles, include rendu, en-têtes de cache et gzip conformes). Les deux points bloquants du 15/08 sont donc entièrement clos, ainsi que la vérification des en-têtes de cache qui traînait depuis cette date.
 
-⚠️ **Un seul point ouvert, mais structurant : le dépôt n'a toujours aucun webhook.** Le déploiement manuel n'en a pas créé. Tant qu'il n'est pas rétabli, chaque push sera accepté, la CI passera au vert, et le site restera figé sans que rien ne le signale. À traiter en priorité à la reprise, et à vérifier sur les autres dépôts transférés en juillet.
+⚠️ **Un seul point ouvert, mais structurant : l'auto-deploy ne se déclenche pas.** ⚠️ **Le diagnostic a été corrigé en fin de session** — ce n'est *pas* un webhook manquant (voir la section dédiée) : l'intégration GitHub App est en place et couvre le dépôt. La cause restante est le réglage « Auto Deploy » de l'application, **non exposé par l'API**, donc à activer à la main dans l'interface Coolify. Tant que ce n'est pas fait, chaque push sera accepté, la CI passera au vert, et le site restera figé sans aucun signal.
 
-**Reprise** : recréer le webhook ; puis vérifications de confort (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+**Reprise** : activer « Auto Deploy » sur `ourlifeabroad-blog` dans Coolify, puis valider avec un commit sans effet ; puis vérifications de confort (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
