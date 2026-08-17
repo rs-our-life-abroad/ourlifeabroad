@@ -199,12 +199,22 @@ Le suivi affirmait « le déploiement Coolify est déclenché par le push (auto-
 
 Cause : `gh api repos/rs-our-life-abroad/ourlifeabroad/hooks` renvoie une liste **vide**. Hypothèse la plus probable : le webhook a été perdu lors du **transfert du dépôt** de `coding-training-pers` vers `rs-our-life-abroad` (2 juillet 2026) — un transfert GitHub ne conserve pas les webhooks d'un service tiers. La « confirmation » du 6/07 portait donc sans doute sur l'ancien emplacement.
 
-**Le site sert donc encore le build du 15 août, sans la vidéo.** Le commit est bien sur `main` et la CI est verte : il ne manque que le déploiement.
+**Déploiement lancé manuellement par l'utilisateur le 17/08 à 19:00** (commit `b0c06c9`) — le site est à jour. Le log Coolify indiquait « No build configuration changed & image found with the same Git Commit SHA. Build step skipped », ce qui est bénin ici : l'image réutilisée portait bien le SHA déployé. **Mais c'est typiquement le cas où « déploiement terminé » ne veut pas dire « en ligne » — vérifier le service reste indispensable.**
 
-À faire à la reprise :
-- [ ] **Déclencher le déploiement** : bouton « Deploy » sur le dashboard Coolify (app `ourlifeabroad-blog`), ou via l'API. L'app est correctement configurée par ailleurs (dépôt `rs-our-life-abroad/ourlifeabroad`, branche `main`) — c'est bien le déclencheur qui manque, pas la config.
-- [ ] **Recréer le webhook** pour rétablir l'auto-deploy, sinon *tous* les prochains pushs seront silencieusement non déployés. À vérifier : les autres dépôts transférés en même temps souffrent peut-être du même problème.
-- [ ] Après déploiement, confirmer : `curl -sI https://ourlifeabroad.crea-dapp.com/assets/video/tiny-planet.mp4` (attendu `200` + `cache-control: public, max-age=2592000`, ce qui validerait du même coup les en-têtes de cache du 15/08 jamais observés à travers Coolify).
+**Vérifié en production après coup** (tout au vert) :
+
+| Vérification | Résultat |
+|---|---|
+| `/assets/video/tiny-planet.mp4` | 200, 343 365 o — taille exacte du commit |
+| `/assets/video/tiny-planet.jpg` | 200, 26 461 o |
+| Include rendu sur `/fr/` | lecteur + poster présents |
+| Cache médias | `public, max-age=2592000` |
+| Cache CSS et HTML | `no-cache` |
+| gzip sur le CSS | actif |
+
+Ces deux dernières lignes **closent aussi la vérification laissée ouverte le 15/08** : les en-têtes de cache n'avaient jamais été observés à travers Coolify, seulement sur un nginx local. Ils sont conformes.
+
+- [ ] **⚠️ TOUJOURS OUVERT — recréer le webhook.** Revérifié après le déploiement : le dépôt a toujours **0 webhook**. Le déploiement du 17/08 était manuel, il n'en a pas créé. **Tous les prochains pushs resteront donc silencieusement non déployés.** À vérifier aussi sur les autres dépôts transférés en juillet.
 
 **Reste ouvert sur ce sujet**
 - [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
@@ -225,14 +235,16 @@ Détail complet et mesures dans `~/structure-crea-dapp/etat-projets.md`, section
 
 **Vérifications à faire au prochain passage**
 - [ ] Vérifier le rendu de l'icône **sur un vrai téléphone** — le redimensionnement de fenêtre n'a pas pris effet pendant le test Chrome, donc les tailles dégressives (110 → 78 → 64 px) et le masquage en paysage sous 420 px de haut n'ont **pas** été vus en conditions réelles. CSS standard, risque faible, mais non vérifié.
-- [ ] Confirmer en prod que les en-têtes de cache sont bien servis : `curl -sI https://ourlifeabroad.crea-dapp.com/assets/css/scrapbook.css | grep -i cache-control` (attendu : `no-cache`) et idem sur un `.jpg` (attendu : `public, max-age=2592000`). Testés en local sur un nginx rejouant la config, pas encore observés à travers Coolify.
+- [x] ~~Confirmer en prod que les en-têtes de cache sont bien servis~~ **fait le 17/08 après le déploiement** : `no-cache` sur le CSS et le HTML, `public, max-age=2592000` sur les médias, gzip actif sur le CSS. Conformes à ce qui avait été testé en local le 15/08.
 
 **Non fait volontairement**
 - Le WebM a été retiré (mesuré 2× plus lourd que le H.264 ici). Si un jour la vidéo change de nature et que le WebM redevient pertinent, il faudra le remesurer avant de le réintroduire — et corriger l'ordre des `<source>`, c'est ce qui clochait.
 
 ## Session terminée le 17 août 2026 — reprise à la prochaine session
-Deux commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour, `.DS_Store` ignoré) et `cb2cf1f` (ce suivi). CI verte. Disque du VPS vérifié : **71 %** (seuil 85 %), charge 0,49, seul nginx tourne dans le conteneur.
+Cinq commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour), `cb2cf1f` + `4dbb55f` + `b0c06c9` (ce suivi) et `ff343a4` (allowlist de permissions en lecture seule + `.claude/settings.local.json` ignoré). CI verte. Disque du VPS : **71 %**, charge 0,49.
 
-⚠️ **Le déploiement n'a PAS eu lieu** — contrairement à ce que supposait le suivi, le dépôt n'a aucun webhook et Coolify n'a rien redéployé (voir la section dédiée ci-dessus). Le déclenchement par API a été tenté puis **bloqué par le contrôle de permissions local**, l'utilisateur doit donc lancer le déploiement lui-même (bouton « Deploy » sur Coolify) ou autoriser l'appel.
+✅ **L'icône tiny planet est EN LIGNE** — déploiement lancé manuellement par l'utilisateur à 19:00 et vérifié côté service (mp4 et poster en 200 aux bonnes tailles, include rendu, en-têtes de cache et gzip conformes). Les deux points bloquants du 15/08 sont donc entièrement clos, ainsi que la vérification des en-têtes de cache qui traînait depuis cette date.
 
-**Reprise** : les deux points bloquants du 15/08 (importer la vidéo, trancher 480 vs 360) sont résolus **côté dépôt**. Le seul point ouvert est le **déploiement + la recréation du webhook**, qui conditionne aussi tous les futurs pushs. Ensuite, vérifications de confort : rendu sur un vrai téléphone, en-têtes de cache à travers Coolify, dédoublement du fondu en mouvement. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+⚠️ **Un seul point ouvert, mais structurant : le dépôt n'a toujours aucun webhook.** Le déploiement manuel n'en a pas créé. Tant qu'il n'est pas rétabli, chaque push sera accepté, la CI passera au vert, et le site restera figé sans que rien ne le signale. À traiter en priorité à la reprise, et à vérifier sur les autres dépôts transférés en juillet.
+
+**Reprise** : recréer le webhook ; puis vérifications de confort (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
