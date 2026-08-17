@@ -6,3 +6,7 @@ vendor
 
 # macOS
 .DS_Store
+
+# Réglages Claude Code : le fichier partagé (.claude/settings.json) est versionné,
+# le fichier personnel ne l'est pas — ce dépôt est public.
+.claude/settings.local.json

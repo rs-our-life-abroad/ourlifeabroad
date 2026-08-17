@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null *)",
+      "Bash(curl -sI *)",
+      "Bash(ffprobe *)",
+      "Bash(crontab -l)",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__find",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__read_page",
+      "mcp__claude-in-chrome__read_console_messages",
+      "mcp__claude-in-chrome__read_network_requests",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_snapshot"
+    ]
+  }
+}
