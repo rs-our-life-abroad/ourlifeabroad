@@ -162,14 +162,43 @@ Le `nginx.conf` ne définissait **aucun en-tête de cache** : chaque page rechar
 ### Outillage local ajouté sur le Mac
 `brew install nginx` — installé pour rejouer `nginx.conf` en local, Docker n'étant pas disponible sur cette machine. Réutilisable pour tout projet crea-dapp servi par nginx (`nginx -t` avant un push évite de faire tomber un site sur une faute de syntaxe). Désinstallation : `brew uninstall nginx`. Aucun service en arrière-plan lancé (`brew services` non utilisé) — nginx n'est démarré qu'à la demande sur un port de test.
 
-## ⏭️ À FAIRE / À DÉCIDER à la reprise — tiny planet & cache
+## Session — 17 août 2026 : vidéo tiny planet déposée, les deux points bloquants sont levés
 
-**Décisions en attente de l'utilisateur**
-- [ ] **Importer la vraie vidéo tiny planet.** Elle n'a jamais été déposée dans le repo : toute la mécanique est en place et **inerte** tant que `assets/video/tiny-planet.mp4` n'existe pas. Commande : `./tools/make-tiny-planet.sh "<chemin/vers/la/video>"`, puis `bundle exec jekyll serve` pour juger du rendu, puis commiter `assets/video/`. L'icône apparaîtra toute seule.
-  - Extrait ajustable : `START=12 DURATION=6 ./tools/make-tiny-planet.sh ...` (défaut : les 8 premières secondes).
-  - Choisir un extrait dont la première et la dernière image se ressemblent, sinon la boucle saute visiblement à chaque tour.
-- [ ] **Trancher la résolution par défaut du script : 480 (actuel) ou 360.** L'icône s'affiche à 110 px, soit 330 px sur un écran 3x — **360×360 suffit techniquement** et pèse 37 % de moins. 480 a été laissé par défaut faute de décision. Une seule variable à changer dans `tools/make-tiny-planet.sh` (`SIZE`).
-- [ ] Durée : viser **8 s, 12 s au maximum** (cf. table de mesures ci-dessus).
+Source fournie : `~/Desktop/tiny world cut.mp4` — 1920×1080 HEVC, 6,05 s, **18,7 Mo** (24,8 Mb/s). Sortie finale : **335 Ko**, soit −98 %.
+
+### Résolution tranchée : 360×360 (le point « 480 vs 360 » est clos)
+Le `SIZE` par défaut du script passe de 480 à **360**, et `CRF` de 30 à **33**. Départage par la mesure, pas par le raisonnement : trois variantes (480/CRF 30 = 977 Ko, 360/CRF 33 = 375 Ko, 288/CRF 36 = 148 Ko) ont été rendues **à la taille d'affichage réelle** (220 px, soit l'icône de 110 px en retina) et comparées côte à côte — **indiscernables**. 360/33 est retenu parce qu'il garde de la marge jusqu'à 3× retina.
+**Méthode à réutiliser** : comparer à la taille d'affichage, pas en 1:1. En 1:1 les écarts sautent aux yeux et poussent à surdimensionner ; c'est ce qui avait fait retenir 480 au départ.
+
+### Le raccord de boucle — le vrai sujet, qui n'était pas la compression
+La note de la session précédente (« choisir un extrait dont la 1re et la dernière image se ressemblent ») ne pouvait pas être suivie : sur ce plan la planète a tourné, fin et début ne se ressemblent pas, et **aucun choix d'extrait ne l'aurait corrigé**. Le saut était visible à chaque cycle. Trois options mesurées, arbitrage laissé à l'utilisateur :
+
+| Option | Poids | Durée | Défaut |
+|---|---|---|---|
+| Brut (aucun traitement) | 375 Ko | 6,0 s | saut visible à chaque boucle |
+| Aller-retour (`reverse`) | 748 Ko | 12,0 s | rotation qui s'inverse ; 2× le poids |
+| **Fondu enchaîné** ✅ | **335 Ko** | 5,2 s | image dédoublée 0,8 s par cycle |
+
+**Retenu : le fondu** (choix utilisateur) — le plus léger des trois *et* boucle invisible ; la contrepartie est le dédoublement pendant le fondu.
+
+### Piège trouvé en chemin : le fondu doit être en FIN de timeline
+Placé au début (construction naturelle), la **première image** de la vidéo est l'image floue du fondu. Or c'est exactement l'image que voient (a) le poster et (b) les utilisateurs en `prefers-reduced-motion`, pour qui `_includes/tiny-planet.html` met la vidéo **en pause sur sa première image** — ils auraient eu une icône figée en flou, de façon permanente. Le montage a donc été réordonné (`[body]` puis `[mix]`), ce qui laisse la boucle tout aussi invisible mais rend la 1re image nette.
+Corollaire appliqué : le **poster est maintenant extrait du MP4 produit**, plus de la source — sinon il ne correspond plus à la première image dès qu'un découpage est appliqué, et le passage poster → lecture saute.
+
+### Autre piège ffmpeg
+`-t` placé **après** `-i` est une option de *sortie* : elle tronque le résultat au lieu de limiter la source. Avec un `filter_complex` qui rallonge la timeline (aller-retour), le rendu sortait à 6 s / 144 images au lieu de 12 s / 288. Mettre `-t` **avant** `-i`.
+
+### Fait
+- [x] `assets/video/tiny-planet.mp4` (335 Ko) + `tiny-planet.jpg` (26 Ko) déposés → **l'include n'est plus inerte**, le lecteur est rendu (vérifié sur le build, pages `fr` et `en`)
+- [x] `tools/make-tiny-planet.sh` mis à jour : défauts 360/CRF 33, nouvelles options `CRF` et `FADE` (`FADE=0` désactive le fondu), poster extrait du MP4, en-tête documentant le pourquoi de chaque valeur. **Les deux branches (`FADE=0.8` et `FADE=0`) ont été exécutées**, et le script **reproduit le fichier livré octet pour octet**.
+- [x] `.DS_Store` ajouté au `.gitignore` (il traînait non suivi dans `assets/`)
+- [x] Commit `3b305ea` poussé sur `main`. Disque VPS vérifié avant push : **71 %** (seuil 85 %).
+
+**Reste ouvert sur ce sujet**
+- [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
+- [ ] La source `~/Desktop/tiny world cut.mp4` n'est **pas** dans le repo (18,7 Mo, dépôt public) — la conserver ailleurs si un ré-encodage est envisagé.
+
+## ⏭️ À FAIRE / À DÉCIDER à la reprise
 
 **Vérifications à faire au prochain passage**
 - [ ] Vérifier le rendu de l'icône **sur un vrai téléphone** — le redimensionnement de fenêtre n'a pas pris effet pendant le test Chrome, donc les tailles dégressives (110 → 78 → 64 px) et le masquage en paysage sous 420 px de haut n'ont **pas** été vus en conditions réelles. CSS standard, risque faible, mais non vérifié.
@@ -178,7 +207,7 @@ Le `nginx.conf` ne définissait **aucun en-tête de cache** : chaque page rechar
 **Non fait volontairement**
 - Le WebM a été retiré (mesuré 2× plus lourd que le H.264 ici). Si un jour la vidéo change de nature et que le WebM redevient pertinent, il faudra le remesurer avant de le réintroduire — et corriger l'ordre des `<source>`, c'est ce qui clochait.
 
-## Session terminée le 15 août 2026 — reprise à la prochaine session
-Deux commits poussés sur `main` : `86ebaff` (icône tiny planet, inerte tant que la vidéo n'est pas déposée) et `058bc25` (en-têtes de cache HTTP + gzip dans `nginx.conf`). Le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07). Disque du VPS vérifié avant push : 72 % (seuil d'alerte à 85 %), charge 0,37.
+## Session terminée le 17 août 2026 — reprise à la prochaine session
+Un commit poussé sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour, `.DS_Store` ignoré). Le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07). Disque du VPS vérifié avant push : **71 %** (seuil d'alerte à 85 %).
 
-**Reprise** : la liste « ⏭️ À FAIRE / À DÉCIDER » ci-dessus — importer la vidéo tiny planet et trancher 480 vs 360 sont les deux seuls points bloquants ; le reste du site n'attend rien. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+**Reprise** : **plus aucun point bloquant** — les deux qui l'étaient (importer la vidéo, trancher 480 vs 360) sont résolus, l'icône est en ligne. Ne restent que des vérifications de confort : le rendu sur un vrai téléphone, les en-têtes de cache à travers Coolify, et un coup d'œil au dédoublement du fondu en mouvement. Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
