@@ -210,6 +210,17 @@ Cause : `gh api repos/rs-our-life-abroad/ourlifeabroad/hooks` renvoie une liste 
 - [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
 - [ ] La source `~/Desktop/tiny world cut.mp4` n'est **pas** dans le repo (18,7 Mo, dépôt public) — la conserver ailleurs si un ré-encodage est envisagé.
 
+### Permissions Claude Code — `.claude/settings.json` ajouté (17 août 2026)
+Scan des 28 sessions locales (4 505 appels Bash) pour réduire les demandes de confirmation. Résultat contre-intuitif : **il n'y avait presque rien à gagner**. La majorité du volume (`grep`, `head`, `tail`, `sed`, `ls`, `git status`/`log`/`diff`…) est **déjà auto-autorisée** par Claude Code, sans aucune règle ; le reste est exclu par nature (écriture, interpréteurs, `ssh`). Seuls ~250 appels étaient réellement allowlistables → 12 entrées strictement en lecture (`curl -sI`, `curl -s -o /dev/null`, `ffprobe`, `crontab -l`, outils navigateur MCP de lecture).
+
+**`ssh` reste volontairement en confirmation** (décision utilisateur). C'est la commande la plus fréquente (448 appels) mais :
+- une **règle exacte** est sûre et inutile : celle déjà présente dans `settings.local.json` a correspondu **0 fois sur 81 appels** — 60 formes textuellement distinctes pour la même intention ;
+- une **règle sur un script** correspondrait à 100 % mais la permission porte sur un *chemin* alors que ce qui s'exécute est un *contenu* modifiable après coup : « éditer le script » (sans demande) + « l'exécuter » (autorisé) = commande root arbitraire sur le VPS sans aucune confirmation.
+
+Détail complet et mesures dans `~/structure-crea-dapp/etat-projets.md`, section « Ne jamais mettre `ssh` dans une allowlist ».
+
+⚠️ **`.claude/` n'était ni suivi ni ignoré alors que ce dépôt est public.** `.claude/settings.local.json` est désormais dans le `.gitignore` (il contient des chemins locaux ; rappel de l'incident EdgeBook où ce fichier est parti sur un déploiement Vercel public). `.claude/settings.json`, lui, est versionné volontairement — il est partagé et ne contient que des motifs en lecture.
+
 ## ⏭️ À FAIRE / À DÉCIDER à la reprise
 
 **Vérifications à faire au prochain passage**
