@@ -230,11 +230,48 @@ Détail complet et mesures dans `~/structure-crea-dapp/etat-projets.md`, section
 **Non fait volontairement**
 - Le WebM a été retiré (mesuré 2× plus lourd que le H.264 ici). Si un jour la vidéo change de nature et que le WebM redevient pertinent, il faudra le remesurer avant de le réintroduire — et corriger l'ordre des `<source>`, c'est ce qui clochait.
 
-## Session terminée le 17 août 2026 — reprise à la prochaine session
-Cinq commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 Ko avec fondu de bouclage, script mis à jour), `cb2cf1f` + `4dbb55f` + `b0c06c9` (ce suivi) et `ff343a4` (allowlist de permissions en lecture seule + `.claude/settings.local.json` ignoré). CI verte. Disque du VPS : **71 %**, charge 0,49.
+## Session — 26 août 2026 : auto-deploy élucidé, fichiers internes servis publiquement
 
-✅ **L'icône tiny planet est EN LIGNE** — déploiement lancé manuellement par l'utilisateur à 19:00 et vérifié côté service (mp4 et poster en 200 aux bonnes tailles, include rendu, en-têtes de cache et gzip conformes). Les deux points bloquants du 15/08 sont donc entièrement clos, ainsi que la vérification des en-têtes de cache qui traînait depuis cette date.
+Session courte, entièrement consacrée à vérifier une alarme de la session précédente — qui s'est révélée fausse.
 
-✅ **Aucun point ouvert côté déploiement.** Vérifié le 26/08 : l'auto-deploy fonctionne — le conteneur en production tourne l'image taguée `ad1b4f4`, soit le dernier commit, démarrée 4 secondes après le push. Les deux diagnostics posés le 17/08 (webhook manquant, puis case Auto Deploy décochée) étaient **faux** ; voir la section dédiée pour le détail et la leçon de méthode.
+### ✅ L'auto-deploy fonctionne, confirmé par un test en direct
+Un commit poussé à `02:52:11 UTC` a produit un conteneur démarré à `02:52:12`, **une seconde après**, portant l'image `vp6oc0x9gv8btjsigqqe00fj:b7e0e2d5a84e…` — exactement le commit poussé. Confirmé deux fois, par deux mesures indépendantes. Site vérifié après coup (accueil et vidéo en 200).
 
-**Reprise** : plus rien de bloquant. Vérifications de confort seulement (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+**Les deux diagnostics du 17/08 étaient faux** (détail et leçon de méthode dans la section « ✅ RÉSOLU » plus haut) : ni webhook manquant, ni case décochée. La bonne mesure, à réutiliser en premier la prochaine fois :
+```bash
+ssh root@<vps> "docker ps --filter name=<uuid-app> --format '{{.Names}} | {{.RunningFor}} | {{.Image}}'"
+```
+Le tag contient le SHA déployé, le nom du conteneur encode l'heure de démarrage.
+
+### 🔍 Constat non traité : des fichiers internes sont servis sur le domaine
+Découvert en datant le déploiement sans ssh. Tout fichier `.md` sans front matter à la racine est **copié tel quel** par Jekyll et devient accessible en ligne :
+
+| Fichier | En ligne | Contenu notable |
+|---|---|---|
+| `progress.md` | 200 | 1 UUID de conteneur, 1 nom de compte — rien de sensible |
+| `CLAUDE.md` | 200 | 4 mentions de comptes GitHub, URL du worker OAuth, stack Coolify |
+| `README.md` | 200 | — |
+
+**Analyse faite avant de décider** — et elle conclut à ne rien faire dans l'immédiat :
+- **Le dépôt est public** : ces fichiers sont déjà lisibles sur `raw.githubusercontent.com` (vérifié, 200). Les exclure du build ne les rend donc **pas** privés, ça les retire d'une URL en les laissant sur l'autre.
+- **L'URL du worker OAuth est publique par nécessité** : elle est dans `admin/config.yml`, que le CMS charge depuis le navigateur. Impossible à cacher.
+- **Aucun risque SEO** : `sitemap.xml` ne les liste pas (0 entrée) et rien ne pointe vers eux.
+- Restent deux arguments réels mais mineurs : le confort de reconnaissance (tout est donné sans avoir à trouver le dépôt) et l'apparence (journal de travail interne sur un site de monétisation).
+
+⚠️ **Point de méthode** : si un contenu ne doit pas être public, l'exclure du build est le **mauvais levier** — il faut le sortir du dépôt, historique compris.
+
+- [ ] **À reprendre plus tard (décision utilisateur : on ne touche à rien pour le moment).** Deux options quand le sujet reviendra :
+  1. *Cosmétique* — les retirer du site seul : `exclude: [progress.md, CLAUDE.md, README.md, Gemfile, Gemfile.lock, tools, vendor]` dans `_config.yml`.
+  2. *De fond* — **passer le dépôt en privé**, ce qui change la nature du problème. À étudier d'abord : impact sur Decap CMS (backend GitHub + worker OAuth) et sur l'accès de Coolify au dépôt.
+
+## Session terminée le 26 août 2026 — reprise à la prochaine session
+Deux commits poussés sur `main` : `b7e0e2d` (correction du diagnostic auto-deploy dans ce suivi) et les corrections associées. Auto-deploy vérifié en direct. Disque du VPS : **70 %**, charge 0,78, seul nginx dans le conteneur.
+
+**État du projet : aucun point bloquant.** L'icône tiny planet est en ligne, l'auto-deploy fonctionne, les en-têtes de cache sont confirmés en production, la CI est verte.
+
+**Reprise, par ordre d'intérêt :**
+1. Trancher le sujet « fichiers internes servis publiquement » ci-dessus — c'est le seul point ouvert issu de cette session.
+2. Vérifications de confort jamais faites : rendu de l'icône **sur un vrai téléphone**, et jugement du **dédoublement du fondu en mouvement** (réductible via `FADE=0.4` dans `tools/make-tiny-planet.sh`).
+3. Chantiers de fond inchangés : 3 guides à rédiger, 16 stubs de destinations à étoffer, site Umami à créer puis coller l'ID dans `_config.yml`, remplacer les 2 images placeholder par de vraies photos.
+
+**À savoir pour la prochaine session** : `ssh` reste volontairement en confirmation (décision du 17/08, motivée et mesurée — voir la section Permissions). Ne pas rouvrir ce débat sans lire d'abord `~/structure-crea-dapp/etat-projets.md`, section « Ne jamais mettre `ssh` dans une allowlist ».
