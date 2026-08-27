@@ -52,7 +52,7 @@ Ce dossier (`ourlifeabroad-temp`) n'avait pas été synchronisé depuis le **21 
 - [ ] Créer le site "ourlifeabroad" dans le dashboard Umami (`stats.crea-dapp.com`), coller l'ID obtenu dans `_config.yml`
 - [ ] Ajouter la mention de disclosure affiliée sur les futurs guides qui ajouteront des liens `/go/...` similaires à `internet-esim`
 - [ ] Au fil des nouveaux partenaires (booking, airbnb, amazon, cartes de paiement) : créer une entrée `_redirects/<slug>.md` par partenaire, jamais de lien affilié brut dans un article
-- [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
+- [x] ~~Vérifier si l'auto-deploy Coolify est bien configuré sur push `main`~~ → **confirmé le 26/08** : il fonctionne (conteneur déployé 4 s après le push, image taguée avec le SHA du dernier commit)
 
 ### Fait (suite) — correctif CI post-push
 - [x] Le premier run GitHub Actions du workflow a **échoué malgré un succès en local** : Instagram renvoie 429 (rate limit anti-bot) aux IP des runners GitHub, alors que la même URL répond 200 depuis une IP résidentielle. Le `--ignore-urls` sur le domaine ne suppriment pas fiablement l'échec.
@@ -84,7 +84,7 @@ Reprise du site suite à la session du 2 juillet. Deux sujets traités : le widg
 - [ ] Créer le site "ourlifeabroad" dans le dashboard Umami (`stats.crea-dapp.com`), coller l'ID obtenu dans `_config.yml`
 - [ ] Ajouter la mention de disclosure affiliée sur les futurs guides qui ajouteront des liens `/go/...` similaires à `internet-esim`
 - [ ] Au fil des nouveaux partenaires (booking, airbnb, amazon, cartes de paiement) : créer une entrée `_redirects/<slug>.md` par partenaire, jamais de lien affilié brut dans un article
-- [ ] Vérifier si l'auto-deploy Coolify est bien configuré sur push `main` (pas confirmé dans ce repo)
+- [x] ~~Vérifier si l'auto-deploy Coolify est bien configuré sur push `main`~~ → **confirmé le 26/08** : il fonctionne (conteneur déployé 4 s après le push, image taguée avec le SHA du dernier commit)
 - [ ] Si un nouveau pays reçoit une 2ᵉ ville (ex. Vietnam), créer sa page dans `_countries` via le CMS pour qu'elle prenne le relais des liens sidebar/grilles continent automatiquement
 - [ ] `CLAUDE.md` documente encore l'ancienne approche `--ignore-status-codes` seule comme "plus robuste" que `--ignore-urls` — section à corriger pour refléter la vraie cause racine trouvée aujourd'hui (pas fait dans cette session, seul `progress.md` a été mis à jour à la demande explicite)
 - [ ] Nouveaux sujets de guides retenus le 18 juillet 2026 (pas encore rédigés) : vols pas chers/comparateur billets d'avion, santé & vaccins en voyage, argent liquide & change de devises
@@ -194,33 +194,17 @@ Corollaire appliqué : le **poster est maintenant extrait du MP4 produit**, plus
 - [x] `.DS_Store` ajouté au `.gitignore` (il traînait non suivi dans `assets/`)
 - [x] Commit `3b305ea` poussé sur `main`. Disque VPS vérifié avant push : **71 %** (seuil 85 %).
 
-### ⚠️ L'auto-deploy Coolify ne se déclenche pas — diagnostic corrigé le 17/08 au soir
-Le suivi affirmait « le déploiement Coolify est déclenché par le push (auto-deploy confirmé le 6/07) ». **C'est faux aujourd'hui.** Après le push de `3b305ea`, la vidéo répondait **404** en prod, et le conteneur (`vp6oc0x9gv8btjsigqqe00fj-055210308067`) tournait toujours depuis le **15 août 05:53** — aucun redéploiement n'a eu lieu.
+### ✅ RÉSOLU — l'auto-deploy fonctionne. Deux diagnostics faux avant d'y arriver (clos le 26/08)
 
-**Première hypothèse — FAUSSE, ne pas la reprendre.** `gh api repos/.../hooks` renvoie une liste vide, ce qui avait fait conclure à un webhook perdu lors du transfert du dépôt de `coding-training-pers` vers `rs-our-life-abroad` (2 juillet). **C'est un faux signal** : cette application utilise une **GitHub App** (`source_type: App\Models\GithubApp`), et une GitHub App ne crée **jamais** de webhook au niveau du dépôt — elle reçoit les événements via son installation. Une liste `hooks` vide est donc l'état *normal* ici et ne prouve rien.
+**Conclusion (26/08) : il n'y avait rien à réparer.** Preuve : le conteneur en production tourne l'image `vp6oc0x9gv8btjsigqqe00fj:ad1b4f489d2e…`, soit exactement le dernier commit poussé, et son nom encode `191013` — **4 secondes après** le push de `ad1b4f4` (19:10:09 UTC). Le site sert bien ce commit (vérifié aussi par le contenu de `/progress.md`, servi tel quel car sans front matter).
 
-**Ce qui est vérifié en place** (17/08) : la GitHub App `coolify-our-life-abroad` est installée sur l'organisation (`id=135932363`, `repository_selection: all`, donc le dépôt est couvert), la branche suivie est bien `main`, et `watch_paths` est `None` (aucun filtre de chemin qui bloquerait un déploiement).
+**Les deux diagnostics faux, à ne pas refaire :**
+1. *« Le dépôt n'a aucun webhook »* — `gh api repos/.../hooks` renvoie une liste vide, mais cette application utilise une **GitHub App**, qui ne crée jamais de webhook au niveau du dépôt. Liste vide = état normal, ne prouve rien.
+2. *« La case Auto Deploy est décochée »* — elle était cochée. Hypothèse invérifiable par script (le réglage n'est pas exposé par l'API v1), donc avancée sans preuve. Erreur de méthode : conclure depuis ce qu'on ne peut pas mesurer.
 
-**Cause restante la plus probable : le réglage « auto-deploy » de l'application est désactivé dans Coolify.** Il vit dans la table `application_settings` et **n'est pas exposé par l'API v1** — les 82 champs de `/applications/{uuid}` ne le contiennent pas, donc il est impossible à lire ou à modifier par script. Il faut le vérifier dans l'interface Coolify, sur l'application `ourlifeabroad-blog` (section Général / « Auto Deploy »).
+**La vraie anomalie, unique et non reproduite** : le push de `3b305ea` (13:59 UTC) n'a pas déclenché de déploiement — vérifié à 14:03, le conteneur datait encore du 15/08. Cause indéterminée (probablement transitoire). Tous les pushs suivants se sont déployés normalement, et rien ne s'est reproduit en 9 jours.
 
-**Déploiement lancé manuellement par l'utilisateur le 17/08 à 19:00** (commit `b0c06c9`) — le site est à jour. Le log Coolify indiquait « No build configuration changed & image found with the same Git Commit SHA. Build step skipped », ce qui est bénin ici : l'image réutilisée portait bien le SHA déployé. **Mais c'est typiquement le cas où « déploiement terminé » ne veut pas dire « en ligne » — vérifier le service reste indispensable.**
-
-**Vérifié en production après coup** (tout au vert) :
-
-| Vérification | Résultat |
-|---|---|
-| `/assets/video/tiny-planet.mp4` | 200, 343 365 o — taille exacte du commit |
-| `/assets/video/tiny-planet.jpg` | 200, 26 461 o |
-| Include rendu sur `/fr/` | lecteur + poster présents |
-| Cache médias | `public, max-age=2592000` |
-| Cache CSS et HTML | `no-cache` |
-| gzip sur le CSS | actif |
-
-Ces deux dernières lignes **closent aussi la vérification laissée ouverte le 15/08** : les en-têtes de cache n'avaient jamais été observés à travers Coolify, seulement sur un nginx local. Ils sont conformes.
-
-- [ ] **⚠️ TOUJOURS OUVERT — activer « Auto Deploy » dans l'interface Coolify** (app `ourlifeabroad-blog`). Ce n'est **pas** un webhook à recréer : l'intégration GitHub App est en place et couvre le dépôt. Le réglage n'étant pas exposé par l'API, il ne peut pas être corrigé par script. Tant qu'il n'est pas activé, chaque push sera accepté, la CI passera au vert, et le site restera figé sans aucun signal.
-  - Test de validation une fois activé : pousser un commit sans effet (une ligne de `progress.md`) et vérifier qu'un déploiement démarre tout seul.
-  - Ne **pas** conclure à un problème de webhook depuis `gh api repos/.../hooks` : avec une GitHub App, cette liste est vide par construction.
+**Leçon de méthode** : la mesure qui a tranché est le **tag de l'image du conteneur**, qui contient le SHA déployé — `docker ps --format '{{.Image}}'`. C'est la seule source fiable pour savoir *ce qui tourne réellement*, bien avant `hooks`, les réglages ou les logs de la file Coolify.
 
 **Reste ouvert sur ce sujet**
 - [ ] Juger le **dédoublement du fondu en conditions réelles** : il a été validé sur images fixes, pas sur la vidéo en mouvement dans la page. S'il gêne, réduire à `FADE=0.4` (fondu plus court, donc plus bref mais plus abrupt) ou repasser à l'aller-retour.
@@ -251,6 +235,6 @@ Cinq commits poussés sur `main` : `3b305ea` (vidéo tiny planet 360×360 / 335 
 
 ✅ **L'icône tiny planet est EN LIGNE** — déploiement lancé manuellement par l'utilisateur à 19:00 et vérifié côté service (mp4 et poster en 200 aux bonnes tailles, include rendu, en-têtes de cache et gzip conformes). Les deux points bloquants du 15/08 sont donc entièrement clos, ainsi que la vérification des en-têtes de cache qui traînait depuis cette date.
 
-⚠️ **Un seul point ouvert, mais structurant : l'auto-deploy ne se déclenche pas.** ⚠️ **Le diagnostic a été corrigé en fin de session** — ce n'est *pas* un webhook manquant (voir la section dédiée) : l'intégration GitHub App est en place et couvre le dépôt. La cause restante est le réglage « Auto Deploy » de l'application, **non exposé par l'API**, donc à activer à la main dans l'interface Coolify. Tant que ce n'est pas fait, chaque push sera accepté, la CI passera au vert, et le site restera figé sans aucun signal.
+✅ **Aucun point ouvert côté déploiement.** Vérifié le 26/08 : l'auto-deploy fonctionne — le conteneur en production tourne l'image taguée `ad1b4f4`, soit le dernier commit, démarrée 4 secondes après le push. Les deux diagnostics posés le 17/08 (webhook manquant, puis case Auto Deploy décochée) étaient **faux** ; voir la section dédiée pour le détail et la leçon de méthode.
 
-**Reprise** : activer « Auto Deploy » sur `ourlifeabroad-blog` dans Coolify, puis valider avec un commit sans effet ; puis vérifications de confort (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
+**Reprise** : plus rien de bloquant. Vérifications de confort seulement (rendu sur un vrai téléphone, dédoublement du fondu en mouvement). Les chantiers de fond restent inchangés (3 guides à rédiger, stubs à étoffer, Umami à créer, vraies photos).
