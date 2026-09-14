@@ -123,7 +123,6 @@ Vous avez des questions ? Des projets de voyage ? Vous voulez savoir si tel pays
 
 **Contactez-nous :**
 - 📷 Instagram : [@Cit.del.mundo](https://instagram.com/cit.del.mundo)
-- 🎥 YouTube : [@votrecompte](https://youtube.com/@votrecompte)
 - 📧 Email : citizens.del.mundo@protonmail.com
 
 **On répond à TOUS les messages.** Sérieux. On adore échanger avec vous. ❤️

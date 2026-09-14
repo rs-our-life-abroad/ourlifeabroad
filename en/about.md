@@ -115,9 +115,8 @@ This blog contains **affiliate links**. If you buy through our links (insurance,
 Got questions? Travel plans? Want to know if a country is worth it?
 
 **Contact us:**
-- 📷 Instagram: [@yourhandle](https://instagram.com/yourhandle)
-- 🎥 YouTube: [@yourhandle](https://youtube.com/@yourhandle)
-- 📧 Email: romain.steph@ourlifeabroad.com
+- 📷 Instagram: [@Cit.del.mundo](https://instagram.com/cit.del.mundo)
+- 📧 Email: citizens.del.mundo@protonmail.com
 
 **We respond to ALL messages.** Seriously. We love connecting with you. ❤️
 

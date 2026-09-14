@@ -98,21 +98,27 @@
         </p>
       </div>
       
-      <!-- Widget Social -->
+      <!-- Widget Social : masque tant qu'aucun compte n'est renseigne.
+           Attention Liquid : une chaine vide "" est TRUTHY (seuls nil et false
+           sont faux), donc un simple test de presence laisse passer une
+           valeur vide et produit un lien tronque du type https://youtube.com/@ .
+           D'ou le test explicite != "" ci-dessous. -->
+      {% if site.social.instagram != "" or site.social.youtube != "" or site.social.tiktok != "" %}
       <div class="sidebar-widget">
         <h3>Suivez-nous</h3>
         <div style="display: flex; gap: 1rem; justify-content: center; font-size: 1.5rem;">
-          {% if site.social.instagram %}
+          {% if site.social.instagram and site.social.instagram != "" %}
             <a href="https://instagram.com/{{ site.social.instagram }}" target="_blank" style="text-decoration: none;">📷</a>
           {% endif %}
-          {% if site.social.youtube %}
+          {% if site.social.youtube and site.social.youtube != "" %}
             <a href="https://youtube.com/@{{ site.social.youtube }}" target="_blank" style="text-decoration: none;">🎥</a>
           {% endif %}
-          {% if site.social.tiktok %}
+          {% if site.social.tiktok and site.social.tiktok != "" %}
             <a href="https://tiktok.com/@{{ site.social.tiktok }}" target="_blank" style="text-decoration: none;">🎵</a>
           {% endif %}
         </div>
       </div>
+      {% endif %}
       
     </aside>
     

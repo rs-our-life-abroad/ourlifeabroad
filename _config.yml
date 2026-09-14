@@ -18,19 +18,22 @@ authors:
     name: Romain
     bio: "Passionné de voyage et aventure. Expert en bons plans budget et équipement nomade."
     avatar: /assets/images/romain.jpg
-    instagram: votrecompte
+    instagram: ""   # placeholder retire le 14/09/2026 - remettre le vrai compte si besoin
   
   partner:
     name: Steph
     bio: "[Une phrase sur elle/lui]"
     avatar: /assets/images/partner.jpg
-    instagram: votrecompte
+    instagram: ""
 
 # Réseaux sociaux
+# Laisser vide tant que le compte n'existe pas : les {% if %} de _layouts/default.html
+# masquent alors l'icone. Un placeholder ici produit un lien mort sur les 65 pages du
+# site, invisible pour html-proofer (ces URL renvoient 200). Vide le 14/09/2026.
 social:
-  instagram: votrecompte
-  youtube: votrecompte
-  tiktok: votrecompte
+  instagram: ""
+  youtube: ""
+  tiktok: ""
 
 # Build settings
 markdown: kramdown
