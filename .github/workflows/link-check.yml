@@ -31,22 +31,31 @@ jobs:
           htmlproofer \
             --assume-extension \
             --ignore-status-codes="429" \
-            --ignore-urls="/instagram\.com/" \
+            --ignore-urls="/instagram\.com/,/tiktok\.com/" \
             ./_site
-        # --ignore-urls="/instagram\.com/" : Instagram bloque les IP des runners
-        # GitHub Actions (429) par mesure anti-bot, alors que le même lien répond
-        # 200 depuis une IP résidentielle. Un essai précédent de --ignore-urls sur
-        # "instagram.com" (sans les slashes) échouait car html-proofer ne traite
-        # une valeur --ignore-urls comme une regex QUE si elle est encadrée par
-        # des "/" ; sans ça, c'est une égalité stricte sur l'URL entière, qui ne
-        # matche donc jamais rien (cf. lib/html_proofer/attribute/url.rb). Le
-        # format "/pattern/" saute la requête HTTP avant même qu'elle parte —
-        # contrairement à --ignore-status-codes, qui dépend d'obtenir un vrai 429
-        # (peu fiable en pratique sous requêtes concurrentes, cf. progress.md).
-        # --ignore-status-codes="429" reste en place en filet de sécurité pour de
-        # futurs domaines partenaires (booking, airbnb, amazon...) qui
-        # bloqueraient le bot pareil, en attendant de leur ajouter leur propre
-        # --ignore-urls si besoin.
+        # --ignore-urls : liste de regex, chaque motif encadré par des "/".
+        # Instagram et TikTok bloquent tous deux les IP des runners GitHub Actions
+        # par mesure anti-bot, alors que les mêmes liens répondent 200 depuis une
+        # IP résidentielle.
+        #
+        # TikTok ajouté le 14/09/2026 après l'échec du cron hebdomadaire : 65 pages
+        # en échec sur le seul lien du footer, avec « got a time out (response code
+        # 0) ». C'est un TIMEOUT, pas un 429 — donc --ignore-status-codes="429" ne
+        # le rattrapait pas. Leçon : un domaine anti-bot ne se signale pas forcément
+        # par un 429, et seul --ignore-urls est fiable puisqu'il saute la requête
+        # avant qu'elle parte.
+        #
+        # La syntaxe compte : html-proofer ne traite une valeur --ignore-urls comme
+        # une regex QUE si elle est encadrée par des "/" ; sans ça c'est une égalité
+        # stricte sur l'URL entière, qui ne matche jamais rien
+        # (cf. lib/html_proofer/attribute/url.rb). Un essai avec "instagram.com"
+        # (sans slashes) avait ainsi échoué en silence.
+        #
+        # --ignore-status-codes="429" reste en filet de sécurité pour de futurs
+        # domaines partenaires (booking, airbnb, amazon...) qui bloqueraient le bot
+        # pareil, en attendant de leur ajouter leur propre --ignore-urls si besoin.
+        # Ne pas s'y fier seul : il dépend d'obtenir effectivement un 429 en retour.
+        #
         # Le chemin (PATH) doit rester en dernier argument : les options de type
         # liste (--ignore-status-codes, --ignore-urls) sont gourmandes et
         # avaleraient sinon le chemin.
