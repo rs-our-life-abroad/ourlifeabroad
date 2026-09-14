@@ -275,3 +275,62 @@ Deux commits poussés sur `main` : `b7e0e2d` (correction du diagnostic auto-depl
 3. Chantiers de fond inchangés : 3 guides à rédiger, 16 stubs de destinations à étoffer, site Umami à créer puis coller l'ID dans `_config.yml`, remplacer les 2 images placeholder par de vraies photos.
 
 **À savoir pour la prochaine session** : `ssh` reste volontairement en confirmation (décision du 17/08, motivée et mesurée — voir la section Permissions). Ne pas rouvrir ce débat sans lire d'abord `~/structure-crea-dapp/etat-projets.md`, section « Ne jamais mettre `ssh` dans une allowlist ».
+
+## Session — 14 septembre 2026 : CI rouge sur un lien TikTok (anti-bot, pas link rot)
+
+Déclencheur : mail GitHub « Link check: All jobs have failed » (cron du 14/09, run `34838973809`).
+
+### ✅ Corrigé — 65 échecs, un seul lien en cause
+Les 65 « failures » pointaient toutes le **même** lien, celui du footer (`_layouts/default.html`, donc présent sur 65 pages) :
+
+```
+External link https://tiktok.com/@votrecompte failed: got a time out (response code 0)
+```
+
+Aucun commit entre le 27/08 et le 14/09 : ce n'est pas une régression du dépôt, c'est le comportement de TikTok qui a changé côté runners. L'URL répond **200 en 1,6 s depuis une IP résidentielle** — c'est le même blocage anti-bot qu'Instagram.
+
+**Ce qui rend ce cas différent d'Instagram** : TikTok fait **expirer** la requête au lieu de renvoyer un 429. Le log dit `response code 0` — il n'y a pas de code de statut du tout, donc le filet `--ignore-status-codes="429"` ne pouvait rien attraper. C'est la confirmation, par un troisième cas, que ce filet ne doit jamais être le seul mécanisme : **un domaine anti-bot ne se signale pas forcément par un 429**.
+
+Corrigé dans `.github/workflows/link-check.yml` (commit `06d1a9d`) :
+```
+--ignore-urls="/instagram\.com/,/tiktok\.com/"
+```
+La liste est séparée par des virgules, **chaque motif gardant ses propres `/.../`** (sinon égalité stricte, cf. leçon du 3 juillet).
+
+**Méthode de vérification réutilisable.** Tester en local ne prouvait rien ici : TikTok répond 200 depuis la maison, donc le test serait passé au vert avec *ou sans* le correctif. Le `--log-level=debug` ne liste pas les URL. Ce qui a permis de mesurer le correctif, c'est le **comptage des liens externes réellement requêtés** :
+
+| Configuration | Liens externes vérifiés |
+|---|---|
+| Sans aucun ignore | 26 |
+| Instagram seul (l'état qui échouait) | 23 |
+| Instagram + TikTok | **22** |
+
+La requête n'est donc plus envoyée. Run GitHub réel vérifié ensuite : `34845008481` **vert**.
+
+### 🔍 Constat non traité : les trois liens réseaux sociaux sont des placeholders
+Trouvé en cherchant l'origine du lien. `_config.yml` contient encore les valeurs d'exemple du template :
+
+```yaml
+social:
+  instagram: votrecompte
+  youtube: votrecompte
+  tiktok: votrecompte
+authors.romain.instagram: votrecompte
+authors.partner.instagram: votrecompte
+```
+
+Le widget « Suivez-nous » de `_layouts/default.html` affiche donc, **sur les 65 pages du site en production**, trois icônes pointant vers des comptes qui n'existent pas. Idem en toutes lettres dans les pages « à propos », avec **deux orthographes différentes** du placeholder — ce qui explique qu'une recherche sur `votrecompte` seule passe à côté de la moitié :
+
+| Fichier | Ligne | Placeholder |
+|---|---|---|
+| `fr/about.md` | 126 | `[@votrecompte](https://youtube.com/@votrecompte)` |
+| `en/about.md` | 118 | `[@yourhandle](https://instagram.com/yourhandle)` |
+| `en/about.md` | 119 | `[@yourhandle](https://youtube.com/@yourhandle)` |
+
+Chercher **les deux** (`votrecompte` et `yourhandle`) avant de conclure que tout est corrigé.
+
+⚠️ **html-proofer ne détectera jamais ça** : les trois URL renvoient **200** (TikTok, YouTube et Instagram servent une page « compte introuvable » avec un code 200, vérifié). C'est un lien mort au sens de l'utilisateur, pas au sens HTTP. Une CI verte ne veut donc pas dire que les liens mènent quelque part.
+
+Les `{% if site.social.X %}` du layout font que **vider les valeurs suffit à masquer les icônes** — aucune modification de template nécessaire.
+
+- [ ] **En attente de décision utilisateur** : soit coller les vrais handles dans `_config.yml` **et dans les 3 lignes des pages about ci-dessus**, soit vider les trois clés pour masquer le widget tant que les comptes n'existent pas. Ne pas laisser l'état actuel : c'est la seule des trois options qui trompe le visiteur.
