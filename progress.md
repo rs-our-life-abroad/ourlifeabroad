@@ -307,30 +307,49 @@ La liste est séparée par des virgules, **chaque motif gardant ses propres `/..
 
 La requête n'est donc plus envoyée. Run GitHub réel vérifié ensuite : `34845008481` **vert**.
 
-### 🔍 Constat non traité : les trois liens réseaux sociaux sont des placeholders
-Trouvé en cherchant l'origine du lien. `_config.yml` contient encore les valeurs d'exemple du template :
+### ✅ Corrigé — les trois liens réseaux sociaux étaient des placeholders
 
-```yaml
-social:
-  instagram: votrecompte
-  youtube: votrecompte
-  tiktok: votrecompte
-authors.romain.instagram: votrecompte
-authors.partner.instagram: votrecompte
-```
+Trouvé en cherchant l'origine du lien TikTok. `_config.yml` contenait encore les valeurs d'exemple du template (`instagram/youtube/tiktok: votrecompte`, plus `authors.romain.instagram` et `authors.partner.instagram`). Le widget « Suivez-nous » de `_layouts/default.html` affichait donc **sur les 65 pages en production** trois icônes vers des comptes inexistants.
 
-Le widget « Suivez-nous » de `_layouts/default.html` affiche donc, **sur les 65 pages du site en production**, trois icônes pointant vers des comptes qui n'existent pas. Idem en toutes lettres dans les pages « à propos », avec **deux orthographes différentes** du placeholder — ce qui explique qu'une recherche sur `votrecompte` seule passe à côté de la moitié :
+⚠️ **html-proofer ne pouvait pas le voir** : les trois URL renvoient **200** (TikTok, YouTube et Instagram servent une page « compte introuvable » avec un code 200, vérifié). C'est un lien mort au sens de l'utilisateur, pas au sens HTTP. **Une CI verte ne prouve pas que les liens mènent quelque part.**
 
-| Fichier | Ligne | Placeholder |
-|---|---|---|
-| `fr/about.md` | 126 | `[@votrecompte](https://youtube.com/@votrecompte)` |
-| `en/about.md` | 118 | `[@yourhandle](https://instagram.com/yourhandle)` |
-| `en/about.md` | 119 | `[@yourhandle](https://youtube.com/@yourhandle)` |
+#### 🪤 Le piège qui a coûté deux builds : `""` est TRUTHY en Liquid
+Le réflexe — vider les clés dans `_config.yml` en s'appuyant sur les `{% if site.social.x %}` du layout — **ne marche pas**. En Liquid, seuls `nil` et `false` sont faux : une **chaîne vide passe le test**. Résultat mesuré après build : le widget toujours affiché sur les 65 pages, avec des URL tronquées `https://youtube.com/@` et `https://instagram.com/` — *pire* que l'état de départ.
 
-Chercher **les deux** (`votrecompte` et `yourhandle`) avant de conclure que tout est corrigé.
+Correctif retenu (commit `240deb1`) : test explicite `{% if site.social.x and site.social.x != "" %}` sur chaque icône, plus une condition englobante qui masque le widget entier tant que les trois sont vides. Ça couvre aussi le cas où **Decap CMS réécrirait une valeur vide** plutôt que d'omettre la clé.
 
-⚠️ **html-proofer ne détectera jamais ça** : les trois URL renvoient **200** (TikTok, YouTube et Instagram servent une page « compte introuvable » avec un code 200, vérifié). C'est un lien mort au sens de l'utilisateur, pas au sens HTTP. Une CI verte ne veut donc pas dire que les liens mènent quelque part.
+⚠️ **Second piège, même correctif** : un `{% if %}` écrit à l'intérieur d'un commentaire HTML est **quand même parsé par Liquid** — le commentaire d'explication a cassé le build (`'if' tag was never closed`). Ne jamais écrire de tag Liquid littéral dans un commentaire de layout.
 
-Les `{% if site.social.X %}` du layout font que **vider les valeurs suffit à masquer les icônes** — aucune modification de template nécessaire.
+#### Ce qui n'était PAS un placeholder — vérifier avant de supprimer
+`fr/about.md` contenait un **vrai** compte : `@Cit.del.mundo` (https://instagram.com/cit.del.mundo), corroboré par l'email `citizens.del.mundo@protonmail.com` de la même page. Il a été conservé et **propagé vers `en/about.md`**, qui portait la variante anglaise du placeholder (`@yourhandle` — d'où l'intérêt de chercher **les deux** orthographes).
 
-- [ ] **En attente de décision utilisateur** : soit coller les vrais handles dans `_config.yml` **et dans les 3 lignes des pages about ci-dessus**, soit vider les trois clés pour masquer le widget tant que les comptes n'existent pas. Ne pas laisser l'état actuel : c'est la seule des trois options qui trompe le visiteur.
+Au passage, l'email de contact de la page anglaise (`romain.steph@ourlifeabroad.com`) a été remplacé par celui du FR : **`ourlifeabroad.com` n'a aucun enregistrement MX** et son A pointe vers `67.205.28.82` (DigitalOcean), étranger à l'infra Hetzner. Cette adresse ne recevait rien — tout visiteur anglophone qui écrivait était dans le vide.
+
+Vérifié après rebuild : **0** occurrence du widget, liens externes réellement requêtés **26 → 20**, html-proofer vert.
+
+### ⚠️ Warning CI sans rapport, à traiter un jour
+Les runs affichent, **y compris quand ils sont verts** (vérifié sur le run vert du 07/09, 3 occurrences), un avertissement :
+> Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: `actions/checkout@v4`
+
+Purement informatif aujourd'hui — GitHub force déjà Node 24 et le job passe. Aucun lien avec l'échec du 14/09.
+
+- [ ] **Non fait, à décider** : passer `actions/checkout@v4` → `@v5` (cible Node 24). Sans urgence tant que GitHub force le runtime, mais ça cassera le jour où le support de v4 sera retiré.
+
+### 📌 Reste ouvert sur ce sujet
+- [ ] Aucun compte **YouTube** ni **TikTok** n'existe à ce jour : les icônes sont masquées. Le jour où ils existent, il suffit de renseigner `social.youtube` / `social.tiktok` dans `_config.yml` — le widget réapparaît seul, aucune modification de template nécessaire.
+- [ ] Le compte Instagram `cit.del.mundo` **n'a pas pu être vérifié automatiquement** (Instagram sert un mur de connexion de 626 Ko, identique pour un compte existant et un compte bidon — aucun moyen de les distinguer sans être connecté). À confirmer à l'œil. S'il est bon, on peut le remettre dans `social.instagram` pour réafficher l'icône sur tout le site.
+
+## Session terminée le 14 septembre 2026 — reprise à la prochaine session
+Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi), `240deb1` (placeholders réseaux sociaux). **CI verte, vérifiée sur les runs GitHub réels**, pas seulement en local.
+
+**État du projet : aucun point bloquant.** Le mail d'alerte portait sur un faux positif anti-bot, pas sur du link rot côté partenaires — aucun lien affilié n'était cassé.
+
+**Deux leçons qui dépassent ce projet :**
+1. **Une CI verte ne prouve pas qu'un lien mène quelque part.** Les trois placeholders réseaux sociaux renvoyaient 200 depuis toujours. Pour un lien affilié, le même angle mort vaut de l'argent : un ID de tracking erroné renvoie 200 lui aussi. Seul un contrôle à l'œil peut l'attraper.
+2. **Vider une valeur dans `_config.yml` ne désactive rien en Liquid** : `""` est truthy. Tout `{% if site.x %}` censé masquer un bloc doit tester `!= ""`.
+
+**Reprise, par ordre d'intérêt :**
+1. Confirmer à l'œil le compte Instagram `cit.del.mundo` (cf. section ci-dessus), et renseigner YouTube/TikTok s'ils existent.
+2. Trancher le sujet « fichiers internes servis publiquement » (session du 26/08) — toujours ouvert.
+3. `actions/checkout@v4` → `@v5` quand l'occasion se présente.
+4. Chantiers de fond inchangés : 3 guides à rédiger, 16 stubs de destinations à étoffer, site Umami à créer puis coller l'ID dans `_config.yml`, remplacer les 2 images placeholder par de vraies photos.
