@@ -1,25 +1,16 @@
 ---
-layout: default
+layout: about
 lang: fr
-title: Qui sommes-nous ?
+title: "Qui sommes-nous ?"
 permalink: /fr/about/
----
-
-# 👋 Salut, nous c'est Steph & Romain
-
-<div style="display: flex; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/images/authors/romain.jpg" alt="Romain" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-    <h3 style="margin-top: 1rem;">Romain</h3>
-    <p style="color: #666;">Tech, budgets & bons plans</p>
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/images/authors/steph.jpg" alt="Steph" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-    <h3 style="margin-top: 1rem;">Steph</h3>
-    <p style="color: #666;">[Sa spécialité - à compléter : ex: Culture, photo, food...]</p>
-  </div>
-</div>
-
+heading: "👋 Salut, nous c'est Steph & Romain"
+team:
+  - name: "Romain"
+    photo: /assets/images/authors/romain.jpg
+    specialty: "Tech, budgets & bons plans"
+  - name: "Steph"
+    photo: /assets/images/authors/steph.jpg
+    specialty: "[Sa spécialité - à compléter : ex: Culture, photo, food...]"
 ---
 
 ## 🌍 Notre Histoire
@@ -66,7 +57,7 @@ C'est un challenge que nous nous sommes lancé, car étant amoureux des voyages 
 Ayant un mode de vie plutot frugal, sans aller dans l'exces, on a pu mettre de cote assez d'argent pour pouvoir vivre sans travailler pendant un an.
 Notre but reste cependant de commencer a toucher des revenus au bout de 6 mois, et de toucher assez pour continuer notre periple apres 12 mois.
 
-**Budget moyen par mois pour 2 :** 1500-2000€ selon le pays  
+**Budget moyen par mois pour 2 :** 1500-2000€ selon le pays<br>
 (Loyer, bouffe, transport, activités, assurances... TOUT compris)
 
 ---
@@ -95,24 +86,24 @@ On pense revenir en Asie (Japon, Corée du Sud, Chine, Malaisie, Sri Lanka, Viet
 
 **3 raisons :**
 
-**1. Partager la réalité du nomadisme**  
+**1. Partager la réalité du nomadisme**<br>
 Les vraies infos : combien ça coûte, comment trouver un appart, les galères de visa, les arnaques à éviter...
 
-**2. Aider d'autres couples à se lancer**  
+**2. Aider d'autres couples à se lancer**<br>
 On a entendu tellement de monde nous dire qu'ils revent de faire ca, mais n'osent pas, ou se trouvent raisons/excuses pour ne pas le faire.
 Notre facon de voir les choses a tellement evoluer depuis que nous avons commence a voyager, qu'on ne peut que le recommander et pousser les autres a en faire autant.
 
-**3. Financer nos voyages (transparence totale)**  
+**3. Financer nos voyages (transparence totale)**<br>
 Ce blog contient des **liens affiliés**. Si vous achetez via certains de nos liens (assurance, équipement, logement), on touche une petite commission. Ça nous aide à continuer l'aventure sans surcoût pour vous.
 
 ---
 
 ## 🎯 Ce Qu'on Partage Ici
 
-📝 **Articles de fond** : Budgets détaillés, guides pratiques, retours d'expérience  
-📸 **Galeries photo** : Nos destinations sans filtre  
-🎬 **Vlogs** : Notre quotidien (sur YouTube/TikTok, extraits ici)  
-💡 **Bons plans** : Applis, astuces, équipement testé et approuvé  
+📝 **Articles de fond** : Budgets détaillés, guides pratiques, retours d'expérience<br>
+📸 **Galeries photo** : Nos destinations sans filtre<br>
+🎬 **Vlogs** : Notre quotidien (sur YouTube/TikTok, extraits ici)<br>
+💡 **Bons plans** : Applis, astuces, équipement testé et approuvé<br>
 💰 **Budgets transparents** : Chaque mois, on partage nos dépenses réelles
 
 ---

@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<h1>{{ page.heading | smartify }}</h1>
+
+<div style="display: flex; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
+  {% for member in page.team %}
+  <div style="flex: 1; min-width: 250px;">
+    <img src="{{ member.photo }}" alt="{{ member.name | escape }}" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <h3 style="margin-top: 1rem;">{{ member.name | escape }}</h3>
+    <p style="color: #666;">{{ member.specialty | escape }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<hr>
+
+{{ content }}

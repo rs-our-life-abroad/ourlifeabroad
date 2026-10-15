@@ -114,3 +114,41 @@ collections:
       - { label: "Permalink", name: "permalink", widget: "string" }
       - { label: "Cover image", name: "cover_image", widget: "image", required: false }
       - { label: "Introduction", name: "body", widget: "markdown", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "about_fr"
+        label: "Qui sommes-nous ? (FR)"
+        file: "fr/about.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "about" }
+          - { label: "Langue", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/about/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - { label: "Grand titre", name: "heading", widget: "string" }
+          - label: "Nous deux"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Prénom", name: "name", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image" }
+              - { label: "Spécialité", name: "specialty", widget: "string" }
+          - { label: "Texte de la page", name: "body", widget: "markdown" }
+      - name: "about_en"
+        label: "About Us (EN)"
+        file: "en/about.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "about" }
+          - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/en/about/" }
+          - { label: "Browser tab title", name: "title", widget: "string" }
+          - { label: "Main heading", name: "heading", widget: "string" }
+          - label: "The two of us"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "First name", name: "name", widget: "string" }
+              - { label: "Photo", name: "photo", widget: "image" }
+              - { label: "Specialty", name: "specialty", widget: "string" }
+          - { label: "Page text", name: "body", widget: "markdown" }

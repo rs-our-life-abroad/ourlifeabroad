@@ -1,25 +1,16 @@
 ---
-layout: default
+layout: about
 lang: en
-title: About Us
+title: "About Us"
 permalink: /en/about/
----
-
-# 👋 Hey, we're Steph & Romain
-
-<div style="display: flex; gap: 2rem; margin: 2rem 0; flex-wrap: wrap;">
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/images/authors/romain.jpg" alt="Romain" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-    <h3 style="margin-top: 1rem;">Romain</h3>
-    <p style="color: #666;">Tech, budgets & travel hacks</p>
-  </div>
-  <div style="flex: 1; min-width: 250px;">
-    <img src="/assets/images/authors/steph.jpg" alt="Steph" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-    <h3 style="margin-top: 1rem;">Steph</h3>
-    <p style="color: #666;">[Her specialty - to fill: e.g., Culture, photography, food...]</p>
-  </div>
-</div>
-
+heading: "👋 Hey, we're Steph & Romain"
+team:
+  - name: "Romain"
+    photo: /assets/images/authors/romain.jpg
+    specialty: "Tech, budgets & travel hacks"
+  - name: "Steph"
+    photo: /assets/images/authors/steph.jpg
+    specialty: "[Her specialty - to fill: e.g., Culture, photography, food...]"
 ---
 
 ## 🌍 Our Story
@@ -57,12 +48,12 @@ You'll never see us:
 
 Because that's THE question everyone asks. 😄
 
-**Romain:** [Your job - e.g., Freelance dev, consultant, etc.]  
+**Romain:** [Your job - e.g., Freelance dev, consultant, etc.]<br>
 **Steph:** [Her job - to fill]
 
 We work remotely 20-30h/week. It leaves time to explore, but we're not on permanent vacation.
 
-**Average monthly budget (both of us):** €1500-2000 depending on the country  
+**Average monthly budget (both of us):** €1500-2000 depending on the country<br>
 (Rent, food, transport, activities, insurance... EVERYTHING included)
 
 ---
@@ -89,23 +80,23 @@ We're thinking of returning to Asia (Japan, South Korea, Taiwan...) but nothing'
 
 **3 reasons:**
 
-**1. Share the reality of nomad life**  
+**1. Share the reality of nomad life**<br>
 Real info: how much it costs, how to find an apartment, visa hassles, scams to avoid...
 
-**2. Help other couples get started**  
+**2. Help other couples get started**<br>
 Many of you ask us questions on Insta. Might as well centralize everything here.
 
-**3. Finance our travels (total transparency)**  
+**3. Finance our travels (total transparency)**<br>
 This blog contains **affiliate links**. If you buy through our links (insurance, gear, accommodation), we get a small commission. It helps us continue the adventure at no extra cost to you.
 
 ---
 
 ## 🎯 What We Share Here
 
-📝 **In-depth articles**: Detailed budgets, practical guides, experience reports  
-📸 **Photo galleries**: Our destinations, unfiltered  
-🎬 **Vlogs**: Our daily life (on YouTube/TikTok, excerpts here)  
-💡 **Travel hacks**: Apps, tips, tested and approved gear  
+📝 **In-depth articles**: Detailed budgets, practical guides, experience reports<br>
+📸 **Photo galleries**: Our destinations, unfiltered<br>
+🎬 **Vlogs**: Our daily life (on YouTube/TikTok, excerpts here)<br>
+💡 **Travel hacks**: Apps, tips, tested and approved gear<br>
 💰 **Transparent budgets**: Each month, we share our actual expenses
 
 ---
