@@ -5,6 +5,10 @@ backend:
   base_url: https://ourlifeabroad-oauth.coding-training-pers.workers.dev
   auth_endpoint: /auth
 
+# Brouillons : Save enregistre sans publier (branche + pull request cms/...),
+# la mise en ligne se fait depuis l'onglet Workflow.
+publish_mode: editorial_workflow
+
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
 
