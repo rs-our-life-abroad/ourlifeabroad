@@ -353,3 +353,19 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 2. Trancher le sujet « fichiers internes servis publiquement » (session du 26/08) — toujours ouvert.
 3. `actions/checkout@v4` → `@v5` quand l'occasion se présente.
 4. Chantiers de fond inchangés : 3 guides à rédiger, 16 stubs de destinations à étoffer, site Umami à créer puis coller l'ID dans `_config.yml`, remplacer les 2 images placeholder par de vraies photos.
+
+## Session — 14-15 octobre 2026
+
+### Fait
+- **Accès Steph** : `Stephy545` invitée comme collaboratrice du dépôt `rs-our-life-abroad/ourlifeabroad`, rôle **Write** uniquement (pas membre de l'org). Elle publie via `/admin` (login GitHub).
+- **Mode d'emploi** du blog rédigé pour Romain et Steph (Claude Docs) : connexion, articles, destinations/pays, photos, liens et `/go/`, mise en forme, dépannage.
+- **« Qui sommes-nous » éditable dans le CMS** (`d043ef1`) : mise en page déplacée dans `_layouts/about.html` ; `fr/about.md` / `en/about.md` = champs `heading` + liste `team` (name, photo, specialty) + markdown. Nouvelle collection Decap `pages` (type `files`). Rendu HTML vérifié identique avant/après par `jekyll build` + diff. Les `  ` de fin de ligne (sauts de ligne markdown) ont été remplacés par `<br>` pour survivre à la re-sérialisation de l'éditeur Decap. Déployé et vérifié en ligne, CI verte.
+
+### Constats
+- Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
+- Guides et `_redirects/` restent hors CMS.
+- Page d'accueil et page guides : HTML dense (13 et 28 blocs), non migrées dans le CMS.
+
+### À faire
+- Spécialité de Steph : placeholder « [Sa spécialité - à compléter…] » encore en ligne — Steph peut maintenant la remplir elle-même dans Pages.
+- Vérifier après la première édition réelle de « Qui sommes-nous » via le CMS que la re-sérialisation markdown de Decap n'a rien cassé (diff du commit).
