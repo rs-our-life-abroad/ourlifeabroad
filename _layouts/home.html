@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<div class="home-intro">
+  <h1>{{ page.intro_title }}</h1>
+  {{ page.intro | markdownify }}
+</div>
+
+<hr>
+
+<h2>{{ page.journey_title }}</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
+  {% for card in page.journey %}
+  {% assign odd = forloop.index | modulo: 2 %}
+  {% if odd == 1 %}{% assign rotate = "-1" %}{% else %}{% assign rotate = "1" %}{% endif %}
+  {% if card.link %}<a href="{{ card.link }}" style="text-decoration: none; color: inherit;">{% endif %}
+    <div style="text-align: center; padding: 1.5rem; background: white; border: 2px solid var(--ink-dark); border-radius: 8px; transform: rotate({{ rotate }}deg);{% if card.link %} transition: transform 0.3s; cursor: pointer;{% endif %}">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">{{ card.icon }}</div>
+      <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem;">{{ card.name }}</h3>
+      <p>{{ card.places }}</p>
+    </div>
+  {% if card.link %}</a>{% endif %}
+  {% endfor %}
+</div>
+
+<hr>
+
+<h2>{{ page.posts_title }}</h2>
+
+<div class="posts-list">
+{% assign lang_posts = site.posts | where: "lang", page.lang %}
+{% for post in lang_posts limit:5 %}
+  <div class="post-card">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <div class="post-meta">
+      {{ post.date | date: "%d/%m/%Y" }} • {% if page.lang == "fr" %}Par{% else %}By{% endif %} {{ site.authors[post.author].name }}
+    </div>
+    <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
+    <a href="{{ post.url | relative_url }}" class="read-more">{% if page.lang == "fr" %}Lire la suite{% else %}Read more{% endif %} →</a>
+  </div>
+{% endfor %}
+</div>
+
+<hr>
+
+{{ content }}

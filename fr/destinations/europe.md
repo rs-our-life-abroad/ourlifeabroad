@@ -1,13 +1,10 @@
 ---
-layout: default
+layout: continents
 lang: fr
-title: Destinations Europe
+title: "Destinations Europe"
 permalink: /fr/destinations/europe/
+sections:
+  - title: "🌍 Europe"
+    continent: europe
+    description: "Nos aventures européennes - à venir !"
 ---
-
-<div class="continent-section europe">
-  <h2>🌍 Europe</h2>
-  <p>Nos aventures européennes - à venir !</p>
-
-  {% include country-cards.html continent="europe" lang="fr" %}
-</div>

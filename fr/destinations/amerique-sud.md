@@ -1,13 +1,10 @@
 ---
-layout: default
+layout: continents
 lang: fr
-title: Destinations Amérique du Sud
+title: "Destinations Amérique du Sud"
 permalink: /fr/destinations/amerique-sud/
+sections:
+  - title: "🌎 Amérique du Sud"
+    continent: amerique-sud
+    description: "Notre vie de nomades en Amérique du Sud - Argentine, Paraguay, Pérou..."
 ---
-
-<div class="continent-section southamerica">
-  <h2>🌎 Amérique du Sud</h2>
-  <p>Notre vie de nomades en Amérique du Sud - Argentine, Paraguay, Pérou...</p>
-
-  {% include country-cards.html continent="amerique-sud" lang="fr" %}
-</div>

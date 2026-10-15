@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+{% if page.heading %}
+<h1>{{ page.heading | smartify }}</h1>
+
+{{ page.intro | markdownify }}
+
+<hr>
+{% endif %}
+
+{% for section in page.sections %}
+{% unless forloop.first %}<hr>{% endunless %}
+{% case section.continent %}
+  {% when "asie", "asia" %}{% assign css_class = "asia" %}
+  {% when "amerique-sud", "south-america" %}{% assign css_class = "southamerica" %}
+  {% when "oceanie", "oceania" %}{% assign css_class = "oceania" %}
+  {% else %}{% assign css_class = section.continent %}
+{% endcase %}
+<div class="continent-section {{ css_class }}">
+  <h2>{{ section.title }}</h2>
+  {% if section.description %}<p>{{ section.description }}</p>{% endif %}
+  {% include country-cards.html continent=section.continent lang=page.lang %}
+</div>
+{% endfor %}
+
+{{ content }}

@@ -1,13 +1,10 @@
 ---
-layout: default
+layout: continents
 lang: fr
-title: Destinations Asie
+title: "Destinations Asie"
 permalink: /fr/destinations/asie/
+sections:
+  - title: "🌏 Asie"
+    continent: asie
+    description: "Nos aventures asiatiques - de Bali aux Philippines en passant par le Vietnam et la Thaïlande."
 ---
-
-<div class="continent-section asia">
-  <h2>🌏 Asie</h2>
-  <p>Nos aventures asiatiques - de Bali aux Philippines en passant par le Vietnam et la Thaïlande.</p>
-
-  {% include country-cards.html continent="asie" lang="fr" %}
-</div>

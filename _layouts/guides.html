@@ -1,0 +1,35 @@
+---
+layout: default
+---
+
+<h1>{{ page.heading | smartify }}</h1>
+
+{{ page.intro | markdownify }}
+
+<hr>
+
+{% for category in page.categories %}
+{% case category.color %}
+  {% when "rose" %}{% assign gradient = "#f093fb 0%, #f5576c 100%" %}{% assign text_color = "white" %}
+  {% when "bleu" %}{% assign gradient = "#4facfe 0%, #00f2fe 100%" %}{% assign text_color = "white" %}
+  {% when "pastel" %}{% assign gradient = "#a8edea 0%, #fed6e3 100%" %}{% assign text_color = "#333" %}
+  {% else %}{% assign gradient = "#667eea 0%, #764ba2 100%" %}{% assign text_color = "white" %}
+{% endcase %}
+<h2>{{ category.title }}</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
+  {% for guide in category.guides %}
+  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">{{ guide.icon }}</div>
+    <h3>{{ guide.title }}</h3>
+    <p style="color: #666;">{{ guide.description }}</p>
+    {% if guide.highlight_label %}<p style="margin-top: 1rem;"><strong>{{ guide.highlight_label }}{% if page.lang == "fr" %} :{% else %}:{% endif %}</strong> {{ guide.highlight_value }}</p>{% endif %}
+    <a href="{{ guide.link }}" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, {{ gradient }}); color: {{ text_color }}; text-decoration: none; border-radius: 6px; font-weight: 500;">{% if page.lang == "fr" %}Voir le guide{% else %}View guide{% endif %} →</a>
+  </div>
+  {% endfor %}
+</div>
+
+<hr>
+{% endfor %}
+
+{{ content }}

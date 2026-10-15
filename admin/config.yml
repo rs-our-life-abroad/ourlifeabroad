@@ -152,3 +152,191 @@ collections:
               - { label: "Photo", name: "photo", widget: "image" }
               - { label: "Specialty", name: "specialty", widget: "string" }
           - { label: "Page text", name: "body", widget: "markdown" }
+      - name: "home_fr"
+        label: "Accueil (FR)"
+        file: "fr/index.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "home" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - { label: "Grand titre", name: "intro_title", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - { label: "Titre « parcours »", name: "journey_title", widget: "string" }
+          - label: "Cartes du parcours"
+            name: "journey"
+            widget: "list"
+            fields:
+              - { label: "Emoji", name: "icon", widget: "string" }
+              - { label: "Titre", name: "name", widget: "string" }
+              - { label: "Lieux", name: "places", widget: "string" }
+              - { label: "Lien (optionnel)", name: "link", widget: "string", required: false }
+          - { label: "Titre « derniers articles »", name: "posts_title", widget: "string" }
+          - { label: "Texte de fin de page", name: "body", widget: "markdown" }
+      - name: "home_en"
+        label: "Home (EN)"
+        file: "en/index.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "home" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "en" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/en/" }
+          - { label: "Browser tab title", name: "title", widget: "string" }
+          - { label: "Main heading", name: "intro_title", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - { label: "Journey heading", name: "journey_title", widget: "string" }
+          - label: "Journey cards"
+            name: "journey"
+            widget: "list"
+            fields:
+              - { label: "Emoji", name: "icon", widget: "string" }
+              - { label: "Title", name: "name", widget: "string" }
+              - { label: "Places", name: "places", widget: "string" }
+              - { label: "Link (optional)", name: "link", widget: "string", required: false }
+          - { label: "Latest posts heading", name: "posts_title", widget: "string" }
+          - { label: "End-of-page text", name: "body", widget: "markdown" }
+      - name: "guides_fr"
+        label: "Guides (FR)"
+        file: "fr/guides.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "guides" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/guides/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - { label: "Grand titre", name: "heading", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - label: "Catégories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Couleur des boutons", name: "color", widget: "select", options: [{ label: "Violet", value: "violet" }, { label: "Rose", value: "rose" }, { label: "Bleu", value: "bleu" }, { label: "Vert pastel", value: "pastel" }] }
+              - label: "Guides"
+                name: "guides"
+                widget: "list"
+                fields:
+                  - { label: "Emoji", name: "icon", widget: "string" }
+                  - { label: "Titre", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "string" }
+                  - { label: "Libellé du chiffre clé", name: "highlight_label", widget: "string", required: false }
+                  - { label: "Valeur", name: "highlight_value", widget: "string", required: false }
+                  - { label: "Lien vers le guide", name: "link", widget: "string" }
+          - { label: "Texte de fin de page", name: "body", widget: "markdown" }
+      - name: "guides_en"
+        label: "Guides (EN)"
+        file: "en/guides.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "guides" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "en" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/en/guides/" }
+          - { label: "Browser tab title", name: "title", widget: "string" }
+          - { label: "Main heading", name: "heading", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Button colour", name: "color", widget: "select", options: [{ label: "Violet", value: "violet" }, { label: "Rose", value: "rose" }, { label: "Bleu", value: "bleu" }, { label: "Vert pastel", value: "pastel" }] }
+              - label: "Guides"
+                name: "guides"
+                widget: "list"
+                fields:
+                  - { label: "Emoji", name: "icon", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "string" }
+                  - { label: "Key figure label", name: "highlight_label", widget: "string", required: false }
+                  - { label: "Value", name: "highlight_value", widget: "string", required: false }
+                  - { label: "Link to the guide", name: "link", widget: "string" }
+          - { label: "End-of-page text", name: "body", widget: "markdown" }
+      - name: "destinations_page_fr"
+        label: "Page Destinations (FR)"
+        file: "fr/destinations.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/destinations/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - { label: "Grand titre", name: "heading", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+      - name: "destinations_page_en"
+        label: "Page Destinations (EN)"
+        file: "en/destinations.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "en" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/en/destinations/" }
+          - { label: "Browser tab title", name: "title", widget: "string" }
+          - { label: "Main heading", name: "heading", widget: "string" }
+          - { label: "Introduction", name: "intro", widget: "markdown" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asia", "south-america", "oceania", "europe"] }
+      - name: "continent_asie"
+        label: "Continent : Asie (FR)"
+        file: "fr/destinations/asie.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/destinations/asie/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+              - { label: "Description", name: "description", widget: "string", required: false }
+      - name: "continent_amerique-sud"
+        label: "Continent : Amérique du Sud (FR)"
+        file: "fr/destinations/amerique-sud.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/destinations/amerique-sud/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+              - { label: "Description", name: "description", widget: "string", required: false }
+      - name: "continent_oceanie"
+        label: "Continent : Océanie (FR)"
+        file: "fr/destinations/oceanie.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/destinations/oceanie/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+              - { label: "Description", name: "description", widget: "string", required: false }
+      - name: "continent_europe"
+        label: "Continent : Europe (FR)"
+        file: "fr/destinations/europe.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "continents" }
+          - { label: "Lang", name: "lang", widget: "hidden", default: "fr" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/fr/destinations/europe/" }
+          - { label: "Titre de l'onglet", name: "title", widget: "string" }
+          - label: "Continents"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Continent", name: "continent", widget: "select", options: ["asie", "amerique-sud", "oceanie", "europe"] }
+              - { label: "Description", name: "description", widget: "string", required: false }

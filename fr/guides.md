@@ -1,142 +1,96 @@
 ---
-layout: default
+layout: guides
 lang: fr
-title: Guides Pratiques
+title: "Guides Pratiques"
 permalink: /fr/guides/
----
-
-# 📚 Nos Guides Pratiques
-
-Tous nos conseils testés et approuvés après 10 ans de slow travel. Zéro bullshit, que du concret.
-
----
-
-## 🎒 Équipement & Matos
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🎒</div>
-    <h3>Setup Nomade Complet</h3>
-    <p style="color: #666;">Notre équipement testé après 10 ans : sacs, tech, accessoires indispensables.</p>
-    <p style="margin-top: 1rem;"><strong>Budget total :</strong> ~3500€ pour 2</p>
-    <a href="/fr/guides/setup-nomade/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">📱</div>
-    <h3>Tech & Productivité</h3>
-    <p style="color: #666;">MacBook, iPhone, caméras ... Quel matos pour créer du contenu en voyageant ?</p>
-    <p style="margin-top: 1rem;"><strong>Investissement :</strong> 2500-4000€</p>
-    <a href="/fr/guides/tech-productivite/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">👕</div>
-    <h3>Vêtements & Minimalisme</h3>
-    <p style="color: #666;">Comment vivre avec 1 sac de 40L ? Notre liste complète vêtements + astuces organisation.</p>
-    <p style="margin-top: 1rem;"><strong>Poids total :</strong> 8-10kg/personne</p>
-    <a href="/fr/guides/vetements-minimalisme/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-</div>
-
----
-
-## 🏠 Logement & Vie Pratique
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🏡</div>
-    <h3>Trouver un Appart en Slow Travel</h3>
-    <p style="color: #666;">Airbnb, Booking, Facebook... Nos techniques pour dénicher des apparts à -50%.</p>
-    <p style="margin-top: 1rem;"><strong>Économies :</strong> 200-500€/mois</p>
-    <a href="/fr/guides/trouver-logement/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">💳</div>
-    <h3>Banques & Cartes pour Nomades</h3>
-    <p style="color: #666;">Revolut, Wise, N26... Quelles cartes sans frais à l'étranger ? Comparatif complet.</p>
-    <p style="margin-top: 1rem;"><strong>Frais évités :</strong> ~50€/mois</p>
-    <a href="/fr/guides/banques-cartes/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">📶</div>
-    <h3>Internet & eSIM</h3>
-    <p style="color: #666;">Airalo, Holafly, SIM locales... Comment rester connecté partout sans se ruiner.</p>
-    <p style="margin-top: 1rem;"><strong>Coût moyen :</strong> 10-20€/mois</p>
-    <a href="/fr/guides/internet-esim/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-</div>
-
----
-
-## 🛡️ Assurances & Administratif
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🏥</div>
-    <h3>Assurance Voyage Long Terme</h3>
-    <p style="color: #666;">SafetyWing vs Chapka vs WorldNomads. On a testé, voici notre verdict.</p>
-    <p style="margin-top: 1rem;"><strong>Notre choix :</strong> SafetyWing (45$/mois)</p>
-    <a href="/fr/guides/assurance-voyage/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">✈️</div>
-    <h3>Visas & Formalités</h3>
-    <p style="color: #666;">Visa touriste, visa run, e-visa... Tout ce qu'il faut savoir pays par pays.</p>
-    <p style="margin-top: 1rem;"><strong>Temps gagné :</strong> Des heures de recherche</p>
-    <a href="/fr/guides/visas-formalites/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🔐</div>
-    <h3>Sécurité & VPN</h3>
-    <p style="color: #666;">Protéger ses données en WiFi public. NordVPN, ExpressVPN... Notre comparatif.</p>
-    <p style="margin-top: 1rem;"><strong>Prix :</strong> 3-5€/mois</p>
-    <a href="/fr/guides/securite-vpn/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-</div>
-
----
-
-## 💰 Budgets Par Pays
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🌏</div>
-    <h3>Budget Asie du Sud-Est</h3>
-    <p style="color: #666;">Combien coûte la vie en Thaïlande, Bali, Vietnam ? Budgets détaillés par ville.</p>
-    <p style="margin-top: 1rem;"><strong>Fourchette :</strong> 800-1500€/mois (2 pers)</p>
-    <a href="/fr/guides/budget-asie/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🌎</div>
-    <h3>Budget Amérique du Sud</h3>
-    <p style="color: #666;">Argentine, Paraguay, Pérou... Les vraies dépenses mensuelles, poste par poste.</p>
-    <p style="margin-top: 1rem;"><strong>Fourchette :</strong> 1200-2000€/mois (2 pers)</p>
-    <a href="/fr/guides/budget-amerique-sud/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-  <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 15px rgba(0,0,0,0.08);">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">🦘</div>
-    <h3>Budget Australie</h3>
-    <p style="color: #666;">8 ans d'expérience : salaires, loyers, coût de la vie... Le guide complet.</p>
-    <p style="margin-top: 1rem;"><strong>Fourchette :</strong> 2500-3500€/mois (2 pers)</p>
-    <a href="/fr/guides/budget-australie/" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; text-decoration: none; border-radius: 6px; font-weight: 500;">Voir le guide →</a>
-  </div>
-
-</div>
-
+heading: "📚 Nos Guides Pratiques"
+intro: |-
+  Tous nos conseils testés et approuvés après 10 ans de slow travel. Zéro bullshit, que du concret.
+categories:
+  - title: "🎒 Équipement & Matos"
+    color: violet
+    guides:
+      - icon: "🎒"
+        title: "Setup Nomade Complet"
+        description: "Notre équipement testé après 10 ans : sacs, tech, accessoires indispensables."
+        highlight_label: "Budget total"
+        highlight_value: "~3500€ pour 2"
+        link: /fr/guides/setup-nomade/
+      - icon: "📱"
+        title: "Tech & Productivité"
+        description: "MacBook, iPhone, caméras ... Quel matos pour créer du contenu en voyageant ?"
+        highlight_label: "Investissement"
+        highlight_value: "2500-4000€"
+        link: /fr/guides/tech-productivite/
+      - icon: "👕"
+        title: "Vêtements & Minimalisme"
+        description: "Comment vivre avec 1 sac de 40L ? Notre liste complète vêtements + astuces organisation."
+        highlight_label: "Poids total"
+        highlight_value: "8-10kg/personne"
+        link: /fr/guides/vetements-minimalisme/
+  - title: "🏠 Logement & Vie Pratique"
+    color: rose
+    guides:
+      - icon: "🏡"
+        title: "Trouver un Appart en Slow Travel"
+        description: "Airbnb, Booking, Facebook... Nos techniques pour dénicher des apparts à -50%."
+        highlight_label: "Économies"
+        highlight_value: "200-500€/mois"
+        link: /fr/guides/trouver-logement/
+      - icon: "💳"
+        title: "Banques & Cartes pour Nomades"
+        description: "Revolut, Wise, N26... Quelles cartes sans frais à l'étranger ? Comparatif complet."
+        highlight_label: "Frais évités"
+        highlight_value: "~50€/mois"
+        link: /fr/guides/banques-cartes/
+      - icon: "📶"
+        title: "Internet & eSIM"
+        description: "Airalo, Holafly, SIM locales... Comment rester connecté partout sans se ruiner."
+        highlight_label: "Coût moyen"
+        highlight_value: "10-20€/mois"
+        link: /fr/guides/internet-esim/
+  - title: "🛡️ Assurances & Administratif"
+    color: bleu
+    guides:
+      - icon: "🏥"
+        title: "Assurance Voyage Long Terme"
+        description: "SafetyWing vs Chapka vs WorldNomads. On a testé, voici notre verdict."
+        highlight_label: "Notre choix"
+        highlight_value: "SafetyWing (45$/mois)"
+        link: /fr/guides/assurance-voyage/
+      - icon: "✈️"
+        title: "Visas & Formalités"
+        description: "Visa touriste, visa run, e-visa... Tout ce qu'il faut savoir pays par pays."
+        highlight_label: "Temps gagné"
+        highlight_value: "Des heures de recherche"
+        link: /fr/guides/visas-formalites/
+      - icon: "🔐"
+        title: "Sécurité & VPN"
+        description: "Protéger ses données en WiFi public. NordVPN, ExpressVPN... Notre comparatif."
+        highlight_label: "Prix"
+        highlight_value: "3-5€/mois"
+        link: /fr/guides/securite-vpn/
+  - title: "💰 Budgets Par Pays"
+    color: pastel
+    guides:
+      - icon: "🌏"
+        title: "Budget Asie du Sud-Est"
+        description: "Combien coûte la vie en Thaïlande, Bali, Vietnam ? Budgets détaillés par ville."
+        highlight_label: "Fourchette"
+        highlight_value: "800-1500€/mois (2 pers)"
+        link: /fr/guides/budget-asie/
+      - icon: "🌎"
+        title: "Budget Amérique du Sud"
+        description: "Argentine, Paraguay, Pérou... Les vraies dépenses mensuelles, poste par poste."
+        highlight_label: "Fourchette"
+        highlight_value: "1200-2000€/mois (2 pers)"
+        link: /fr/guides/budget-amerique-sud/
+      - icon: "🦘"
+        title: "Budget Australie"
+        description: "8 ans d'expérience : salaires, loyers, coût de la vie... Le guide complet."
+        highlight_label: "Fourchette"
+        highlight_value: "2500-3500€/mois (2 pers)"
+        link: /fr/guides/budget-australie/
 ---
 
 ## ℹ️ Note sur les Liens Affiliés
