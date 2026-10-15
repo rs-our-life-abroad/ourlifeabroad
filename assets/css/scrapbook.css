@@ -452,6 +452,20 @@ body {
   line-height: 1.8;
 }
 
+/* Articles justifiés ; la coupure des mots (selon <html lang>) évite les trous sur mobile */
+.post-content p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Bloc « Texte centré » de l'éditeur Decap (admin/index.html) */
+.text-center,
+.post-content .text-center p,
+.destination-content .text-center p {
+  text-align: center;
+}
+
 .post-content strong,
 .destination-content strong {
   background: var(--asia-primary);

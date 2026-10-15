@@ -8,17 +8,32 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // Bouton « Texte centré » dans le + de l'éditeur. markdown="1" fait
+    // interpréter le contenu par kramdown ; le style est dans scrapbook.css.
+    function escapeHtml(text) {
+      return text.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+    CMS.registerEditorComponent({
+      id: 'text-center',
+      label: 'Texte centré',
+      fields: [{ name: 'text', label: 'Texte', widget: 'text' }],
+      pattern: /^<div class="text-center" markdown="1">\n([\s\S]*?)\n<\/div>$/ms,
+      fromBlock: match => ({ text: match[1] }),
+      toBlock: data => `<div class="text-center" markdown="1">\n${data.text || ''}\n</div>`,
+      toPreview: data => `<div style="text-align: center; white-space: pre-line;">${escapeHtml(data.text || '')}</div>`,
+    });
+  </script>
   
   <script>
     window.addEventListener('message', function(event) {
       if (typeof event.data === 'string' && event.data.startsWith('authorization:github:success:')) {
-        console.log('Auth message received:', event.data);
         
         try {
           const tokenData = event.data.replace('authorization:github:success:', '');
           const parsed = JSON.parse(tokenData);
           
-          console.log('Token parsed:', parsed);
           
           if (parsed.token) {
             // Format correct pour Decap CMS avec backend GitHub
@@ -35,7 +50,6 @@
             localStorage.setItem('netlify-cms-user', JSON.stringify(authData));
             
             console.log('Token stored in localStorage');
-            console.log('Stored data:', authData);
             
             // Recharger après un court délai
             setTimeout(() => {
@@ -49,10 +63,6 @@
       }
     }, false);
     
-    // Debug: afficher ce qui est dans localStorage au chargement
-    console.log('localStorage check:');
-    console.log('decap-cms-user:', localStorage.getItem('decap-cms-user'));
-    console.log('netlify-cms-user:', localStorage.getItem('netlify-cms-user'));
   </script>
 </body>
 </html>
