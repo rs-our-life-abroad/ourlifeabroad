@@ -15,11 +15,6 @@
     function escapeHtml(text) {
       return text.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     }
-    // Aperçu (volet de droite) aligné comme le site : articles justifiés, blocs centrés
-    CMS.registerPreviewStyle(`
-      p { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
-      .text-center, .text-center p { text-align: center; }
-    `, { raw: true });
     CMS.registerEditorComponent({
       id: 'text-center',
       label: 'Texte centré',
@@ -27,7 +22,7 @@
       pattern: /^<div class="text-center" markdown="1">\n([\s\S]*?)\n<\/div>$/ms,
       fromBlock: match => ({ text: match[1] }),
       toBlock: data => `<div class="text-center" markdown="1">\n${data.text || ''}\n</div>`,
-      toPreview: data => `<div class="text-center" style="text-align: center; white-space: pre-line;">${escapeHtml(data.text || '')}</div>`,
+      toPreview: data => `<div style="text-align: center; white-space: pre-line;">${escapeHtml(data.text || '')}</div>`,
     });
   </script>
   
