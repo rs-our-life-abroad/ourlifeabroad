@@ -363,6 +363,10 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 
 - **Accueil, guides, destinations et 4 pages continents éditables dans le CMS** (`fe5844e`) : layouts `home`, `guides`, `continents` ; pages réduites à des champs (cartes du parcours, catégories → guides avec couleur `violet|rose|bleu|pastel`, sections par continent) + markdown. Rendu comparé page par page (12 pages, `<main>` normalisé) : identique ; comparateur validé sur une vraie différence. Déployé (disque 77 % avant), CI verte.
 
+- **Mode brouillon** (`publish_mode: editorial_workflow`) : Save = brouillon (branche + PR `cms/...`), mise en ligne depuis l'onglet Workflow.
+- **Articles justifiés** (`.post-content p`, `hyphens: auto`) + **composant Decap « Texte centré »** (`admin/index.html`, `<div class="text-center" markdown="1">`, aller-retour du motif testé sous node).
+- **Sécurité** : `admin/index.html` affichait le jeton GitHub OAuth en clair dans la console du navigateur (`console.log` de debug) → lignes retirées (`a3d9742`).
+
 ### Constats
 - Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
 - Guides et `_redirects/` restent hors CMS.
