@@ -361,10 +361,11 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 - **Mode d'emploi** du blog rédigé pour Romain et Steph (Claude Docs) : connexion, articles, destinations/pays, photos, liens et `/go/`, mise en forme, dépannage.
 - **« Qui sommes-nous » éditable dans le CMS** (`d043ef1`) : mise en page déplacée dans `_layouts/about.html` ; `fr/about.md` / `en/about.md` = champs `heading` + liste `team` (name, photo, specialty) + markdown. Nouvelle collection Decap `pages` (type `files`). Rendu HTML vérifié identique avant/après par `jekyll build` + diff. Les `  ` de fin de ligne (sauts de ligne markdown) ont été remplacés par `<br>` pour survivre à la re-sérialisation de l'éditeur Decap. Déployé et vérifié en ligne, CI verte.
 
+- **Accueil, guides, destinations et 4 pages continents éditables dans le CMS** (`fe5844e`) : layouts `home`, `guides`, `continents` ; pages réduites à des champs (cartes du parcours, catégories → guides avec couleur `violet|rose|bleu|pastel`, sections par continent) + markdown. Rendu comparé page par page (12 pages, `<main>` normalisé) : identique ; comparateur validé sur une vraie différence. Déployé (disque 77 % avant), CI verte.
+
 ### Constats
 - Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
 - Guides et `_redirects/` restent hors CMS.
-- Page d'accueil et page guides : HTML dense (13 et 28 blocs), non migrées dans le CMS.
 
 ### À faire
 - Spécialité de Steph : placeholder « [Sa spécialité - à compléter…] » encore en ligne — Steph peut maintenant la remplir elle-même dans Pages.
