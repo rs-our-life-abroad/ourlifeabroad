@@ -8,8 +8,7 @@ categories:
   - equipement
   - guides
 ---
-
-📱 Tech & Productivité
+📱 Tech & Productivité 
 Quand on part voyager pendant un an ou plus, le matériel électronique prend vite une place importante dans le sac. Entre les photos, les vidéos, le montage de contenu, et la préparation des itinéraires, on avait besoin d'un équipement polyvalent, sans pour autant s'encombrer de trop de matériel.
 Voici ce que nous avons emporté avec nous, ce que nous utilisons le plus et quelques accessoires qui peuvent vraiment faire la différence en voyage.
 MacBook Air M2
@@ -20,7 +19,7 @@ Disque dur SanDisk Portable SSD 1 To (SDSSDE31-1T00)
 Pourquoi on l'a choisi : avec toutes les photos et vidéos que l'on accumule pendant un voyage au long cours, il est important de pouvoir sauvegarder régulièrement ses fichiers sans dépendre uniquement du stockage de son ordinateur.
 Nous avons opté pour le SanDisk Portable SSD de 1 To, un disque SSD externe compact, léger, facile à transporter dans son sac et avec un bon rapport qualité-prix. Il offre des vitesses de transfert annoncées pouvant atteindre 800 Mo/s, ce qui est pratique pour transférer des photos et des vidéos volumineuses, notamment celles filmées en 4K.
 Attention toutefois : un disque externe reste un support de stockage qui peut être perdu, endommagé ou tomber en panne. Pour les fichiers auxquels vous tenez le plus, l'idéal est de conserver une deuxième copie, par exemple sur un autre disque ou dans le cloud lorsque la connexion le permet.
-Voici le modèle que nous avons choisi : [lien à ajouter].
+Voici le modèle que nous avons choisi : \[lien à ajouter].
 iPhone 17
 Pourquoi on l'utilise : nous avions déjà notre iPhone 17 avant de commencer notre périple, nous n'avons donc pas eu besoin d'investir dans un nouveau téléphone pour notre voyage. Pour le moment, il répond parfaitement à nos besoins, d'autant plus que nous débutons tout juste dans le monde des réseaux sociaux et de la création de contenu.
 Nous filmons une grande partie de nos vidéos avec l'iPhone. A nos yeux, sa qualité d'image et sa stabilisation sont largement suffisantes pour commencer à créer du contenu de voyage et partager nos aventures, sans avoir besoin d'investir immédiatement dans du matériel plus coûteux.
@@ -47,19 +46,20 @@ Pour cette aventure, nous avons choisi de prendre chacun un sac à dos et une va
 Nos sacs : Kathmandu Litehaul Carry On v3 - 38L
 Conçu pour le voyage en cabine, il peut convenir à de nombreuses compagnies aériennes, à condition de vérifier leurs dimensions et limites de poids. Même chargé à 10-12 kg, nous le trouvons confortable grâce à ses bretelles rembourrées, son panneau dorsal respirant, sa sangle de poitrine et sa ceinture ventrale. Son ouverture façon valise est également très pratique pour organiser et retrouver facilement ses affaires.
 On avait aussi hésité avec le Osprey Farpoint 40, qui est une excellente alternative si vous cherchez un sac similaire !
-Nous avons aussi acheté une housse de pluie Kathmandu Pack Raincover – taille Medium pour protéger nos sacs en cas de pluie pendant nos déplacements. Si vous préférez une option plus économique, vous pouvez aussi opter pour une housse de pluie générique pour sac à dos. On vous met un lien vers une alternative moins chère ici : [lien à ajouter].
-Nos valises : [lien à ajouter].
+Nous avons aussi acheté une housse de pluie Kathmandu Pack Raincover – taille Medium pour protéger nos sacs en cas de pluie pendant nos déplacements. Si vous préférez une option plus économique, vous pouvez aussi opter pour une housse de pluie générique pour sac à dos. On vous met un lien vers une alternative moins chère ici : \[lien à ajouter].
+Nos valises : \[lien à ajouter].
 Comme nous partons voyager pendant un an ou plus, en slow travel, nous avons préféré privilégier le confort plutôt que de voyager le plus léger possible. Nous allons découvrir plusieurs pays, avec des climats et des saisons différents, mais aussi faire des randonnées. Il nous fallait donc de la place pour emporter des affaires assez variées : chaussures de randonnée, manteau, veste de pluie, vêtements chauds et tenues d'été.
 Organisation interne :
-* Organisateurs de valise (packing cubes): nous avons choisi ceux de chez Action pour leur bon rapport qualité-prix. Il existe aussi d’autres options, notamment sur Amazon, si vous préférez avoir plus de choix. Voici notre alternative en second choix : [lien Amazon à ajouter].
-* Sac étanche: très pratique pour les sorties en bateau, les activités aquatiques ou tout simplement les excursions en extérieur lorsqu'il risque de pleuvoir. Il permet de garder ses affaires personnelles à l'abri de l'eau. De notre côté, nous avons opté pour la petite taille, suffisante pour emporter l'essentiel. Voici le modèle que nous avons choisi : [lien à ajouter].
+
+* Organisateurs de valise (packing cubes): nous avons choisi ceux de chez Action pour leur bon rapport qualité-prix. Il existe aussi d’autres options, notamment sur Amazon, si vous préférez avoir plus de choix. Voici notre alternative en second choix : \[lien Amazon à ajouter].
+* Sac étanche: très pratique pour les sorties en bateau, les activités aquatiques ou tout simplement les excursions en extérieur lorsqu'il risque de pleuvoir. Il permet de garder ses affaires personnelles à l'abri de l'eau. De notre côté, nous avons opté pour la petite taille, suffisante pour emporter l'essentiel. Voici le modèle que nous avons choisi : \[lien à ajouter].
 * Trousse de toilette compacte:
 * Rangement pour electronique:
 
 🔥 Notre Top 3 Achats "Wow"
+
 1. Batterie externe Anker 20000mAh - Sauvé nos vies pendant les coupures de courant
 2. Bouchons d'oreilles Loop - Dors enfin dans les auberges/apparts bruyants
 3. Carte eSIM Airalo - Fini la galère SIM locale dans chaque pays
-Questions ? Balance en commentaire, on répond à tout ! 👇
-Note : Certains liens sont affiliés. Si tu achètes via ces liens, on touche une petite commission (sans surcoût pour toi) qui nous aide à financer le blog. Merci ! ❤️
-
+   Questions ? Balance en commentaire, on répond à tout ! 👇
+   Note : Certains liens sont affiliés. Si tu achètes via ces liens, on touche une petite commission (sans surcoût pour toi) qui nous aide à financer le blog. Merci ! ❤️
