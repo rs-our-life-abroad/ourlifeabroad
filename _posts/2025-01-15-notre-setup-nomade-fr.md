@@ -32,17 +32,35 @@ Pourquoi on l'a choisi : avec toutes les photos et vidéos que l'on accumule pen
 
 Nous avons opté pour le SanDisk Portable SSD de 1 To, un disque SSD externe compact, léger, facile à transporter dans son sac et avec un bon rapport qualité-prix. Il offre des vitesses de transfert annoncées pouvant atteindre 800 Mo/s, ce qui est pratique pour transférer des photos et des vidéos volumineuses, notamment celles filmées en 4K.
 Attention toutefois : un disque externe reste un support de stockage qui peut être perdu, endommagé ou tomber en panne. Pour les fichiers auxquels vous tenez le plus, l'idéal est de conserver une deuxième copie, par exemple sur un autre disque ou dans le cloud lorsque la connexion le permet.
+
+
 Voici le modèle que nous avons choisi : \[lien à ajouter].
-iPhone 17
-Pourquoi on l'utilise : nous avions déjà notre iPhone 17 avant de commencer notre périple, nous n'avons donc pas eu besoin d'investir dans un nouveau téléphone pour notre voyage. Pour le moment, il répond parfaitement à nos besoins, d'autant plus que nous débutons tout juste dans le monde des réseaux sociaux et de la création de contenu.
-Nous filmons une grande partie de nos vidéos avec l'iPhone. A nos yeux, sa qualité d'image et sa stabilisation sont largement suffisantes pour commencer à créer du contenu de voyage et partager nos aventures, sans avoir besoin d'investir immédiatement dans du matériel plus coûteux.
+
+
+IPhone 17 (Steph)
+Pourquoi ? : J'avais deja mon iPhone 17 avant de commencer notre périple, je l'avais pris en remplacement de mon Iphone SE.
+
+Iphone 16E (Romain)
+
+Pour le moment, ils répondent parfaitement à nos besoins, d'autant plus que nous debutons tout juste dans le monde des réseaux sociaux et de la création de contenu.
+Nous filmons une grande partie de nos vidéos avec nos iPhone. A nos yeux, la qualité d'image et la stabilisation avec la gimbal sont largement suffisantes pour commencer à créer du contenu de voyage et partager nos aventures, sans avoir besoin d'investir immédiatement dans du matériel plus coûteux. Et c'est nettement plus pratique que de toujours se balader un appareil pro et tout le materiel qui va avec. Pour des occasions precises, on va sortir avec la Action 4 ou l'insta 360, sinon seulement avec nos telephones et la gimbal.
+
+### 
 DJI Osmo Mobile 8
+
+
 Pourquoi on l'utilise : on utilise le DJI Osmo Mobile 8 avec notre iPhone 17 pour obtenir des vidéos plus fluides et plus stables, notamment lorsqu'on marche, qu'on filme des paysages ou qu'on crée du contenu pour les réseaux sociaux.
-Contrairement à une simple poignée pour smartphone, ce gimbal utilise une stabilisation mécanique sur trois axes pour compenser les mouvements de la main. C'est particulièrement utile pour les plans en mouvement, les travellings et les prises de vue où l'on veut obtenir un rendu plus professionnel.
+
+
+Contrairement à une simple perche pour smartphone, la gimbal utilise une stabilisation mécanique pour compenser les mouvements de la main. C'est particulièrement utile pour les plans en mouvement, les travellings et les prises de vue où l'on veut obtenir un rendu plus professionnel.
 Il permet également de réaliser des mouvements de caméra plus réguliers et de varier les angles de prise de vue. C'est un accessoire intéressant pour filmer pendant un voyage sans avoir besoin d'un équipement vidéo beaucoup plus encombrant.
-Notre conseil : si vous filmez régulièrement avec votre smartphone, un gimbal peut vraiment améliorer le rendu de vos vidéos. En revanche, il prend un peu de place et demande de prévoir une batterie supplémentaire à gérer. Pour les petites sorties où l'on veut voyager léger, la stabilisation intégrée de l'iPhone reste souvent suffisante.
-Pourquoi nous avons choisi cette option plutôt qu'une DJI Osmo Pocket : nous avions déjà un iPhone 17 capable de filmer avec une très bonne qualité. Comme nous débutons tout juste dans la création de contenu, nous ne ressentions pas le besoin d'investir dans une caméra supplémentaire. Le gimbal représentait une solution plus économique pour améliorer la stabilisation de nos vidéos, tout en continuant à utiliser le téléphone que nous possédions déjà.
+Notre conseil : si vous filmez régulièrement avec votre smartphone, une gimbal peut vraiment améliorer le rendu de vos vidéos. En revanche, ca prend un peu de place et demande de prévoir une batterie supplémentaire à gérer. 
+Pourquoi nous avons choisi cette option plutôt qu'une DJI Osmo Pocket : nous avions déjà nos iPhone capable de filmer avec une très bonne qualité. Comme nous débutons tout juste , nous ne ressentions pas le besoin d'investir dans une caméra supplémentaire, mais ca pourrait eventuellement nous interesser par la suite. La gimbal représentait une solution plus économique pour améliorer la stabilisation de nos vidéos, tout en continuant à utiliser les téléphones que nous possédions déjà.
+
+### 
 DJI Osmo Action 4
+
+
 Pourquoi on l'a emportée : pour les activités pendant lesquelles on préfère éviter d'utiliser notre téléphone, comme le kayak, certaines randonnées ou les sorties aquatiques.
 Cette caméra est conçue pour les activités en extérieur. Elle dispose d'un capteur de 1/1,3 pouce, filme en 4K jusqu'à 120 images par seconde dans certains modes et bénéficie d'une stabilisation électronique RockSteady. Elle est également étanche jusqu'à 18 mètres sans caisson supplémentaire, selon les conditions et les recommandations du fabricant.
 C'est un avantage pour les sorties où l'on risque de recevoir des éclaboussures ou de tomber dans l'eau. Il reste toutefois important de vérifier l'état des joints, de bien fermer les compartiments et de respecter les limites d'utilisation indiquées par DJI.
