@@ -17,14 +17,18 @@ authors:
   romain:
     name: Romain
     bio: "Passionné de voyage et aventure. Expert en bons plans budget et équipement nomade."
-    avatar: /assets/images/romain.jpg
+    avatar: /assets/images/authors/romain.jpg
     instagram: ""   # placeholder retire le 14/09/2026 - remettre le vrai compte si besoin
   
-  partner:
+  # Clé = valeur écrite par le champ « Auteur » du CMS (admin/config.yml)
+  steph:
     name: Steph
     bio: "[Une phrase sur elle/lui]"
-    avatar: /assets/images/partner.jpg
+    avatar: /assets/images/authors/steph.jpg
     instagram: ""
+
+  steph-romain:
+    name: Steph & Romain
 
 # Réseaux sociaux
 # Laisser vide tant que le compte n'existe pas : les {% if %} de _layouts/default.html
