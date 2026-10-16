@@ -9,10 +9,15 @@ categories:
   - guides
 ---
 📱 Tech & Productivité 
+
 Quand on part voyager pendant un an ou plus, le matériel électronique prend vite une place importante dans le sac. Entre les photos, les vidéos, le montage de contenu, et la préparation des itinéraires, on avait besoin d'un équipement polyvalent, sans pour autant s'encombrer de trop de matériel.
 Voici ce que nous avons emporté avec nous, ce que nous utilisons le plus et quelques accessoires qui peuvent vraiment faire la différence en voyage.
+
+
 MacBook Air M2
 Pourquoi on l'adore : Léger, compact et suffisamment puissant pour gérer notre contenu en voyage. Avec ses 1,2 kg environ pour le modèle 13 pouces, il se transporte facilement dans un sac à dos. Son autonomie annoncée peut atteindre 18 heures de lecture vidéo, même si elle dépend évidemment de l'utilisation, de la luminosité et des applications ouvertes.
+
+
 On l'utilise notamment pour préparer nos itinéraires, gérer nos réservations, sauvegarder nos photos et vidéos, faire du montage vidéo léger et aussi pour regarder nos series Netflix. Sa puce M2 est largement suffisante pour ces tâches, même si les montages complexes ou les gros fichiers vidéo peuvent demander davantage de temps.
 Le truc qu'on n'avait pas prévu : Prendre un câble USB-C vers HDMI. Les apparts Airbnb ont souvent des écrans, ça change la vie pour bosser.
 Disque dur SanDisk Portable SSD 1 To (SDSSDE31-1T00)
