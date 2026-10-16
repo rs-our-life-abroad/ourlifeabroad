@@ -19,6 +19,7 @@
     CMS.registerPreviewStyle(`
       p { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
       .text-center, .text-center p { text-align: center; }
+      .spacer-s { height: 1.5rem; } .spacer-m { height: 3rem; } .spacer-l { height: 5rem; }
     `, { raw: true });
     CMS.registerEditorComponent({
       id: 'text-center',
@@ -28,6 +29,19 @@
       fromBlock: match => ({ text: match[1] }),
       toBlock: data => `<div class="text-center" markdown="1">\n${data.text || ''}\n</div>`,
       toPreview: data => `<div class="text-center" style="text-align: center; white-space: pre-line;">${escapeHtml(data.text || '')}</div>`,
+    });
+    // Bouton « Espace » : un blanc vertical, en markdown les lignes vides en trop sont ignorées
+    CMS.registerEditorComponent({
+      id: 'spacer',
+      label: 'Espace',
+      fields: [{
+        name: 'size', label: 'Taille', widget: 'select', default: 'm',
+        options: [{ label: 'Petit', value: 's' }, { label: 'Moyen', value: 'm' }, { label: 'Grand', value: 'l' }],
+      }],
+      pattern: /^<div class="spacer spacer-(s|m|l)"><\/div>$/m,
+      fromBlock: match => ({ size: match[1] }),
+      toBlock: data => `<div class="spacer spacer-${data.size || 'm'}"></div>`,
+      toPreview: data => `<div class="spacer spacer-${data.size || 'm'}"></div>`,
     });
   </script>
   

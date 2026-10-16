@@ -466,6 +466,11 @@ body {
   text-align: center;
 }
 
+/* Bouton « Espace » de l'éditeur Decap (admin/index.html) */
+.spacer-s { height: 1.5rem; }
+.spacer-m { height: 3rem; }
+.spacer-l { height: 5rem; }
+
 .post-content strong,
 .destination-content strong {
   background: var(--asia-primary);
