@@ -367,10 +367,17 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 - **Articles justifiés** (`.post-content p`, `hyphens: auto`) + **composant Decap « Texte centré »** (`admin/index.html`, `<div class="text-center" markdown="1">`, aller-retour du motif testé sous node).
 - **Sécurité** : `admin/index.html` affichait le jeton GitHub OAuth en clair dans la console du navigateur (`console.log` de debug) → lignes retirées (`a3d9742`).
 
+- **Incidents CMS du 15/10 (Steph)** :
+  - Save → « OAuth App access restrictions » : l'org `rs-our-life-abroad` restreint les apps OAuth ; l'app du Worker a été approuvée par Romain (Grant dans les réglages de l'org). Toute nouvelle app OAuth devra l'être aussi.
+  - Puis « not found » sur `GET /compare/main...cms/posts_fr/...` : après l'échec précédent, l'onglet croyait le brouillon existant (branche absente). Rechargement nécessaire — les modifications non enregistrées ont dû être recollées depuis une note (la copie de secours locale contenait l'ancienne version).
+  - Puis Save grisé / « Contenu is required » avec le texte visible : éditeur Rich Text désynchronisé ; résolu en basculant Rich Text → Markdown → Rich Text. Non reproduit en local (decap-server + Chrome, avec le composant « Texte centré » : chargement, saisie, aperçu OK). Le style d'aperçu justifié (`37f2424`) a été retiré (`b4d6cf9`) par précaution, sans preuve qu'il était en cause.
+  - Premier brouillon réel : PR #1 (`cms/posts_fr/2025-01-15-notre-setup-nomade-fr`).
+
 ### Constats
 - Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
 - Guides et `_redirects/` restent hors CMS.
 
 ### À faire
+- Remettre éventuellement le style d'aperçu justifié (`37f2424`) et observer si la désynchronisation Rich Text revient.
 - Spécialité de Steph : placeholder « [Sa spécialité - à compléter…] » encore en ligne — Steph peut maintenant la remplir elle-même dans Pages.
 - Vérifier après la première édition réelle de « Qui sommes-nous » via le CMS que la re-sérialisation markdown de Decap n'a rien cassé (diff du commit).
