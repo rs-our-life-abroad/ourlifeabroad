@@ -377,12 +377,13 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 
 - **Bouton « Espace »** (composant Decap, `div.spacer-s|m|l`) : testé dans Decap en local (decap-server + Chrome : insertion, aperçu, aller-retour Markdown ↔ Rich Text). Article de Steph publié (PR #1 fusionnée le 16/10 08:46).
 
+- **GitHub Pages désactivé** le 16/10 (accord de Romain) : héritage d'avant Coolify, en erreur à chaque push (« pages build and deployment »), sans domaine personnalisé ni référence dans le dépôt. Site Coolify vérifié en ligne après.
+
 ### Constats
 - Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
 - Guides et `_redirects/` restent hors CMS.
 
 ### À faire
-- GitHub Pages encore activé sur le dépôt (héritage d'avant Coolify) : « pages build and deployment » échoue à chaque push, sans effet sur le site. À désactiver (Settings → Pages) si Romain est d'accord.
 - Style d'aperçu justifié remis le 15/10 : observer si la désynchronisation Rich Text revient (si oui, le retirer à nouveau).
 - Spécialité de Steph : placeholder « [Sa spécialité - à compléter…] » encore en ligne — Steph peut maintenant la remplir elle-même dans Pages.
 - Vérifier après la première édition réelle de « Qui sommes-nous » via le CMS que la re-sérialisation markdown de Decap n'a rien cassé (diff du commit).
