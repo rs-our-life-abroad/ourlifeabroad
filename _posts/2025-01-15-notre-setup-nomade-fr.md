@@ -8,20 +8,28 @@ categories:
   - equipement
   - guides
 ---
-📱 Tech & Productivité 
+## **📱 Tech & Productivité**
 
-Quand on part voyager pendant un an ou plus, le matériel électronique prend vite une place importante dans le sac. Entre les photos, les vidéos, le montage de contenu, et la préparation des itinéraires, on avait besoin d'un équipement polyvalent, sans pour autant s'encombrer de trop de matériel.
+
 Voici ce que nous avons emporté avec nous, ce que nous utilisons le plus et quelques accessoires qui peuvent vraiment faire la différence en voyage.
 
+### MacBook Air M2
 
-MacBook Air M2
-Pourquoi on l'adore : Léger, compact et suffisamment puissant pour gérer notre contenu en voyage. Avec ses 1,2 kg environ pour le modèle 13 pouces, il se transporte facilement dans un sac à dos. Son autonomie annoncée peut atteindre 18 heures de lecture vidéo, même si elle dépend évidemment de l'utilisation, de la luminosité et des applications ouvertes.
 
+**Pourquoi on l'adore** : Léger, compact et suffisamment puissant pour gérer notre contenu en voyage. Avec ses 1,2 kg environ pour le modèle 13 pouces, il se transporte facilement dans un sac à dos. Son autonomie annoncée peut atteindre 18 heures de lecture vidéo, même si elle dépend évidemment de l'utilisation, de la luminosité et des applications ouvertes.
 
 On l'utilise notamment pour préparer nos itinéraires, gérer nos réservations, sauvegarder nos photos et vidéos, faire du montage vidéo léger et aussi pour regarder nos series Netflix. Sa puce M2 est largement suffisante pour ces tâches, même si les montages complexes ou les gros fichiers vidéo peuvent demander davantage de temps.
-Le truc qu'on n'avait pas prévu : Prendre un câble USB-C vers HDMI. Les apparts Airbnb ont souvent des écrans, ça change la vie pour bosser.
+
+
+**Le truc qu'on n'avait pas prévu** : Prendre un câble USB-C vers HDMI. Les apparts Airbnb ont souvent des écrans, ça change la vie pour bosser.
+
+### 
 Disque dur SanDisk Portable SSD 1 To (SDSSDE31-1T00)
+
+
 Pourquoi on l'a choisi : avec toutes les photos et vidéos que l'on accumule pendant un voyage au long cours, il est important de pouvoir sauvegarder régulièrement ses fichiers sans dépendre uniquement du stockage de son ordinateur.
+
+
 Nous avons opté pour le SanDisk Portable SSD de 1 To, un disque SSD externe compact, léger, facile à transporter dans son sac et avec un bon rapport qualité-prix. Il offre des vitesses de transfert annoncées pouvant atteindre 800 Mo/s, ce qui est pratique pour transférer des photos et des vidéos volumineuses, notamment celles filmées en 4K.
 Attention toutefois : un disque externe reste un support de stockage qui peut être perdu, endommagé ou tomber en panne. Pour les fichiers auxquels vous tenez le plus, l'idéal est de conserver une deuxième copie, par exemple sur un autre disque ou dans le cloud lorsque la connexion le permet.
 Voici le modèle que nous avons choisi : \[lien à ajouter].
@@ -68,3 +76,15 @@ Organisation interne :
 3. Carte eSIM Airalo - Fini la galère SIM locale dans chaque pays
    Questions ? Balance en commentaire, on répond à tout ! 👇
    Note : Certains liens sont affiliés. Si tu achètes via ces liens, on touche une petite commission (sans surcoût pour toi) qui nous aide à financer le blog. Merci ! ❤️
+
+   <div class="text-center" markdown="1">
+
+   </div>
+
+   <div class="text-center" markdown="1">
+
+   </div>
+
+   <div class="text-center" markdown="1">
+
+   </div>
