@@ -378,6 +378,6 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
 - Guides et `_redirects/` restent hors CMS.
 
 ### À faire
-- Remettre éventuellement le style d'aperçu justifié (`37f2424`) et observer si la désynchronisation Rich Text revient.
+- Style d'aperçu justifié remis le 15/10 : observer si la désynchronisation Rich Text revient (si oui, le retirer à nouveau).
 - Spécialité de Steph : placeholder « [Sa spécialité - à compléter…] » encore en ligne — Steph peut maintenant la remplir elle-même dans Pages.
 - Vérifier après la première édition réelle de « Qui sommes-nous » via le CMS que la re-sérialisation markdown de Decap n'a rien cassé (diff du commit).
