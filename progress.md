@@ -373,6 +373,8 @@ Trois commits poussés sur `main` : `06d1a9d` (CI TikTok), `eaae9a7` (ce suivi),
   - Puis Save grisé / « Contenu is required » avec le texte visible : éditeur Rich Text désynchronisé ; résolu en basculant Rich Text → Markdown → Rich Text. Non reproduit en local (decap-server + Chrome, avec le composant « Texte centré » : chargement, saisie, aperçu OK). Le style d'aperçu justifié (`37f2424`) a été retiré (`b4d6cf9`) par précaution, sans preuve qu'il était en cause.
   - Premier brouillon réel : PR #1 (`cms/posts_fr/2025-01-15-notre-setup-nomade-fr`).
 
+- **Auteurs** : libellés Romain / Steph / Steph & Romain dans le CMS ; `_config.yml` : clé `partner` → `steph` (un article signé Steph s'affichait sans nom), + `steph-romain`. Rendu testé par build.
+
 ### Constats
 - Les articles (`_posts`) n'ont **pas** de champ image de couverture ; seules destinations et pays en ont. Décision : on n'en ajoute pas pour l'instant.
 - Guides et `_redirects/` restent hors CMS.
